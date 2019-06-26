@@ -1,6 +1,6 @@
 using System;
 
-namespace Capstone.Models
+namespace Domain
 {
     public class ErrorViewModel
     {

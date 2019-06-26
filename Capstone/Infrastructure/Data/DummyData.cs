@@ -1,4 +1,4 @@
-﻿using Capstone.Models;
+﻿using Domain;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using System;

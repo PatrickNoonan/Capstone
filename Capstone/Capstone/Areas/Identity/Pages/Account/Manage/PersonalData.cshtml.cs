@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Capstone.Models;
+using Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

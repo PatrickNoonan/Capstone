@@ -4,17 +4,35 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Capstone.Models;
 using System.Security.Claims;
 using Infrastructure.Data;
+using Domain;
 
 namespace Capstone.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
+            //why is user null????????
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var currentUser = this.User.Identity.Name;
+            //var user = _context.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
+            var user = _context.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
+            if (user == null)
+            {
+                return View();
+            }
+            if (user.RoleString == "Traveler")
+            {
+                return RedirectToAction("Index", "Traveler");
+            }
             return View();
         }
 
@@ -41,7 +59,7 @@ namespace Capstone.Controllers
             var currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _context.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
             
-                return RedirectToAction("Create", "Traveler");
+            return RedirectToAction("Create", "Traveler");
             
 
         }

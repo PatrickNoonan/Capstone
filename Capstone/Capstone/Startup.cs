@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Capstone.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Capstone.Models;
 using Infrastructure.Data;
+using Domain;
 
 namespace Capstone
 {

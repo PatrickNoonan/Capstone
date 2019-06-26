@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Capstone.Models;
 using Infrastructure.Data;
+using Domain;
 
 namespace Capstone.Controllers
 {

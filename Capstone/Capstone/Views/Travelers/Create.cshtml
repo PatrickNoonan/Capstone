@@ -1,4 +1,4 @@
-﻿@model Capstone.Models.Traveler
+﻿@model Domain.Traveler
 
 @{
     ViewData["Title"] = "Create";
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ApplicationId" class="control-label"></label>
-                <select asp-for="ApplicationId" class ="form-control" asp-items="ViewBag.ApplicationId"></select>
+                <select asp-for="ApplicationId" class="form-control" asp-items="ViewBag.ApplicationId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="UserRole" class="control-label"></label>

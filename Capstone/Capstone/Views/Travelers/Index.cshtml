@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Capstone.Models.Traveler>
+﻿@model Domain.Traveler
 
 @{
     ViewData["Title"] = "Index";
@@ -43,41 +43,39 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserRole)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Zip)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ApplicationUser.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UserRole)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="model.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="model.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="model.Id">Delete</a>
+                </td>
+            </tr>
     </tbody>
 </table>
