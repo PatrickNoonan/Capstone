@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Data;
 using Domain;
+using System.Security.Claims;
 
 namespace Capstone.Controllers
 {
@@ -22,8 +23,17 @@ namespace Capstone.Controllers
         // GET: Travelers
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Travelers.Include(t => t.ApplicationUser);
-            return View(await applicationDbContext.ToListAsync());
+            var loggedInMember = GetLoggedInMember();
+            if (loggedInMember == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+            else
+            {
+                return View(loggedInMember);
+            }
+
+            //return View(await _context.Businesses.ToListAsync());
         }
 
         // GET: Travelers/Details/5
@@ -53,8 +63,6 @@ namespace Capstone.Controllers
         }
 
         // POST: Travelers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Street,City,State,Zip,Country,ApplicationId,UserRole")] Traveler traveler)
@@ -155,6 +163,13 @@ namespace Capstone.Controllers
         private bool TravelerExists(int id)
         {
             return _context.Travelers.Any(e => e.Id == id);
+        }
+
+        public Traveler GetLoggedInMember()
+        {
+            var currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var loggedInMember = _context.Travelers.SingleOrDefault(b => b.ApplicationId == currentUserId);
+            return loggedInMember;
         }
     }
 }

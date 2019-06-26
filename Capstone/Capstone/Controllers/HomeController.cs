@@ -31,7 +31,7 @@ namespace Capstone.Controllers
             }
             if (user.RoleString == "Traveler")
             {
-                return RedirectToAction("Index", "Traveler");
+                return RedirectToAction("Index", "Travelers");
             }
             return View();
         }
@@ -59,9 +59,7 @@ namespace Capstone.Controllers
             var currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _context.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
             
-            return RedirectToAction("Create", "Traveler");
-            
-
+            return RedirectToAction("Create", "Traveler"); 
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
