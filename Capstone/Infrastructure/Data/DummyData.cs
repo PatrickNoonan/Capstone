@@ -1,4 +1,5 @@
 ﻿using Capstone.Models;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -42,13 +43,6 @@ namespace Capstone.Data
                     UserName = "aa@aa.aa",
                     Email = "aa@aa.aa",
                     EmailConfirmed = true,
-                    FirstName = "Adam",
-                    LastName = "Aldridge",
-                    Street = "Fake St",
-                    City = "Vancouver",
-                    State = "BC",
-                    Zip = "V5U K8I",
-                    Country = "Canada",
                     PhoneNumber = "6902341234"
                 };
 
@@ -68,13 +62,6 @@ namespace Capstone.Data
                     UserName = "bb@bb.bb",
                     Email = "bb@bb.bb",
                     EmailConfirmed = true,
-                    FirstName = "Bob",
-                    LastName = "Barker",
-                    Street = "Vermont St",
-                    City = "Surrey",
-                    State = "BC",
-                    Zip = "V1P I5T",
-                    Country = "Canada",
                     PhoneNumber = "7788951456"
                 };
 
@@ -94,13 +81,6 @@ namespace Capstone.Data
                     UserName = "mm@mm.mm",
                     Email = "mm@mm.mm",
                     EmailConfirmed = true,
-                    FirstName = "Mike",
-                    LastName = "Myers",
-                    Street = "Yew St",
-                    City = "Vancouver",
-                    State = "BC",
-                    Zip = "V3U E2Y",
-                    Country = "Canada",
                     PhoneNumber = "6572136821"
                 };
 
@@ -119,13 +99,6 @@ namespace Capstone.Data
                     UserName = "dd@dd.dd",
                     Email = "dd@dd.dd",
                     EmailConfirmed = true,
-                    FirstName = "Donald",
-                    LastName = "Duck",
-                    Street = "Well St",
-                    City = "Vancouver",
-                    State = "BC",
-                    Zip = "V8U R9Y",
-                    Country = "Canada",
                     PhoneNumber = "6041234567"
                 };
 

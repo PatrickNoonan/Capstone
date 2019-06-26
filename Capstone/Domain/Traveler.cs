@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.Models
 { 
-    class Traveller
+    public class Traveler
     {
         [Key]
         public int Id { get; set; }
