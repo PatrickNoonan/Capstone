@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190626142608_initMigration")]
+    [Migration("20190626155341_initMigration")]
     partial class initMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Capstone.Models.ApplicationRole", b =>
+            modelBuilder.Entity("Domain.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -49,7 +49,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Capstone.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Domain.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -102,7 +102,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Capstone.Models.Traveler", b =>
+            modelBuilder.Entity("Domain.Traveler", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -227,20 +227,20 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Capstone.Models.Traveler", b =>
+            modelBuilder.Entity("Domain.Traveler", b =>
                 {
-                    b.HasOne("Capstone.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("Domain.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationId");
 
-                    b.HasOne("Capstone.Models.ApplicationRole", "ApplicationRole")
+                    b.HasOne("Domain.ApplicationRole", "ApplicationRole")
                         .WithMany()
                         .HasForeignKey("ApplicationRoleId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Capstone.Models.ApplicationRole")
+                    b.HasOne("Domain.ApplicationRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -248,7 +248,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Capstone.Models.ApplicationUser")
+                    b.HasOne("Domain.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -256,7 +256,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Capstone.Models.ApplicationUser")
+                    b.HasOne("Domain.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -264,12 +264,12 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Capstone.Models.ApplicationRole")
+                    b.HasOne("Domain.ApplicationRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Capstone.Models.ApplicationUser")
+                    b.HasOne("Domain.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -277,7 +277,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Capstone.Models.ApplicationUser")
+                    b.HasOne("Domain.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
