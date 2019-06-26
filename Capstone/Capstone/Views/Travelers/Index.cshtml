@@ -13,17 +13,33 @@
 </head>
 <body>
     <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-5">
+                    <input type="text" placeholder="Enter a city (Milwaukee, Wisconsin)" class="city-search form-control" name="city" id="city" />
+                    <i class="icon-map-marker"></i>
+                </div>
+                <div class="col-xs-1">
+                    <input type="submit" class="btn btn-1 btn-city" value="Submit" />
+                    @*<button class="btn btn-1" onclick="startPie('thirty')">Past Thirty Days</button>*@
+                </div>
+                <div class="col-xs-6"></div>
+            </div>
+        </div>
+        <div class="col-xs-6"></div>
+    </div>
+    <div class="row">
         <div class="col-xs-4">
             <div id="map"></div>
         </div>
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-                <div class="container info-container">
-                    <div class="info-box">
-                        <img src="http://placehold.it/100x100">
-                        <p>Lorem ipsum dolor sit amet.</p>
-                    </div>
+            <div class="container info-container">
+                <div class="info-box">
+                    <img src="http://placehold.it/100x100">
+                    <p>Lorem ipsum dolor sit amet.</p>
                 </div>
+            </div>
         </div>
     </div>
     <script src="~/js/TravelersScripts.js"></script>
