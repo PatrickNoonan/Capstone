@@ -20,10 +20,13 @@
                     <i class="icon-map-marker"></i>
                 </div>
                 <div class="col-xs-1">
-                    <input type="submit" class="btn btn-1 btn-city" value="Submit" />
+                    <input type="submit" class="btn btn-change btn-1 btn-city" value="Submit" />
                     @*<button class="btn btn-1" onclick="startPie('thirty')">Past Thirty Days</button>*@
                 </div>
-                <div class="col-xs-6"></div>
+                <div class="col-xs-1 cityInfo-btn">
+                    <input type="submit" class="btn btn-change btn-1 btn-city" value="City Info" />
+                </div>
+                <div class="col-xs-5"></div>
             </div>
         </div>
         <div class="col-xs-6"></div>
@@ -42,8 +45,9 @@
             </div>
         </div>
     </div>
-    <script src="~/js/TravelersScripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc&callback=initMap">
     </script>
+    <script src="~/js/TravelersScripts.js"></script>
 </body>

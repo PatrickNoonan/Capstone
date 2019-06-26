@@ -78,7 +78,7 @@ body {
     opacity: 1;
 }
 
-.btn {
+.btn-change {
     flex: 1 1 auto;
     margin: 1px;
     padding: 4px;
@@ -114,4 +114,13 @@ body {
 
 .btn-5 {
     background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
+}
+
+#footerD {
+    position: absolute;
+    bottom: 0;
+}
+
+.cityInfo-btn {
+    margin-left:20px;
 }
