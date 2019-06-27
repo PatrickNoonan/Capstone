@@ -13,24 +13,39 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-xs-6">
-            <div class="row">
-                <div class="col-xs-5">
-                    <input type="text" placeholder="Enter a city (Milwaukee, Wisconsin)" class="city-search form-control" name="city" id="city" />
-                    <i class="icon-map-marker"></i>
+        <div class="col-xs-3">
+            <input type="text" placeholder="Enter a city (Milwaukee, Wisconsin)" class="city-search form-control" name="city" id="city" />
+            <i class="icon-map-marker"></i>
+        </div>
+        <div class="col-xs-3">
+            <input type="submit" class="btn btn-change btn-1 btn-city" value="Submit" />
+            @*<button class="btn btn-1" onclick="startPie('thirty')">Past Thirty Days</button>*@
+        </div>
+        <div class="col-xs-6 cityInfo-btn">
+            <h3 class="cityInfoButton">
+                <label for="menuToggle" class="btn btn-change btn-1 btn-city">City Info</label>
+
+                @*<input type="submit" class="btn btn-change btn-1 btn-city" value="City Info" />*@
+            </h3>
+
+            <div>
+                <input id="menuToggle" type="checkbox">
+                <div class="infobox md-card">
+                    <div class="md-card-content">
+                        @*<h3>@Html.DisplayFor(model => model.Name)'s PIN</h3>
+                            <h4>@Html.DisplayFor(model => model.Address)</h4>*@
+                        <p class="md-caption">Your PIN is</p>
+                        @*<p>@Html.DisplayFor(model => model.Pin)</p>*@
+                        <p>Make sure your employees know to enter this discreetly.</p>
+                    </div>
+                    <div class="md-card-btns">
+                        <label for="menuToggle" class="btn btn-1">Close Box</label>
+                    </div>
                 </div>
-                <div class="col-xs-1">
-                    <input type="submit" class="btn btn-change btn-1 btn-city" value="Submit" />
-                    @*<button class="btn btn-1" onclick="startPie('thirty')">Past Thirty Days</button>*@
-                </div>
-                <div class="col-xs-1 cityInfo-btn">
-                    <input type="submit" class="btn btn-change btn-1 btn-city" value="City Info" />
-                </div>
-                <div class="col-xs-5"></div>
             </div>
         </div>
-        <div class="col-xs-6"></div>
     </div>
+
     <div class="row">
         <div class="col-xs-4">
             <div id="map"></div>
@@ -45,6 +60,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc&callback=initMap">

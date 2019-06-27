@@ -39,3 +39,14 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
+
+function wikiSearch(item) {
+    // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY
+    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
+    $.getJSON(url, function (json) {
+        var item_id = Object.keys(json.query.pages)[0]; // 
+        sent = json.query.pages[item_id].extract;
+        result = "<t><strong>" + item + "</strong></t>: " + sent;
+        $('#wiki').html("<div>" + result + "</div>"); // Replace 
+    });
+}
