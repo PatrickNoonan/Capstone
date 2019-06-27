@@ -36,13 +36,6 @@ function initMap() {
 
 
 $("#citySearchBtn").click(function initMap() {
-    //initMap()
-    
-
-
-    
-
-
 
     let userInput = document.getElementById("citySearch").value;
     //let userInput = document.getElementById("citySearch");
@@ -108,9 +101,12 @@ function displayPlaces(pos) {
 
     $.ajax({
         method: "GET",
+        //url: "https://maps.googleapis.com/maps/api/place/search/json",
         url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + pos.lat + "," + pos.lng + "&radius=300&type=" + "restaurant" + "&key=AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc",
         //url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + pos.lat + "," + pos.lng + "&radius=300&type=" + "restaurant" + "&key=AIzaSyCsJ19vBMgjlUmXSrvYO_ohXFaZRohe6CI",
-        dataType: "JSON"
+        //data: { "location": pos.last + "," + pos.long, "radius": 300, "types": "restaurant", "key": "AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc", "sensor": "false", },
+        //contentType: "application/json",
+        dataType: "json"
      })
     .done(function (data) {
                 console.log(data);
@@ -126,5 +122,7 @@ function displayPlaces(pos) {
                     </div>`
                    )
             })
-         });        
+    }).fail(function () {
+        alert("Sorry. Server unavailable. ");
+    });       
 }
