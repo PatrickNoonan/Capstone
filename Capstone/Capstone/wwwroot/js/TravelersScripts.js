@@ -30,23 +30,54 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-}
 
-function wikiSearch(item) {
-    // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY
-    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
-    $.getJSON(url, function (json) {
-        var item_id = Object.keys(json.query.pages)[0]; // 
-        sent = json.query.pages[item_id].extract;
-        result = "<t><strong>" + item + "</strong></t>: " + sent;
-        $('#wiki').html("<div>" + result + "</div>"); // Replace 
+$("#citySearchBtn").click(function initMap() {
+    //initMap()
+    //provideCityInfo()
+    //displayPlaces()
+
+    let userInput = document.getElementById("citySearch").value;
+    //let userInput = document.getElementById("citySearch");
+
+    let geocoder = new google.maps.Geocoder();
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 0, lng: 0 },
+        zoom: 8
     });
-}
+
+    geocoder.geocode({ 'address': userInput }, function (results, status) {
+        if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+            infoWindow.setPosition(map.center);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });    
+});
+
+
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
+
+    function wikiSearch(item) {
+        // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY
+        url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
+        $.getJSON(url, function (json) {
+            var item_id = Object.keys(json.query.pages)[0];
+            sent = json.query.pages[item_id].extract;
+            result = "<t><strong>" + item + "</strong></t>: " + sent;
+            $('#wiki').html("<div>" + result + "</div>"); // Replace 
+        });
+    }

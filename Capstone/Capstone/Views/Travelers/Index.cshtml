@@ -14,11 +14,11 @@
 <body>
     <div class="row">
         <div class="col-xs-3">
-            <input type="text" placeholder="Enter a city (Milwaukee, Wisconsin)" class="city-search form-control" name="city" id="city" />
+            <input type="text" placeholder="Enter a city (Milwaukee, Wisconsin)" class="city-search form-control" name="city" id="citySearch" />
             <i class="icon-map-marker"></i>
         </div>
         <div class="col-xs-3">
-            <input type="submit" class="btn btn-change btn-1 btn-city" value="Submit" />
+            <input type="submit" class="btn btn-change btn-1 btn-city" value="Submit" id="citySearchBtn"/>
             @*<button class="btn btn-1" onclick="startPie('thirty')">Past Thirty Days</button>*@
         </div>
         <div class="col-xs-6 cityInfo-btn">
@@ -32,11 +32,8 @@
                 <input id="menuToggle" type="checkbox">
                 <div class="infobox md-card">
                     <div class="md-card-content">
-                        @*<h3>@Html.DisplayFor(model => model.Name)'s PIN</h3>
-                            <h4>@Html.DisplayFor(model => model.Address)</h4>*@
-                        <p class="md-caption">Your PIN is</p>
-                        @*<p>@Html.DisplayFor(model => model.Pin)</p>*@
-                        <p>Make sure your employees know to enter this discreetly.</p>
+                        <h3>Will display information about selected city from wikipedia, time permitting</h3>
+                        <div id="wiki"></div>
                     </div>
                     <div class="md-card-btns">
                         <label for="menuToggle" class="btn btn-1">Close Box</label>
