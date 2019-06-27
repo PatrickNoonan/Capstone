@@ -18,13 +18,29 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-
-            displayPlaces(pos);
-
+            
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             infoWindow.open(map);
             map.setCenter(pos);
+
+            var request = {
+                query: 'Bar',
+                fields: ['name', 'geometry'],
+            };
+
+            service = new google.maps.places.PlacesService(map);
+            console.log(service);
+
+            service.findPlaceFromQuery(request, function (results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                        createMarker(results[i]);
+                        console.log(results[i]);
+                    }
+                    map.setCenter(results[0].geometry.location);
+                }
+            });
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -32,6 +48,46 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+}
+
+function initialize() {
+    var pyrmont = new google.maps.LatLng(-33.8665433, 151.1956316);
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: pyrmont,
+        zoom: 15
+    });
+
+    var request = {
+        location: pyrmont,
+        radius: '500',
+        type: ['restaurant']
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+
+function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            var place = results[i];
+            createMarker(results[i]);
+        }
+    }
+}
+initialize();
+
+function createMarker(place) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
 }
 
 
@@ -96,33 +152,43 @@ function wikiSearch(item) {
 }
 
 
-function displayPlaces(pos) {
-    $(".info-container").empty();
+//function displayPlaces(placeData) {
+//    $(".info-container").empty();
 
-    $.ajax({
-        method: "GET",
-        //url: "https://maps.googleapis.com/maps/api/place/search/json",
-        url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + pos.lat + "," + pos.lng + "&radius=300&type=" + "restaurant" + "&key=AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc",
-        //url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + pos.lat + "," + pos.lng + "&radius=300&type=" + "restaurant" + "&key=AIzaSyCsJ19vBMgjlUmXSrvYO_ohXFaZRohe6CI",
-        //data: { "location": pos.last + "," + pos.long, "radius": 300, "types": "restaurant", "key": "AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc", "sensor": "false", },
-        //contentType: "application/json",
-        dataType: "json"
-     })
-    .done(function (data) {
-                console.log(data);
-            $.each(data, function (key, value) {
-                $(".info-container")
-                    //.append(`<div class="row object-row"><div class="col-3"><a href="${value.Image}"><img src="${value.Image}"></a></div>` + "<div class='col-3'>" + value.Title + "</div><div class='col-3'>" + value.Genre + "</div><div class='col-3'>" + value.DirectorName + "</div>")
-                    .append (
-                   `<div class="row">
-                      <div class="info-box">
-                        <img src="http://placehold.it/100x100">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                      </div>
-                    </div>`
-                   )
-            })
-    }).fail(function () {
-        alert("Sorry. Server unavailable. ");
-    });       
-}
+//    $.each(placeData, function (key, value) {
+//        $(".info-container")
+//            //.append(`<div class="row object-row"><div class="col-3"><a href="${value.Image}"><img src="${value.Image}"></a></div>` + "<div class='col-3'>" + value.Title + "</div><div class='col-3'>" + value.Genre + "</div><div class='col-3'>" + value.DirectorName + "</div>")
+//            .append(
+//                `<div class="row">
+//                      <div class="info-box">
+//                        <img src="http://placehold.it/100x100">
+//                            <p>Lorem ipsum dolor sit amet.</p>
+//                      </div>
+//                    </div>`
+//            )
+//    });
+
+    //$.ajax({
+    //    type: "GET",
+    //    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + pos.lat + "," + pos.lng + "&radius=300&type=" + "restaurant" + "&key=AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc",
+    //    contentType: "application/json",
+    //    dataType: 'json'
+    // })
+    //.done(function (data) {
+    //            console.log(data);
+    //        $.each(data, function (key, value) {
+    //            $(".info-container")
+    //                //.append(`<div class="row object-row"><div class="col-3"><a href="${value.Image}"><img src="${value.Image}"></a></div>` + "<div class='col-3'>" + value.Title + "</div><div class='col-3'>" + value.Genre + "</div><div class='col-3'>" + value.DirectorName + "</div>")
+    //                .append (
+    //               `<div class="row">
+    //                  <div class="info-box">
+    //                    <img src="http://placehold.it/100x100">
+    //                        <p>Lorem ipsum dolor sit amet.</p>
+    //                  </div>
+    //                </div>`
+    //               )
+    //        })
+    //}).fail(function () {
+    //    alert("Sorry. Server unavailable. ");
+    //});       
+//}
