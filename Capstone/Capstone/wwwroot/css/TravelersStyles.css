@@ -177,6 +177,16 @@ p + p {
     padding: 20px;
 }
 
+.submit-card {
+    background-color: rgb(255,255,255);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.submit-card-content {
+    padding: 20px;
+}
+
 .md-card-btns {
     width: 100%;
     border-top: 1px solid rgb(200,200,200);
@@ -190,6 +200,10 @@ p + p {
 
 /* TOGGLE */
 #menuToggle {
+    display: none;
+}
+
+#submitToggle {
     display: none;
 }
 

@@ -127,12 +127,45 @@ function displayPlaces(placeData) {
                         <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) +`">    
                     </div>
                 <div class="col-xs-6">
-                <p>` + placeData.name + `<p>
-                <p>` + placeData.vicinity + `<p>
-                <p>Rating: ` + placeData.rating + `   |   Price: ` + placeData.price_level + `<p>
-                <input type="submit" class="btn btn-change btn-2 btn-review" value="Leave a review" id="leaveReviewBtn"/>
+                <p>` + placeData.name + `</p>
+                <p>` + placeData.vicinity + `</p>
+                <p>Rating: ` + placeData.rating + `   |   Price: ` + placeData.price_level + `</p>
+                <label for="submitToggle" class="btn btn-change btn-2 btn-review">Leave a review</label>
+                    <div>
+                    <input id="submitToggle" type="checkbox">
+                        <div class="infobox submit-card">
+                            <div class="submit-card-content">
+                                <div>
+                                      <div><p>`+ placeData.name + " " + placeData.vicinity +`</p></div>
+                                      <input hidden type="text" id="pointOfInterestValue" value="` + placeData.name + `">
+                                      <input hidden type="text" id="poiAddressValue" value="` + placeData.vicinity + `">
+                                      <input type="text" id="surveyTitleInput" placeholder="Title of your review" />
+                                </div>
+                                <div>
+                                    <form action="/action_page.php">
+                                      Give Rating (between 1 and 10):
+                                      <input type="number" id="surveyRatingInput" name="quantity" min="1" max="10">
+                                      
+                                    </form>
+                                </div>
+                                <div>
+                                      <p>Leave your review</p>
+                                      <textarea rows="5" cols="80" id="surveyReviewInput">
+                                      </textarea>  
+                                </div>
+                                <div>
+                                <input type="submit" class="btn btn-change btn-3" value="Submit" id="submitReviewBtn" />
+                                </div>
+                            </div>
+                            <div class="md-card-btns">
+                                <label for="submitToggle" class="btn btn-4">Close Box</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-2"></div>`
+                <div class="col-xs-2">
+                </div>
+                </div>`
             )
 }
 
@@ -145,16 +178,45 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function submitASurvey() {
-    $.ajax({
-        url: '/Travelers/SubmitSurveyData',
-        data: "",
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; chartset=utf-8",
-    })
-        .done(function (data) {
+    //$.ajax({
+    //    url: '/Travelers/SubmitSurveyData',
+    //    data: "",
+    //    dataType: "json",
+    //    type: "POST",
+    //    contentType: "application/json; chartset=utf-8",
+    //})
+    //    .done(function (data) {
 
+    //    });
+    let newTitleInput = $("#surveyTitleInput").val();
+    let newRatingInput = $("#surveyRatingInput").val();
+    let newReviewInput = $("#surveyReviewInput").val();
+    let pointOfInterest = $("#pointOfInterestValue").val();
+    let poiAddress = $("#poiAddressValue").val();
+    let poiCity;
+    let poiCountry;
+
+    $.ajax({
+        method: "POST",
+        url: "/Travelers/SubmitSurveyData",
+        datatype: "JSON",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        contentType: "application/json",
+        data: JSON.stringify({
+            "ReviewTitle": newTitleInput,
+            "Rating": newRatingInput,
+            "Review": newReviewInput,
+            "PointOfInterest": pointOfInterest,
+            "Address": poiAddress,
+            "City": poiCity,
+            "Country": poiCountry
+        }),
+        success: function (data) {
+            console.log(data);
         }
+    })            
 }
 
 function lookAtSurveys() {
@@ -167,7 +229,7 @@ function lookAtSurveys() {
     })
         .done(function (data) {
 
-        }
+        });
 }
 
 
