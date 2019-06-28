@@ -10,6 +10,7 @@
  
  */
 let map, service, infoWindow;
+let counter = 0;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
@@ -45,7 +46,7 @@ function initMap() {
 initMap();
 
 $("#citySearchBtn").click(function initMap() {
-
+    counter = 0;
     let userInput = document.getElementById("citySearch").value;
     let geocoder = new google.maps.Geocoder();
 
@@ -119,27 +120,26 @@ function createMarker(place) {
 }
 
 function displayPlaces(placeData) {  
-    console.log(placeData);
         $(".info-container")
             .append(
                 `<div class="row" style="padding-top:25px">
-                     <div class="col-xs-4">
+                     <div class="col-xs-6">
                         <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) +`">    
                     </div>
                 <div class="col-xs-6">
                 <p>` + placeData.name + `</p>
                 <p>` + placeData.vicinity + `</p>
-                <p>Rating: ` + placeData.rating + `   |   Price: ` + placeData.price_level + `</p>
-                <label for="submitToggle" class="btn btn-change btn-2 btn-review">Leave a review</label>
+                <p>Rating: ` + placeData.rating + ` | Price: ` + placeData.price_level + `</p>
+                <label for="submitToggle` + counter +`" class="btn btn-change btn-2 btn-review">Leave a review</label>
                     <div>
-                    <input id="submitToggle" type="checkbox">
+                    <input hidden id="submitToggle` + counter +`" type="checkbox">
                         <div class="infobox submit-card">
                             <div class="submit-card-content">
                                 <div>
-                                      <div><p>`+ placeData.name + " " + placeData.vicinity +`</p></div>
-                                      <input hidden type="text" id="pointOfInterestValue" value="` + placeData.name + `">
-                                      <input hidden type="text" id="poiAddressValue" value="` + placeData.vicinity + `">
-                                      <input type="text" id="surveyTitleInput" placeholder="Title of your review" />
+                                    <div><p>`+ placeData.name + " - " + placeData.vicinity +`</p></div>
+                                    <input hidden type="text" id="pointOfInterestValue" value="` + placeData.name + `">
+                                    <input hidden type="text" id="poiAddressValue" value="` + placeData.vicinity + `">
+                                    <input type="text" id="surveyTitleInput" placeholder="Title of your review" />
                                 </div>
                                 <div>
                                     <form action="/action_page.php">
@@ -158,15 +158,14 @@ function displayPlaces(placeData) {
                                 </div>
                             </div>
                             <div class="md-card-btns">
-                                <label for="submitToggle" class="btn btn-4">Close Box</label>
+                                <label for="submitToggle` + counter +`" class="btn btn-4">Close Box</label>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-2">
-                </div>
+                  </div>
                 </div>`
-            )
+    )
+    counter++;
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -177,9 +176,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
-function submitASurvey() {
+$("#submitReviewBtn").on("click", function submitASurvey() {
+
     //$.ajax({
-    //    url: '/Travelers/SubmitSurveyData',
     //    data: "",
     //    dataType: "json",
     //    type: "POST",
@@ -216,8 +215,8 @@ function submitASurvey() {
         success: function (data) {
             console.log(data);
         }
-    })            
-}
+    })
+});
 
 function lookAtSurveys() {
     $.ajax({
