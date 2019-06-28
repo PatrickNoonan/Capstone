@@ -10,6 +10,7 @@ namespace Infrastructure.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public DbSet<Traveler> Travelers { get; set; }
+        public DbSet<UserReviews> UserReviews { get; set; }
         public DbSet<ApplicationRole> Role { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

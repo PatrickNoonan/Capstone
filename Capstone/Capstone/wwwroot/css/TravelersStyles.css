@@ -219,9 +219,11 @@ p + p {
     transition: visibility 0s 0s, opacity .4s .1s;
 }
 
-.cityInfoButton {
-}
-
 .info-list {
     text-align: center;
 }
+
+info-box {
+    padding-top:50px;
+}
+

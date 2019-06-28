@@ -3,7 +3,13 @@
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
-var map, infoWindow;
+
+/*
+ init geolocation map on load,
+ display places info from geolocation map coords.
+ 
+ */
+let map, service, infoWindow;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
@@ -14,7 +20,7 @@ function initMap() {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
+            let pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
@@ -24,23 +30,10 @@ function initMap() {
             infoWindow.open(map);
             map.setCenter(pos);
 
-            var request = {
-                query: 'Bar',
-                fields: ['name', 'geometry'],
-            };
+            let newPlacesMap = new google.maps.LatLng(pos.lat, pos.lng);
 
-            service = new google.maps.places.PlacesService(map);
-            console.log(service);
-
-            service.findPlaceFromQuery(request, function (results, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                        createMarker(results[i]);
-                        console.log(results[i]);
-                    }
-                    map.setCenter(results[0].geometry.location);
-                }
-            });
+            initialize(newPlacesMap);
+            
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -49,17 +42,51 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
+initMap();
 
-function initialize() {
-    var pyrmont = new google.maps.LatLng(-33.8665433, 151.1956316);
+$("#citySearchBtn").click(function initMap() {
+
+    let userInput = document.getElementById("citySearch").value;
+    let geocoder = new google.maps.Geocoder();
 
     map = new google.maps.Map(document.getElementById('map'), {
-        center: pyrmont,
-        zoom: 15
+        center: {
+            lat: 0,
+            lng: 0
+        },
+        zoom: 8
+    });
+
+    geocoder.geocode({ 'address': userInput }, function (results, status) {
+        if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+            infoWindow.setPosition(map.center);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+
+            let loc = []; 
+            loc[0] = results[0].geometry.location.lat();
+            loc[1] = results[0].geometry.location.lng();
+
+            let newPlacesMap = new google.maps.LatLng(loc[0], loc[1]);
+
+            initialize(newPlacesMap);
+
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+});
+
+function initialize(newMap) {    
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: newMap,
+        zoom: 14
     });
 
     var request = {
-        location: pyrmont,
+        location: newMap,
         radius: '500',
         type: ['restaurant']
     };
@@ -70,13 +97,14 @@ function initialize() {
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
+        $(".info-container").empty(); 
+        for (var i = 0; i < 4; i++) {
             var place = results[i];
+            displayPlaces(results[i]);
             createMarker(results[i]);
         }
     }
 }
-initialize();
 
 function createMarker(place) {
     var marker = new google.maps.Marker({
@@ -90,47 +118,23 @@ function createMarker(place) {
     });
 }
 
-
-$("#citySearchBtn").click(function initMap() {
-
-    let userInput = document.getElementById("citySearch").value;
-    //let userInput = document.getElementById("citySearch");
-
-    let geocoder = new google.maps.Geocoder();
-
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: 0,
-            lng: 0
-        },
-        zoom: 8
-    });
-
-   
-
-    geocoder.geocode({ 'address': userInput }, function (results, status) {
-        if (status === 'OK') {
-            map.setCenter(results[0].geometry.location);
-            infoWindow.setPosition(map.center);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            let pos = {
-                lat: map.center.lat,
-                lng: map.center.lng
-            }
-
-             //provideCityInfo(map.center)
-             displayPlaces(pos)
-
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-});
-
-
-
-
+function displayPlaces(placeData) {  
+    console.log(placeData);
+        $(".info-container")
+            .append(
+                `<div class="row" style="padding-top:25px">
+                     <div class="col-xs-4">
+                        <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) +`">    
+                    </div>
+                <div class="col-xs-6">
+                <p>` + placeData.name + `<p>
+                <p>` + placeData.vicinity + `<p>
+                <p>Rating: ` + placeData.rating + `   |   Price: ` + placeData.price_level + `<p>
+                <input type="submit" class="btn btn-change btn-2 btn-review" value="Leave a review" id="leaveReviewBtn"/>
+                </div>
+                <div class="col-xs-2"></div>`
+            )
+}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -140,55 +144,50 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
-function wikiSearch(item) {
-    // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY?
-    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
-    $.getJSON(url, function (json) {
-        var item_id = Object.keys(json.query.pages)[0];
-        sent = json.query.pages[item_id].extract;
-        result = "<t><strong>" + item + "</strong></t>: " + sent;
-        $('#wiki').html("<div>" + result + "</div>"); // Replace 
-    });
+function submitASurvey() {
+    $.ajax({
+        url: '/Travelers/SubmitSurveyData',
+        data: "",
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; chartset=utf-8",
+    })
+        .done(function (data) {
+
+        }
+}
+
+function lookAtSurveys() {
+    $.ajax({
+        url: '/Travelers/CheckSurveyData',
+        data: "",
+        dataType: "json",
+        type: "GET",
+        contentType: "application/json; chartset=utf-8",
+    })
+        .done(function (data) {
+
+        }
 }
 
 
-//function displayPlaces(placeData) {
-//    $(".info-container").empty();
 
-//    $.each(placeData, function (key, value) {
-//        $(".info-container")
-//            //.append(`<div class="row object-row"><div class="col-3"><a href="${value.Image}"><img src="${value.Image}"></a></div>` + "<div class='col-3'>" + value.Title + "</div><div class='col-3'>" + value.Genre + "</div><div class='col-3'>" + value.DirectorName + "</div>")
-//            .append(
-//                `<div class="row">
-//                      <div class="info-box">
-//                        <img src="http://placehold.it/100x100">
-//                            <p>Lorem ipsum dolor sit amet.</p>
-//                      </div>
-//                    </div>`
-//            )
+
+
+
+
+
+
+
+//function wikiSearch(item) {
+//    // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY?
+//    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
+//    $.getJSON(url, function (json) {
+//        var item_id = Object.keys(json.query.pages)[0];
+//        sent = json.query.pages[item_id].extract;
+//        result = "<t><strong>" + item + "</strong></t>: " + sent;
+//        $('#wiki').html("<div>" + result + "</div>"); // Replace 
 //    });
-
-    //$.ajax({
-    //    type: "GET",
-    //    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + pos.lat + "," + pos.lng + "&radius=300&type=" + "restaurant" + "&key=AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc",
-    //    contentType: "application/json",
-    //    dataType: 'json'
-    // })
-    //.done(function (data) {
-    //            console.log(data);
-    //        $.each(data, function (key, value) {
-    //            $(".info-container")
-    //                //.append(`<div class="row object-row"><div class="col-3"><a href="${value.Image}"><img src="${value.Image}"></a></div>` + "<div class='col-3'>" + value.Title + "</div><div class='col-3'>" + value.Genre + "</div><div class='col-3'>" + value.DirectorName + "</div>")
-    //                .append (
-    //               `<div class="row">
-    //                  <div class="info-box">
-    //                    <img src="http://placehold.it/100x100">
-    //                        <p>Lorem ipsum dolor sit amet.</p>
-    //                  </div>
-    //                </div>`
-    //               )
-    //        })
-    //}).fail(function () {
-    //    alert("Sorry. Server unavailable. ");
-    //});       
 //}
+
+
