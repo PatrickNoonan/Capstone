@@ -169,5 +169,16 @@ namespace Capstone.Controllers
             var loggedInMember = _context.Travelers.SingleOrDefault(b => b.ApplicationId == currentUserId);
             return loggedInMember;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostReview([FromBody]UserReviews newReview)
+        {
+            var loggedInMember = GetLoggedInMember();
+            newReview.ReviewerId = loggedInMember.FirstName + " " + loggedInMember.LastName;
+            _context.UserReviews.Add(newReview);
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }

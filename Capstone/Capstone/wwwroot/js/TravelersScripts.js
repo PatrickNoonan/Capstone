@@ -165,17 +165,21 @@
         infoWindow.open(map);
     }
 
-    findBtnId = function () {
-        let str = '';
-        for (let i = 0; i < counter; i++) {
-            if (i == counter) {
-                str = "#submitReviewbtn" + i;
-                break;
-            }
-        }
+    //let submitReviewBtnId = "";
 
-        return str;
-    }
+    //$(".info-container").on("click", "#submitReviewBtn0", function () {
+    //    submitReviewBtnId = "0";
+    //    });
+    //$(".info-container").on("click", "#submitReviewBtn1", function () {
+    //    submitReviewBtnId = "1";
+    //    });
+    //$(".info-container").on("click", "#submitReviewBtn2", function () {
+    //    submitReviewBtnId = "2";
+    //    });
+    //$(".info-container").on("click", "#submitReviewBtn3", function () {
+    //    submitReviewBtnId = "3";
+    //    });
+
 
     $(".info-container").on("click", "#submitReviewBtn0", function postSurvey() {
 
@@ -198,7 +202,7 @@
 
         $.ajax({
             method: "POST",
-            url: "/Travelers/SubmitSurveyData",
+            url: "/Travelers/PostReview",
             datatype: "JSON",
             headers: {
                 "Content-Type": "application/json"
