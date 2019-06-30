@@ -157,6 +157,12 @@ namespace Capstone.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult WorldMap()
+        {
+            ViewData["Message"] = "Your World Map";
+
+            return View();
+        }
 
         private bool TravelerExists(int id)
         {

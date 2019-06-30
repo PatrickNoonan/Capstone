@@ -183,15 +183,6 @@
 
     $(".info-container").on("click", "#submitReviewBtn0", function postSurvey() {
 
-        //$.ajax({
-        //    data: "",
-        //    dataType: "json",
-        //    type: "POST",
-        //    contentType: "application/json; chartset=utf-8",
-        //})
-        //    .done(function (data) {
-
-        //    });
         let newTitleInput = $("#surveyTitleInput").val();
         let newRatingInput = $("#surveyRatingInput").val();
         let newReviewInput = $("#surveyReviewInput").val();
@@ -221,6 +212,7 @@
                 console.log(data);
             }
         })
+        alert("Your review has been submitted.");
     });
 
     function getSurveys() {
