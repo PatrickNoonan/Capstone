@@ -46,23 +46,44 @@ am4core.ready(function () {
 
     let countryCounter = 1;
     let stateCounter = 0;
+    $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>'); 
+    $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>'); 
+
     // Create an event to toggle "active" state
     polygonTemplate.events.on("hit", function (ev) {
+        $('#countryCounterSpan').remove();
         if (ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive;
             if (countryCounter > 1) {
-                countryCounter--;
-            }
+                countryCounter--;                
+                $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
+            }            
+            
         }
         else if (!ev.target.isActive){
             ev.target.isActive = !ev.target.isActive
-                countryCounter++;
+            countryCounter++;
+            $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
         }
         
     })
 
     usPolygonTemplate.events.on("hit", function (ev) {
-        ev.target.isActive = !ev.target.isActive;
+        $('#stateCounterSpan').remove();
+        if (ev.target.isActive) {
+            ev.target.isActive = !ev.target.isActive;
+            if (stateCounter > 1) {
+                stateCounter--;
+                $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
+            }
+
+        }
+        else if (!ev.target.isActive) {
+            ev.target.isActive = !ev.target.isActive
+            stateCounter++;
+            $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
+        }
+
     })
 
 }); //-------------------------------------------------------------- end am4core.ready()

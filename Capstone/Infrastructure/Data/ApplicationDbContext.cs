@@ -11,6 +11,7 @@ namespace Infrastructure.Data
     {
         public DbSet<Traveler> Travelers { get; set; }
         public DbSet<UserReviews> UserReviews { get; set; }
+        public DbSet<TravelDetails> TravelDetails { get; set; }
         public DbSet<ApplicationRole> Role { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
