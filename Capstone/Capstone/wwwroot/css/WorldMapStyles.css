@@ -1,15 +1,15 @@
 ﻿body {
-    height: 100%;
-    overflow: hidden;
+    /*height: 100%;
+    overflow: hidden;*/
     background: #b5e1f3;
     background: -webkit-linear-gradient(to right, #396afc, #2948ff);
-    background: linear-gradient(to right, #b5e1f3, #7d90ff);
+    background: linear-gradient(to right, #b5e1f3, #7d90ff);*/
 }
 
     body svg {
         object-fit: contain;
         display: block;
-        height: 100vh;
+        height: 80vh;
     }
 
 
@@ -84,8 +84,7 @@ svg .mappoint {
     border-color: #ffff0000;
 }
 
-/*----------------------------------------------------------------
-<style type="text/css" >*/
+/*------------------------------------------------------------------------------------*/
 .land {
     fill: #7B7B7B;
     fill-opacity: 1;
@@ -129,4 +128,109 @@ svg {
     height: auto;
 }
 
-/*</style >*/
+/*--------------------------------------------------------------------------------------*/
+
+nav ul, nav ol {
+    list-style: outside none none;
+}
+
+#timeline {
+    /*background-color: rgba(122,201,67,0.6);*/
+    height: 115px;
+    font-family: 'Roboto', sans-serif;
+}
+
+    #timeline .centerline {
+        bottom: -50%;
+        display: block;
+        margin: 0;
+        position: relative;
+        top: 50%;
+    }
+
+    #timeline ul, #timeline ul li {
+        height: 100%;
+    }
+
+    #timeline li {
+        float: left;
+        margin-top: -2px;
+        padding: 0 0.6em;
+        position: relative;
+    }
+
+        #timeline li:hover {
+            background-color: rgba(122,201,67,1);
+            cursor: pointer;
+        }
+
+        #timeline li a {
+            color: #a7a9ab;
+            font-size: 2em;
+            position: relative;
+            text-decoration: none;
+            top: 34%;
+        }
+
+        #timeline li p.timeline-date {
+            background-color: #8e8f90;
+            border: 1px solid #838383;
+            bottom: 9em;
+            box-shadow: -10px 10px 5px 0 rgba(0, 0, 0, 0.35);
+            display: none;
+            font-size: 0.9em;
+            margin-left: -2em;
+            min-height: 130px;
+            padding: 1em;
+            position: absolute;
+            width: 350px;
+        }
+
+            #timeline li p.timeline-date strong {
+                color: rgba(122,201,67,1);
+            }
+
+            #timeline li p.timeline-date img.timeline-dateicon {
+                display: block;
+                float: left;
+                margin: 0 0 2em;
+                padding: 1em 0.5em 0 0;
+                width: auto;
+                border-radius: 50%;
+            }
+
+            #timeline li p.timeline-date::after, #timeline li p.timeline-date::after {
+                border-color: #8e8f90 transparent;
+                border-style: solid;
+                border-width: 15px 15px 0;
+                bottom: -15px;
+                content: "";
+                display: block;
+                left: 1em;
+                position: absolute;
+                width: 0;
+            }
+
+        #timeline li:hover p.timeline-date, #timeline li:active p.timeline-date, #timeline li:target p.timeline-date {
+            display: block;
+        }
+
+        #timeline li.date {
+            border-left: 1px solid #999;
+            cursor: default;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.4em;
+            padding: 0 0 0 0.3em;
+            /*color: rgba(122,201,67,1)*/
+        }
+
+            #timeline li.date:hover {
+                background-color: rgba(122,201,67,0.6);
+            }
+
+            #timeline li.date p {
+                bottom: 4em;
+                left: -0.6em;
+                position: absolute;
+            }
+/*------------------------------------------------------------------------------------------------*/
