@@ -44,15 +44,80 @@ am4core.ready(function () {
     var usActiveState = usPolygonTemplate.states.create("active");
     usActiveState.properties.fill = chart.colors.getIndex(4);
 
+    let countryCounter = 1;
+    let stateCounter = 0;
     // Create an event to toggle "active" state
     polygonTemplate.events.on("hit", function (ev) {
-        ev.target.isActive = !ev.target.isActive;
+        if (ev.target.isActive) {
+            ev.target.isActive = !ev.target.isActive;
+            if (countryCounter > 1) {
+                countryCounter--;
+            }
+        }
+        else if (!ev.target.isActive){
+            ev.target.isActive = !ev.target.isActive
+                countryCounter++;
+        }
+        
     })
 
     usPolygonTemplate.events.on("hit", function (ev) {
         ev.target.isActive = !ev.target.isActive;
     })
 
-}); // end am4core.ready()
+}); //-------------------------------------------------------------- end am4core.ready()
+
+/* OnLoad function */
+//function JdOnLoad() {
+//    document.getElementById("world_map").src = "j_countries_load.php";
+//    document.getElementById("save_map").action = "j_save.php";
+//}
+
+/* Maps function */
+//function onBoxClicked2(frame, country) {
+//    if (document.getElementById(country).checked == false) {
+//        var newcount = parseInt(document.getElementById('Count').innerHTML) + 1;
+//        if (newcount == 0) { newcount = newcount + ' countries'; }
+//        else if (newcount > 1) { newcount = newcount + ' countries'; }
+//        else { newcount = newcount + ' country'; }
+//        document.getElementById('Count').innerHTML = newcount;
+//        document.getElementById(country).checked = true;
+//        document.getElementById("world_map").src = "j_countries_load.php?action=add&country=" + country;
+//    }
+//    else {
+//        var newcount = parseInt(document.getElementById('Count').innerHTML) - 1;
+//        if (newcount == 0) { newcount = newcount + ' countries'; }
+//        else if (newcount > 1) { newcount = newcount + ' countries'; }
+//        else { newcount = newcount + ' country'; }
+//        document.getElementById('Count').innerHTML = newcount;
+//        document.getElementById(country).checked = false;
+//        document.getElementById("world_map").src = "j_countries_load.php?action=remove&country=" + country;
+//    }
+
+//    document.getElementById("save_map").action = "j_save.php";
+
+//}
+
+///* Checkboxes function */
+//function onBoxClicked(frame, country) {
+//    if (document.getElementById(country).checked == true) {
+//        var newcount = parseInt(document.getElementById('Count').innerHTML) + 1;
+//        if (newcount == 0) { newcount = newcount + ' countries'; }
+//        else if (newcount > 1) { newcount = newcount + ' countries'; }
+//        else { newcount = newcount + ' country'; }
+//        document.getElementById('Count').innerHTML = newcount;
+//        document.getElementById("world_map").src = "j_countries_load.php?action=add&country=" + country;
+//    }
+//    else {
+//        var newcount = parseInt(document.getElementById('Count').innerHTML) - 1;
+//        if (newcount == 0) { newcount = newcount + ' countries'; }
+//        else if (newcount > 1) { newcount = newcount + ' countries'; }
+//        else { newcount = newcount + ' country'; }
+//        document.getElementById('Count').innerHTML = newcount;
+//        document.getElementById("world_map").src = "j_countries_load.php?action=remove&country=" + country;
+//    }
+
+//    document.getElementById("save_map").action = "j_save.php";
+//}
 
 
