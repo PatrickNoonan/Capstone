@@ -79,6 +79,11 @@ svg .mappoint {
     }
 }
 
+.navbar-inverse {
+    background-color: #ffff0000;
+    border-color: #ffff0000;
+}
+
 /*----------------------------------------------------------------
 <style type="text/css" >*/
 .land {
