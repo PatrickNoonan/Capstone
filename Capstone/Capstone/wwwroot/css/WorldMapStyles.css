@@ -6,129 +6,13 @@
     background: linear-gradient(to right, #b5e1f3, #7d90ff);*/
 }
 
-    body svg {
-        object-fit: contain;
-        display: block;
-        height: 80vh;
-    }
+   
 
-
-svg .land:hover {
-    fill: #3755de;
-    fill-opacity: 1;
-    stroke: #011ecc;
-    stroke-opacity: 1;
-    stroke-width: 1;
-    animation: all 0.2s ease;
+.row{
+    margin-left:0px;
+    margin-right:0px;
 }
 
-svg .land {
-    fill: #ffffff;
-    fill-opacity: 1;
-    stroke: #a9d0f5;
-    stroke-opacity: 1;
-    stroke-width: 1;
-    animation: all 0.2s ease;
-}
-
-svg .land2 {
-    fill: #c9d0f9;
-    fill-opacity: 1;
-    stroke: white;
-    stroke-opacity: 1;
-    stroke-width: 0.5;
-}
-
-    svg .land2:hover {
-        fill: #ffffff;
-        fill-opacity: 1;
-        stroke: white;
-        stroke-opacity: 1;
-        stroke-width: 0.5;
-    }
-
-svg .path2 {
-    stroke-width: 1;
-    stroke-dasharray: 300px;
-    stroke-dashoffset: 300px;
-    stroke-dashoffset: 300px;
-    animation: draw 12s linear infinite;
-    stroke: #7887e2;
-}
-
-svg .path {
-    stroke-width: 1;
-    stroke-dasharray: 300px;
-    stroke-dashoffset: 200px;
-    animation: draw 8s linear infinite;
-    stroke: #7887e2;
-}
-
-svg .mappoint {
-    stroke: #7887e2;
-    fill: #7887e2;
-}
-
-@keyframes bounce {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-10px);
-    }
-}
-
-.navbar-inverse {
-    background-color: #ffff0000;
-    border-color: #ffff0000;
-}
-
-/*------------------------------------------------------------------------------------*/
-.land {
-    fill: #7B7B7B;
-    fill-opacity: 1;
-    stroke: white;
-    stroke-opacity: 1;
-    stroke-width: 0.5;
-}
-
-.land2 {
-    fill: #CCCCCC;
-    fill-opacity: 1;
-    stroke: white;
-    stroke-opacity: 1;
-    stroke-width: 0.5;
-}
-
-
-.path {
-    stroke-width: 1;
-    stroke-dasharray: 300px;
-    stroke-dashoffset: 200px;
-    animation: draw 8s linear infinite;
-}
-
-.path2 {
-    stroke-width: 1;
-    stroke-dasharray: 300px;
-    stroke-dashoffset: 300px;
-    stroke-dashoffset: 300px;
-    animation: draw 12s linear infinite;
-}
-
-@keyframes draw {
-    to {
-        stroke-dashoffset: 2000;
-    }
-}
-
-svg {
-    width: 100%;
-    height: auto;
-}
-
-/*--------------------------------------------------------------------------------------*/
 
 nav ul, nav ol {
     list-style: outside none none;
@@ -136,7 +20,8 @@ nav ul, nav ol {
 
 #timeline {
     /*background-color: rgba(122,201,67,0.6);*/
-    height: 115px;
+    height: 90px;
+    margin-top:22px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -234,3 +119,11 @@ nav ul, nav ol {
                 position: absolute;
             }
 /*------------------------------------------------------------------------------------------------*/
+#chartdiv {
+    width: 100%;
+    height: 600px;
+}
+
+#id-79-title {
+    display:none;
+}
