@@ -90,55 +90,11 @@
     })
 });
 
-function addToTimeline() {
-    let year;
-    let month = "January";
-    let photoUrl;
-    let description;
-
-    $("#timeline-ul")
-        .append(
-            `<li class="date">
-                    <p>` + year + `</p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/2" alt="" class="timeline-dateicon"><strong>` + month + `</strong><br>
-                        Quisque ante justo, consectetur at posuere at, sagittis at erat. Suspendisse accumsan viverra accumsan. Nulla mauris est, semper vel leo ac, suscipit ullamcorper nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/9" alt="" class="timeline-dateicon">								<strong>July 1970</strong><br>
-                        Nulla pretium, tortor et hendrerit gravida, justo est efficitur ex, et auctor magna dolor vel ante. Quisque viverra urna justo, scelerisque auctor quam gravida vitae. Donec cursus placerat mattis.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1970</strong><br>
-                        Ut vitae felis risus. Vestibulum lorem eros, vehicula nec elit vel, tempus consequat urna. Suspendisse at accumsan turpis, eu bibendum odio
-                    </p>
-                </li>`
-        )
-}
-
-function addYearToTimeline() {
-    let year = $("#enterNewYear").val();
-
-    $("#timeline-ul")
-        .append(
-            `<li id="timeline-date-` + year + `" class="date">
-                    <p>` + year + `</p>
-                </li>`
-        )
-}
-
-function addEventToTimeline() {
-    let year = $("EnterExistingYear").val();
+$("#submitEventBtn").on("click", function addEventToTimeline() {
+    let date = $("enterNewDate").val();
+    let year = $("enterNewYear").val();
     let month = $("#enterNewMonth").val();
+    let place = $("#enterPlace").val();
     let photoUrl = $("#enterNewPhoto").val();
     let description = $("#enterDescription").val();
 
@@ -152,12 +108,18 @@ function addEventToTimeline() {
                     </p>
                 </li>`
         )
+});
 
+function addYearToTimeline(year) {
+
+    $("#timeline-ul")
+        .append(
+            `<li id="timeline-date-` + year + `" class="date">
+                    <p>` + year + `</p>
+                </li>`
+        )
 }
 
-
-addYearToTimeline();
-addMonthToTimeline();
 
 
 
