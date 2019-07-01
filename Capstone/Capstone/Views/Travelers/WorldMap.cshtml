@@ -7,227 +7,234 @@
 @{
     ViewData["Title"] = "WorldMap";
 }
-<body>
-    <div class="row">
-        <p id="countriesVisited">Countries Visited: </p>
-        <p id="statesVisited">States Visited: </p>
-        <div id="chartdiv"></div>
-    </div>
-    <div class="row">
-        <nav id="timeline">
-            <ul>
-                <hr class="centerline">
-                <li class="date">
-                    <p>1970</p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/2" alt="" class="timeline-dateicon"><strong>May 1970</strong><br>
-                        Quisque ante justo, consectetur at posuere at, sagittis at erat. Suspendisse accumsan viverra accumsan. Nulla mauris est, semper vel leo ac, suscipit ullamcorper nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/9" alt="" class="timeline-dateicon">								<strong>July 1970</strong><br>
-                        Nulla pretium, tortor et hendrerit gravida, justo est efficitur ex, et auctor magna dolor vel ante. Quisque viverra urna justo, scelerisque auctor quam gravida vitae. Donec cursus placerat mattis.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1970</strong><br>
-                        Ut vitae felis risus. Vestibulum lorem eros, vehicula nec elit vel, tempus consequat urna. Suspendisse at accumsan turpis, eu bibendum odio
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>Fall 1970</strong><br>
-                        Cras quis velit blandit, commodo lorem id, efficitur diam. Sed vitae mauris eget orci tincidunt dapibus. Donec suscipit leo a arcu aliquam facilisis.
-                    </p>
-                </li>
-                <li class="date">
-                    <p>1971</p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>Summer 1971</strong><br>
-                        Quisque varius arcu a erat molestie vulputate. Sed nec ultrices arcu, ac molestie risus. Cras elementum mauris arcu, a vulputate nisl ornare at.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/7" alt="" class="timeline-dateicon">						<strong>Between 1972 and 1974</strong><br>
-                        Maecenas condimentum turpis sit amet elementum congue. Vivamus faucibus tellus eu ipsum consequat aliquet. Donec vel orci erat.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/6" alt="" class="timeline-dateicon">						<strong>1973</strong><br>
-                        Aenean eget mi consectetur, lacinia tellus commodo, accumsan leo. Morbi vitae sem maximus, pharetra sapien sit amet, tincidunt tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ac enim blandit, scelerisque dolor a, sodales nisl.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1973</strong><br>
-                        Duis vitae faucibus massa. Donec mauris mi, sollicitudin id est id, interdum auctor orci. Mauris egestas ullamcorper sem.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>Summer 1973</strong><br>
-                        Fusce imperdiet laoreet dolor, a commodo metus dictum eu. Vestibulum volutpat ut lorem sed congue. Vestibulum eu turpis imperdiet mi accumsan consequat eget in enim.
-                    </p>
-                </li>
-                <li class="date">
-                    <p>1975</p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/5" alt="" class="timeline-dateicon">						<strong>1975</strong><br>
-                        Nulla facilisi. Phasellus vitae viverra libero. Ut varius ligula in leo blandit, in consequat elit maximus.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1975</strong><br>
-                        Proin volutpat orci nisl, at tristique nunc pharetra sed. Nam molestie dolor sed neque condimentum, id aliquet quam sagittis. Sed pharetra facilisis urna. Sed tincidunt est finibus nisl blandit fermentum.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/4" alt="" class="timeline-dateicon">							<strong>1977</strong><br>
-                        Sed pulvinar gravida magna, in sodales leo bibendum id. Vivamus imperdiet finibus augue, ac consectetur eros sollicitudin finibus. Mauris volutpat tempor nibh vitae imperdiet.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1979</strong><br>
-                        Morbi vel nisl sit amet ante sodales tristique. Morbi ut velit eu quam sagittis dapibus.<br /><br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                </li>
-                <li class="date">
-                    <p>1981</p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/10" alt="" class="timeline-dateicon">							<strong>1981</strong><br>
-                        Donec sodales ac orci iaculis fermentum. Nunc ultrices consequat tellus, lobortis tincidunt dui pharetra et. Ut facilisis blandit augue in sollicitudin.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1982</strong><br>
-                        In elementum ante dui, fringilla fringilla nisl elementum a. Cras fringilla eros nisl, vitae rutrum lacus vulputate id. Praesent neque odio, ultrices nec hendrerit vel, tristique nec erat. Integer nec ornare mi.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1988</strong><br>
-                        Fusce condimentum id dolor sed blandit. Maecenas quam ipsum, finibus id convallis vitae, feugiat sed nunc.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/3" alt="" class="timeline-dateicon">							<strong>1993</strong><br>
-                        Vivamus lacinia massa in tellus tristique iaculis. Maecenas turpis magna, faucibus vitae placerat eu, sagittis quis est. Nulla tempor pharetra neque, quis convallis urna tincidunt porttitor.
-                    </p>
-                </li>
-                <li class="date">
-                    <p>1994</p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1994</strong><br>
-                        Duis et libero vel enim malesuada tempor. Morbi ac tincidunt nulla. Ut malesuada, sem non consectetur pretium, sapien felis mattis nisl, a aliquet diam leo et nunc.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/8" alt="" class="timeline-dateicon">															<strong>1995</strong><br>
-                        Quisque nec pulvinar nisi. Sed vitae velit et diam eleifend sollicitudin.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>1998</strong><br>
-                        Donec in pharetra augue, sed tempor orci. Nullam nec pulvinar odio.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/1" alt="" class="timeline-dateicon">															<strong>2000</strong><br>
-                        Aliquam erat volutpat. Ut scelerisque viverra leo vel aliquam.
-                    </p>
-                </li>
-                <li class="date">
-                    <p>2006</p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>2006</strong><br>
-                        Pellentesque quam mauris, mollis eget blandit vitae, dictum sit amet diam. Sed et imperdiet magna. Integer nec ornare arcu.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/abstract/2" alt="" class="timeline-dateicon"><strong>2006</strong><br>
-                        Maecenas imperdiet imperdiet est, a auctor massa tempor quis.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <strong>2010</strong><br>
-                        Embry-Riddle Aeronautical University Asia is opened in Singapore.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/cats/2" alt="" class="timeline-dateicon">							<strong>2011</strong><br>
-                        Sed vitae velit et diam eleifend sollicitudin. Donec in pharetra augue, sed tempor orci.
-                    </p>
-                </li>
-                <li>
-                    <a>•</a>
-                    <p class="timeline-date">
-                        <img src="http://lorempixel.com/g/110/110/abstract/5" alt="" class="timeline-dateicon">								<strong>2014</strong><br>
-                        Nullam blandit, massa ac laoreet iaculis, tortor arcu tempor enim, ac sollicitudin sem ligula ut lorem.
-                    </p>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="~/js/WorldMapScripts.js"></script>
-</body>
+    <body>
+        <div class="row">
+            <div class="col-xs-1">
+                <p id="countriesVisited">Countries Visited: </p>
+                <p id="statesVisited">States Visited: </p>
+            </div>
+            <div class="col-xs-11">
+                <div id="chartdiv"></div>
+            </div>
+        </div>
+        <div class="row">
+            <nav id="timeline">
+                <ul id="timeline-ul">
+                    <hr class="centerline">
+                    @*<li class="date">
+                        <p>1970</p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/2" alt="" class="timeline-dateicon"><strong>May 1970</strong><br>
+                            Quisque ante justo, consectetur at posuere at, sagittis at erat. Suspendisse accumsan viverra accumsan. Nulla mauris est, semper vel leo ac, suscipit ullamcorper nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/9" alt="" class="timeline-dateicon">								<strong>July 1970</strong><br>
+                            Nulla pretium, tortor et hendrerit gravida, justo est efficitur ex, et auctor magna dolor vel ante. Quisque viverra urna justo, scelerisque auctor quam gravida vitae. Donec cursus placerat mattis.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1970</strong><br>
+                            Ut vitae felis risus. Vestibulum lorem eros, vehicula nec elit vel, tempus consequat urna. Suspendisse at accumsan turpis, eu bibendum odio
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>Fall 1970</strong><br>
+                            Cras quis velit blandit, commodo lorem id, efficitur diam. Sed vitae mauris eget orci tincidunt dapibus. Donec suscipit leo a arcu aliquam facilisis.
+                        </p>
+                    </li>
+                    <li class="date">
+                        <p>1971</p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>Summer 1971</strong><br>
+                            Quisque varius arcu a erat molestie vulputate. Sed nec ultrices arcu, ac molestie risus. Cras elementum mauris arcu, a vulputate nisl ornare at.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/7" alt="" class="timeline-dateicon">						<strong>Between 1972 and 1974</strong><br>
+                            Maecenas condimentum turpis sit amet elementum congue. Vivamus faucibus tellus eu ipsum consequat aliquet. Donec vel orci erat.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/6" alt="" class="timeline-dateicon">						<strong>1973</strong><br>
+                            Aenean eget mi consectetur, lacinia tellus commodo, accumsan leo. Morbi vitae sem maximus, pharetra sapien sit amet, tincidunt tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ac enim blandit, scelerisque dolor a, sodales nisl.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1973</strong><br>
+                            Duis vitae faucibus massa. Donec mauris mi, sollicitudin id est id, interdum auctor orci. Mauris egestas ullamcorper sem.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>Summer 1973</strong><br>
+                            Fusce imperdiet laoreet dolor, a commodo metus dictum eu. Vestibulum volutpat ut lorem sed congue. Vestibulum eu turpis imperdiet mi accumsan consequat eget in enim.
+                        </p>
+                    </li>
+                    <li class="date">
+                        <p>1975</p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/5" alt="" class="timeline-dateicon">						<strong>1975</strong><br>
+                            Nulla facilisi. Phasellus vitae viverra libero. Ut varius ligula in leo blandit, in consequat elit maximus.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1975</strong><br>
+                            Proin volutpat orci nisl, at tristique nunc pharetra sed. Nam molestie dolor sed neque condimentum, id aliquet quam sagittis. Sed pharetra facilisis urna. Sed tincidunt est finibus nisl blandit fermentum.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/4" alt="" class="timeline-dateicon">							<strong>1977</strong><br>
+                            Sed pulvinar gravida magna, in sodales leo bibendum id. Vivamus imperdiet finibus augue, ac consectetur eros sollicitudin finibus. Mauris volutpat tempor nibh vitae imperdiet.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1979</strong><br>
+                            Morbi vel nisl sit amet ante sodales tristique. Morbi ut velit eu quam sagittis dapibus.<br /><br />
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </li>
+                    <li class="date">
+                        <p>1981</p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/10" alt="" class="timeline-dateicon">							<strong>1981</strong><br>
+                            Donec sodales ac orci iaculis fermentum. Nunc ultrices consequat tellus, lobortis tincidunt dui pharetra et. Ut facilisis blandit augue in sollicitudin.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1982</strong><br>
+                            In elementum ante dui, fringilla fringilla nisl elementum a. Cras fringilla eros nisl, vitae rutrum lacus vulputate id. Praesent neque odio, ultrices nec hendrerit vel, tristique nec erat. Integer nec ornare mi.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1988</strong><br>
+                            Fusce condimentum id dolor sed blandit. Maecenas quam ipsum, finibus id convallis vitae, feugiat sed nunc.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/3" alt="" class="timeline-dateicon">							<strong>1993</strong><br>
+                            Vivamus lacinia massa in tellus tristique iaculis. Maecenas turpis magna, faucibus vitae placerat eu, sagittis quis est. Nulla tempor pharetra neque, quis convallis urna tincidunt porttitor.
+                        </p>
+                    </li>
+                    <li class="date">
+                        <p>1994</p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1994</strong><br>
+                            Duis et libero vel enim malesuada tempor. Morbi ac tincidunt nulla. Ut malesuada, sem non consectetur pretium, sapien felis mattis nisl, a aliquet diam leo et nunc.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/8" alt="" class="timeline-dateicon">															<strong>1995</strong><br>
+                            Quisque nec pulvinar nisi. Sed vitae velit et diam eleifend sollicitudin.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>1998</strong><br>
+                            Donec in pharetra augue, sed tempor orci. Nullam nec pulvinar odio.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/1" alt="" class="timeline-dateicon">															<strong>2000</strong><br>
+                            Aliquam erat volutpat. Ut scelerisque viverra leo vel aliquam.
+                        </p>
+                    </li>
+                    <li class="date">
+                        <p>2006</p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>2006</strong><br>
+                            Pellentesque quam mauris, mollis eget blandit vitae, dictum sit amet diam. Sed et imperdiet magna. Integer nec ornare arcu.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/abstract/2" alt="" class="timeline-dateicon"><strong>2006</strong><br>
+                            Maecenas imperdiet imperdiet est, a auctor massa tempor quis.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <strong>2010</strong><br>
+                            Embry-Riddle Aeronautical University Asia is opened in Singapore.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/cats/2" alt="" class="timeline-dateicon">							<strong>2011</strong><br>
+                            Sed vitae velit et diam eleifend sollicitudin. Donec in pharetra augue, sed tempor orci.
+                        </p>
+                    </li>
+                    <li>
+                        <a>•</a>
+                        <p class="timeline-date">
+                            <img src="http://lorempixel.com/g/110/110/abstract/5" alt="" class="timeline-dateicon">								<strong>2014</strong><br>
+                            Nullam blandit, massa ac laoreet iaculis, tortor arcu tempor enim, ac sollicitudin sem ligula ut lorem.
+                        </p>
+                    </li>*@
+                </ul>
+            </nav>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="~/js/core.js"></script>
+        <script src="~/js/maps.js"></script>
+        <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+        <script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
+        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+        <script src="~/js/WorldMapScripts.js"></script>
+
+
+    </body>
 
 @*<div class="col-xs-6">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1000 700" width="800" height="600" id="svg-replaced-0" class="style-svg replaced-svg svg-replaced-0">

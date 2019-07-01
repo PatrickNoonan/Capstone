@@ -19,6 +19,8 @@ namespace Domain
         public string State { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
+        public string CountriesVisited { get; set; }
+        public string StatesVisited { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }
