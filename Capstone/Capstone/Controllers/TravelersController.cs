@@ -200,8 +200,12 @@ namespace Capstone.Controllers
         public async Task<IActionResult> GetTravelDetails()
         {
             List<TravelDetails> data = new List<TravelDetails>();
-            Traveler currentTraveler = GetLoggedInMember(); 
-            data = _context.TravelDetails.Where(c => c.TravelersId == (currentTraveler.FirstName + " " + currentTraveler.LastName)).ToList();
+            Traveler currentTraveler = GetLoggedInMember();
+            data = _context.TravelDetails
+                .Where(c => c.TravelersId == (currentTraveler.FirstName + " " + currentTraveler.LastName))
+                .ToList();
+
+            data.ForEach(c => c.YearMonthVisited = c.YearVisited + c.MonthVisited);
 
             return Json(data);
         }

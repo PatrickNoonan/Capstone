@@ -14,6 +14,8 @@ namespace Domain
         public string City { get; set; }
         public string MonthVisited { get; set; }
         public string YearVisited { get; set; }
+        [NotMapped]
+        public string YearMonthVisited { get; set; }
         public string PhotoUrl { get; set; }
         public string Notes { get; set; }
 

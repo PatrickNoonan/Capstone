@@ -138,11 +138,9 @@
                                     </form>
                                 </div>
                                 <div>
-                                      <p>Leave your review</p>
-                                      <textarea rows="5" cols="80" id="surveyReviewInput">
-                                      </textarea>  
+                                      <textarea rows="5" cols="80" id="surveyReviewInput" placeholder="Leave your review"></textarea>  
                                 </div>
-                                <div>
+                                <div class="submitDiv">
                                 <input type="submit" class="btn btn-change btn-3" value="Submit" id="submitReviewBtn` + counter + `" >
                                 </div>
                             </div>
@@ -212,7 +210,10 @@
                 console.log(data);
             }
         })
-        alert("Your review has been submitted.");
+        $(".submitDiv").append("<div class='message success'>Thank you for submitting your review!!</div>")
+        setTimeout(function () {
+            $('.message').remove();
+        }, 3000);
     });
 
     function getSurveys() {

@@ -109,8 +109,8 @@ function getTravelDetails() {
         success: function (data) {
 
             data.sort(function (a, b) {
-                return a.yearVisited - b.yearVisited;
-            });
+                return (a.yearMonthVisited - (a.monthVisited *2)) - (b.yearMonthVisited - (b.monthVisited *2));
+            });//Im a god damn genius
 
             for (i = 0; i < data.length; i++) {
                 addEventToTimelineOnInit(data[i]);
