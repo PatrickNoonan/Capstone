@@ -46,7 +46,7 @@
     //var countryCounter = @Html.Raw(Json.Encode(Model.CountriesVisited));
     //var stateCounter = @Html.Raw(Json.Encode(Model.StatesVisited));
 
-    var countryCounter = 1;
+    var countryCounter = 0;
     var stateCounter = 0;
 
     $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
@@ -57,7 +57,7 @@
         $('#countryCounterSpan').remove();
         if (ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive;
-            if (countryCounter > 1) {
+            if (countryCounter > 0) {
                 countryCounter--;
                 $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
             }
@@ -76,31 +76,40 @@
         if (ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive;
             if (stateCounter > 0) {
+                if (stateCounter == 1) {
+                    countryCounter--;
+                    $('#countryCounterSpan').remove();
+                    $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
+                }
                 stateCounter--;
-                $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
+                $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');                
             }
-
         }
         else if (!ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive
+            if (stateCounter == 0) {
+                countryCounter++;
+                $('#countryCounterSpan').remove();
+                $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
+            }
             stateCounter++;
-            $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
+            $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');            
         }
-
     })
 });
 
 let dateArray = [];
+let monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 $("#submitEventBtn").on("click", function addEventToTimeline() {
-    
+
     let date = $("#enterNewDate").val();
-    let year = date.substring(0,4);
-    let month = date.substring(5,7);
+    let year = date.substring(0, 4);
+    let month = date.substring(5, 7);
     let place = $("#enterPlace").val();
     let photoUrl = $("#enterNewPhoto").val();
     let description = $("#enterDescription").val();
-    //https://placekitten.com/200/300
+    //https://placekitten.com/100/100
     if (checkForUniqueYear(year) == true) {
         addYearToTimeline(year);
     }
@@ -111,19 +120,28 @@ $("#submitEventBtn").on("click", function addEventToTimeline() {
             dateMonth: month
         }
     )
-    
-    
 
     $("#timeline-date-" + year)
         .after(
             `<li>
                 <a>•</a>
                 <p class="timeline-date">
-                    <img src="` + photoUrl + `" alt="" class="timeline-dateicon"><strong>` + month + `</strong><br>
+                    <img src="` + photoUrl + `" alt="" class="timeline-dateicon"><strong>` + place + ` - ` + monthArray[parseInt(month)] + ` ` + year + `</strong><br>
                         ` + description + `
                     </p>
                 </li>`
         )
+    //$("#timeline-date-" + year)
+    //    .insertAfter($(`[id^=timeline-date-` + year + `"]`).last()
+    //        `<li>
+    //            <a>•</a>
+    //            <p class="timeline-date">
+    //                <img src="` + photoUrl + `" alt="" class="timeline-dateicon"><strong>` + place + ` - ` + date + `</strong><br>
+    //                    ` + description + `
+    //                </p>
+    //            </li>`
+    //    )
+
 });
 
 function addYearToTimeline(year) {
@@ -148,7 +166,7 @@ function checkForUniqueYear(year) {
     } else if (counter > 0) {
         return false;
     }
-    
+
 }
 
 

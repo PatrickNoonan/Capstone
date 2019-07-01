@@ -105,7 +105,7 @@ nav ul, nav ol {
             cursor: default;
             font-family: 'Roboto Condensed', sans-serif;
             font-size: 1.4em;
-            padding: 0 0 0 0.3em;
+            padding: 0 .3em 0 .5em;
             /*color: rgba(122,201,67,1)*/
         }
 
