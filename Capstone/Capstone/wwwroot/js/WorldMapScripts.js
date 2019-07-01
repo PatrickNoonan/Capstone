@@ -96,76 +96,62 @@
     })
 })
 
-let dateArray = []
-let monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+var dateArray = []
+var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-function addEventToTimelineOnInit() {
+function getTravelDetails() {
+    $.ajax({
+        method: "GET",
+        url: "/Travelers/GetTravelDetails",
+        datatype: "JSON",
+        data: "",
+        contentType: "application/json",
+        success: function (data) {
 
-    let date = $("#enterNewDate").val();
-    let year = date.substring(0, 4);
-    let month = date.substring(5, 7);
-    let place = $("#enterPlace").val();
-    let photoUrl = $("#enterNewPhoto").val();
-    let description = $("#enterDescription").val();
+            data.sort(function (a, b) {
+                return a.yearVisited - b.yearVisited;
+            });
 
-    let travelDetails = {
-        "travelPlace": place,
-        "travelMonth": month,
-        "travelYear": year,
-        "travelPhoto": photoUrl,
-        "travelDescription": description,
-    }
-    postTravelDetails(travelDetails)
+            for (i = 0; i < data.length; i++) {
+                addEventToTimelineOnInit(data[i]);
+            }
 
-    if (checkForUniqueYear(year) == true) {
-        addYearToTimeline(year);
-    }
-    dateArray.push(
-        {
-            dateYear: year,
-            dateMonth: month
-        }
-    )
-    $("#timeline-date-" + year)
-        .after(
-            `<li>
+            function addEventToTimelineOnInit(dataObject) {
+
+                let year = dataObject.yearVisited
+                let month = dataObject.monthVisited
+                let place = dataObject.country
+                let photoUrl = dataObject.photoUrl
+                let description = dataObject.notes
+
+
+                if (checkForUniqueYear(year) == true) {
+                    addYearToTimeline(year);
+                }
+                dateArray.push(
+                    {
+                        dateYear: year,
+                        dateMonth: month
+                    }
+                )
+                $("#timeline-date-" + year)
+                    .after(
+                        `<li>
                 <a>•</a>
                 <p class="timeline-date">
                     <img src="` + photoUrl + `" alt="" class="timeline-dateicon"><strong>` + place + ` - ` + monthArray[parseInt(month)] + ` ` + year + `</strong><br>
                         ` + description + `
                     </p>
                 </li>`
-        )
-    $(".submitDiv").append("<div class='message success'>Thank you for submitting!</div>")
-    setTimeout(function () {
-        $('.message').remove();
-    }, 3000);
-
-})
-
-function addYearToTimelineOnInit(year) {
-
-    $("#timeline-ul")
-        .append(
-            `<li id="timeline-date-` + year + `" class="date">
-                    <p>` + year + `</p>
-                </li>`
-        )
-}
-
-function checkForUniqueYearOnInit(year) {
-    let counter = 0;
-    for (let i = 0; i < dateArray.length; i++) {
-        if (dateArray[i].dateYear == year) {
-            counter++;
+                    )
+                $(".submitDiv").append("<div class='message success'>Thank you for submitting!</div>")
+                setTimeout(function () {
+                    $('.message').remove();
+                }, 3000);
+            }
         }
-    }
-    if (counter == 0) {
-        return true;
-    } else if (counter > 0) {
-        return false;
-    }
-}
+    })
+};
 
 $("#submitEventBtn").on("click", function addEventToTimeline() {
 
@@ -204,7 +190,7 @@ $("#submitEventBtn").on("click", function addEventToTimeline() {
                     </p>
                 </li>`
         )
-    $(".submitDiv").append("<div class='message success'>Thank you for submitting!</div>")
+    $(".submitDiv").append("<div class='message success'>Thank you for submitting! Please refresh for an updated timeline.</div>")
     setTimeout(function () {
         $('.message').remove();
     }, 3000);
@@ -251,20 +237,6 @@ function postTravelDetails(details) {
             "Notes": details.travelDescription,
             "PhotoUrl": details.travelPhoto,
         }),
-        success: function (data) {
-            console.log(data);
-        }
-    })
-    alert("Your trip has been entered.");
-};
-
-function getTravelDetails() {
-    $.ajax({
-        method: "GET",
-        url: "/Travelers/GetTravelDetails",
-        datatype: "JSON",
-        data: "",
-        contentType: "application/json",        
         success: function (data) {
             console.log(data);
         }
