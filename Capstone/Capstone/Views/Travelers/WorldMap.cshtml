@@ -37,17 +37,17 @@
                     <div class="submit-card-content">
                         <div>
                             <div><p>Enter details about your trip!</p></div>
-                            <input type="text" id="eventPlaceInput" placeholder="Where did you go?" />
+                            <input type="text" id="enterPlace" placeholder="Where did you go?" />
                         </div>
                         <div>
                             <form action="/action_page.php">
-                                Event (month and year): <input type="month" name="eventMonth" id="eventDate">
+                                When? (month and year): <input type="month" name="enterNewDate" id="enterNewDate">
                             </form>
                         </div>
                         <div>
-                            <p>Leave a description about what you did</p>
-                            <textarea rows="5" cols="80" id="eventDetailsInput">
+                            <textarea rows="5" cols="80" placeholder="Describe your experience here..." id="enterDescription">
                                       </textarea>
+                            <input type="text" id="enterNewPhoto" placeholder="Enter a photo url" />
                         </div>
                         <div>
                             <input type="submit" class="btn btn-change btn-3" value="Submit" id="submitEventBtn">

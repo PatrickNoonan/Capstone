@@ -90,15 +90,31 @@
     })
 });
 
+let dateArray = [];
+
 $("#submitEventBtn").on("click", function addEventToTimeline() {
-    let date = $("enterNewDate").val();
-    let year = $("enterNewYear").val();
-    let month = $("#enterNewMonth").val();
+    
+    let date = $("#enterNewDate").val();
+    let year = date.substring(0,4);
+    let month = date.substring(5,7);
     let place = $("#enterPlace").val();
     let photoUrl = $("#enterNewPhoto").val();
     let description = $("#enterDescription").val();
+    //https://placekitten.com/200/300
+    if (checkForUniqueYear(year) == true) {
+        addYearToTimeline(year);
+    }
 
-    $(`"#timeline-date-` + year + `"`)
+    dateArray.push(
+        {
+            dateYear: year,
+            dateMonth: month
+        }
+    )
+    
+    
+
+    $("#timeline-date-" + year)
         .after(
             `<li>
                 <a>•</a>
@@ -120,6 +136,20 @@ function addYearToTimeline(year) {
         )
 }
 
+function checkForUniqueYear(year) {
+    let counter = 0;
+    for (let i = 0; i < dateArray.length; i++) {
+        if (dateArray[i].dateYear == year) {
+            counter++;
+        }
+    }
+    if (counter == 0) {
+        return true;
+    } else if (counter > 0) {
+        return false;
+    }
+    
+}
 
 
 
