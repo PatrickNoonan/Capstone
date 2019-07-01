@@ -186,5 +186,31 @@ namespace Capstone.Controllers
 
             return Ok();
         }
+        [HttpPost]
+        public async Task<IActionResult> PostTravelDetails([FromBody]TravelDetails newTrip)
+        {
+            var loggedInMember = GetLoggedInMember();
+            newTrip.TravelersId = loggedInMember.FirstName + " " + loggedInMember.LastName;
+            _context.TravelDetails.Add(newTrip);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetTravelDetails()
+        {
+            List<TravelDetails> data = new List<TravelDetails>();
+            Traveler currentTraveler = GetLoggedInMember(); 
+            data = _context.TravelDetails.Where(c => c.TravelersId == (currentTraveler.FirstName + " " + currentTraveler.LastName)).ToList();
+
+            return Json(data);
+        }
+        //public ActionResult GetPieData()
+        //{
+        //    List<Message> data = new List<Message>();
+        //    Business currentBusiness = GetLoggedInBusiness();
+        //    data = _context.Messages.Where(c => c.CurrentBar == currentBusiness.Name).ToList();
+        //    return Json(data);
+        //}
     }
 }

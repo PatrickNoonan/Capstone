@@ -61,14 +61,12 @@
                 countryCounter--;
                 $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
             }
-
         }
         else if (!ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive
             countryCounter++;
             $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
         }
-
     })
 
     usPolygonTemplate.events.on("hit", function (ev) {
@@ -82,7 +80,7 @@
                     $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
                 }
                 stateCounter--;
-                $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');                
+                $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
             }
         }
         else if (!ev.target.isActive) {
@@ -93,15 +91,15 @@
                 $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
             }
             stateCounter++;
-            $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');            
+            $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
         }
     })
-});
+})
 
-let dateArray = [];
+let dateArray = []
 let monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-$("#submitEventBtn").on("click", function addEventToTimeline() {
+function addEventToTimelineOnInit() {
 
     let date = $("#enterNewDate").val();
     let year = date.substring(0, 4);
@@ -109,18 +107,25 @@ $("#submitEventBtn").on("click", function addEventToTimeline() {
     let place = $("#enterPlace").val();
     let photoUrl = $("#enterNewPhoto").val();
     let description = $("#enterDescription").val();
-    //https://placekitten.com/100/100
+
+    let travelDetails = {
+        "travelPlace": place,
+        "travelMonth": month,
+        "travelYear": year,
+        "travelPhoto": photoUrl,
+        "travelDescription": description,
+    }
+    postTravelDetails(travelDetails)
+
     if (checkForUniqueYear(year) == true) {
         addYearToTimeline(year);
     }
-
     dateArray.push(
         {
             dateYear: year,
             dateMonth: month
         }
     )
-
     $("#timeline-date-" + year)
         .after(
             `<li>
@@ -131,18 +136,80 @@ $("#submitEventBtn").on("click", function addEventToTimeline() {
                     </p>
                 </li>`
         )
-    //$("#timeline-date-" + year)
-    //    .insertAfter($(`[id^=timeline-date-` + year + `"]`).last()
-    //        `<li>
-    //            <a>•</a>
-    //            <p class="timeline-date">
-    //                <img src="` + photoUrl + `" alt="" class="timeline-dateicon"><strong>` + place + ` - ` + date + `</strong><br>
-    //                    ` + description + `
-    //                </p>
-    //            </li>`
-    //    )
+    $(".submitDiv").append("<div class='message success'>Thank you for submitting!</div>")
+    setTimeout(function () {
+        $('.message').remove();
+    }, 3000);
 
-});
+})
+
+function addYearToTimelineOnInit(year) {
+
+    $("#timeline-ul")
+        .append(
+            `<li id="timeline-date-` + year + `" class="date">
+                    <p>` + year + `</p>
+                </li>`
+        )
+}
+
+function checkForUniqueYearOnInit(year) {
+    let counter = 0;
+    for (let i = 0; i < dateArray.length; i++) {
+        if (dateArray[i].dateYear == year) {
+            counter++;
+        }
+    }
+    if (counter == 0) {
+        return true;
+    } else if (counter > 0) {
+        return false;
+    }
+}
+
+$("#submitEventBtn").on("click", function addEventToTimeline() {
+
+    let date = $("#enterNewDate").val();
+    let year = date.substring(0, 4);
+    let month = date.substring(5, 7);
+    let place = $("#enterPlace").val();
+    let photoUrl = $("#enterNewPhoto").val();
+    let description = $("#enterDescription").val();
+
+    let travelDetails = {
+        "travelPlace": place,
+        "travelMonth": month,
+        "travelYear": year,
+        "travelPhoto": photoUrl,
+        "travelDescription": description,
+    }
+    postTravelDetails(travelDetails)
+
+    if (checkForUniqueYear(year) == true) {
+        addYearToTimeline(year);
+    }
+    dateArray.push(
+        {
+            dateYear: year,
+            dateMonth: month
+        }
+    )
+    $("#timeline-date-" + year)
+        .after(
+            `<li>
+                <a>•</a>
+                <p class="timeline-date">
+                    <img src="` + photoUrl + `" alt="" class="timeline-dateicon"><strong>` + place + ` - ` + monthArray[parseInt(month)] + ` ` + year + `</strong><br>
+                        ` + description + `
+                    </p>
+                </li>`
+        )
+    $(".submitDiv").append("<div class='message success'>Thank you for submitting!</div>")
+    setTimeout(function () {
+        $('.message').remove();
+    }, 3000);
+
+})
 
 function addYearToTimeline(year) {
 
@@ -166,87 +233,42 @@ function checkForUniqueYear(year) {
     } else if (counter > 0) {
         return false;
     }
-
 }
 
+function postTravelDetails(details) {
+    $.ajax({
+        method: "POST",
+        url: "/Travelers/PostTravelDetails",
+        datatype: "JSON",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        contentType: "application/json",
+        data: JSON.stringify({
+            "Country": details.travelPlace,
+            "YearVisited": details.travelYear,
+            "MonthVisited": details.travelMonth,
+            "Notes": details.travelDescription,
+            "PhotoUrl": details.travelPhoto,
+        }),
+        success: function (data) {
+            console.log(data);
+        }
+    })
+    alert("Your trip has been entered.");
+};
 
+function getTravelDetails() {
+    $.ajax({
+        method: "GET",
+        url: "/Travelers/GetTravelDetails",
+        datatype: "JSON",
+        data: "",
+        contentType: "application/json",        
+        success: function (data) {
+            console.log(data);
+        }
+    })
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- //-------------------------------------------------------------- end am4core.ready()
-
-/* OnLoad function */
-//function JdOnLoad() {
-//    document.getElementById("world_map").src = "j_countries_load.php";
-//    document.getElementById("save_map").action = "j_save.php";
-//}
-
-/* Maps function */
-//function onBoxClicked2(frame, country) {
-//    if (document.getElementById(country).checked == false) {
-//        var newcount = parseInt(document.getElementById('Count').innerHTML) + 1;
-//        if (newcount == 0) { newcount = newcount + ' countries'; }
-//        else if (newcount > 1) { newcount = newcount + ' countries'; }
-//        else { newcount = newcount + ' country'; }
-//        document.getElementById('Count').innerHTML = newcount;
-//        document.getElementById(country).checked = true;
-//        document.getElementById("world_map").src = "j_countries_load.php?action=add&country=" + country;
-//    }
-//    else {
-//        var newcount = parseInt(document.getElementById('Count').innerHTML) - 1;
-//        if (newcount == 0) { newcount = newcount + ' countries'; }
-//        else if (newcount > 1) { newcount = newcount + ' countries'; }
-//        else { newcount = newcount + ' country'; }
-//        document.getElementById('Count').innerHTML = newcount;
-//        document.getElementById(country).checked = false;
-//        document.getElementById("world_map").src = "j_countries_load.php?action=remove&country=" + country;
-//    }
-
-//    document.getElementById("save_map").action = "j_save.php";
-
-//}
-
-///* Checkboxes function */
-//function onBoxClicked(frame, country) {
-//    if (document.getElementById(country).checked == true) {
-//        var newcount = parseInt(document.getElementById('Count').innerHTML) + 1;
-//        if (newcount == 0) { newcount = newcount + ' countries'; }
-//        else if (newcount > 1) { newcount = newcount + ' countries'; }
-//        else { newcount = newcount + ' country'; }
-//        document.getElementById('Count').innerHTML = newcount;
-//        document.getElementById("world_map").src = "j_countries_load.php?action=add&country=" + country;
-//    }
-//    else {
-//        var newcount = parseInt(document.getElementById('Count').innerHTML) - 1;
-//        if (newcount == 0) { newcount = newcount + ' countries'; }
-//        else if (newcount > 1) { newcount = newcount + ' countries'; }
-//        else { newcount = newcount + ' country'; }
-//        document.getElementById('Count').innerHTML = newcount;
-//        document.getElementById("world_map").src = "j_countries_load.php?action=remove&country=" + country;
-//    }
-
-//    document.getElementById("save_map").action = "j_save.php";
-//}
-
-
+getTravelDetails();

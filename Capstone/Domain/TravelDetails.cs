@@ -12,9 +12,8 @@ namespace Domain
         public int Id { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
-        public string DateVisited { get; set; }
-
-        public string VisitLength { get; set; } 
+        public string MonthVisited { get; set; }
+        public string YearVisited { get; set; }
         public string PhotoUrl { get; set; }
         public string Notes { get; set; }
 
