@@ -111,7 +111,7 @@
     function displayPlaces(placeData) {
         $(".info-container")
             .append(
-                `<div class="row box" style="padding-top:25px">
+                `<div class="row box" style="padding:10px 0 10px 0">
                      <div class="col-xs-6">
                         <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) + `">    
                     </div>

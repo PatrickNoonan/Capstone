@@ -1,8 +1,7 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
-for details on configuring this project to bundle and minify static web assets. */
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿body {
+    background: #b5e1f3;
+    background: -webkit-linear-gradient(to left, #396afc, #2948ff);
+    background: linear-gradient(to left, #b5e1f3, #7d90ff);
 }
 
 /* Always set the map height explicitly to define the size of the div
@@ -20,7 +19,7 @@ body {
 }
 
 .row {
-    margin-left: 0px;
+    /*margin-left: 0px;*/
     margin-right: 0px;
 }
 
@@ -50,8 +49,8 @@ body {
 
 .info-container .box:hover {
     box-shadow: 3px 3px 15px #666;
-    border-color: #C76C0C;
-    background: #C76C0C;
+    border-color: #4b8acc;
+    background: #4b8acc;
     color: #fff;
     cursor: pointer;
     zoom: 1;
@@ -222,3 +221,25 @@ info-box {
     padding-top:50px;
 }
 
+/*.navbar-inverse {
+    background-color: #ffff0000;
+    border-color: #ffff0000;
+}
+
+@media (min-width: 768px) and (max-width: 2000px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+
+        .navbar-collapse.collapse.in {
+            display: block !important;
+        }
+
+    .navbar-header .collapse, .navbar-toggle {
+        display: block !important;
+    }
+
+    .navbar-header {
+        float: none;
+    }
+}*/
