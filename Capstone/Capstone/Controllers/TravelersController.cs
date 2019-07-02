@@ -164,6 +164,13 @@ namespace Capstone.Controllers
             return View();
         }
 
+        public IActionResult VisionBoard()
+        {
+            ViewData["Message"] = "Your Vision Board";
+
+            return View();
+        }
+
         private bool TravelerExists(int id)
         {
             return _context.Travelers.Any(e => e.Id == id);
@@ -209,12 +216,5 @@ namespace Capstone.Controllers
 
             return Json(data);
         }
-        //public ActionResult GetPieData()
-        //{
-        //    List<Message> data = new List<Message>();
-        //    Business currentBusiness = GetLoggedInBusiness();
-        //    data = _context.Messages.Where(c => c.CurrentBar == currentBusiness.Name).ToList();
-        //    return Json(data);
-        //}
     }
 }
