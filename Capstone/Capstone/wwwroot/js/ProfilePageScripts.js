@@ -224,13 +224,14 @@
         $.getJSON(url, function (json) {
             var item_id = Object.keys(json.query.pages)[0];
             sent = json.query.pages[item_id].extract;
-            longResult = "<t><strong>" + item + "</strong></t>: " + sent;
-            result = longResult.split(" ").splice(12, 50).join(" ")
+            longResult = "<t><strong>" + item + "</strong></t> " + sent;
+            result = longResult.split(" ").splice(12, 70).join(" ")
             cityName = longResult.split(" ").splice(0, 1).join(" ");
+
             $('.cityInfo-container')
                 .append(`
-                        <h1>` + cityName + `</h1>
-                        <div>` + result + `...  <a href="https://en.wikipedia.org/wiki/` + item +`">Read more on Wikipedia</a></div>
+                        <h1 style="color: rgba(255, 255, 255, 0.5)">` + cityName + `</h1>
+                        <p style="color: rgba(255, 255, 255, 0.5)">` + result + `...  <a href="https://en.wikipedia.org/wiki/` + item + `">Read more on Wikipedia</a></p>
                         `)
         });
     }
