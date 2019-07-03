@@ -10,7 +10,7 @@ class VisionBoard extends React.Component {
 
         return (
             <div style={style}>
-                <h1>VisionBoard</h1>
+                <h1>Vision Board</h1>
                 <VBoard />
             </div>
         );
@@ -31,11 +31,11 @@ class VBoard extends React.Component {
         this.handleOnDragEnter = this.handleOnDragEnter.bind(this);
         this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
         this.columns = [
-            { name: 'Planning', stage: 1 },
-            { name: 'Design', stage: 2 },
-            { name: 'In Progress', stage: 3 },
-            { name: 'Testing', stage: 4 },
-            { name: 'Launch', stage: 5 },
+            { name: 'Wanting', stage: 1 },
+            { name: 'Saving', stage: 2 },
+            { name: 'Planning', stage: 3 },
+            { name: 'Making Time', stage: 4 },
+            { name: 'Booking', stage: 5 },
         ];
     }
 
@@ -173,37 +173,37 @@ class VBCard extends React.Component {
 */
 let projectList = [
     {
-        name: 'Project 1',
+        name: 'Place 1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         project_stage: 1
     },
     {
-        name: 'Project 2',
+        name: 'Place 2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         project_stage: 1
     },
     {
-        name: 'Project 3',
+        name: 'Place 3',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         project_stage: 1
     },
     {
-        name: 'Project 4',
+        name: 'Place 4',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         project_stage: 2
     },
     {
-        name: 'Project 5',
+        name: 'Place 5',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         project_stage: 3
     },
     {
-        name: 'Project 6',
+        name: 'Place 6',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         project_stage: 3
     },
     {
-        name: 'Project 7',
+        name: 'Place 7',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         project_stage: 4
     },

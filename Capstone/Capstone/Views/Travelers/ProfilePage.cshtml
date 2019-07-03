@@ -17,14 +17,28 @@
 
             <!-- Search Field -->
             <div>
-                <input type="text" placeholder="Search city...">
+                <input type="text" placeholder="Enter a city" name="city" id="citySearch">
+                <i class="icon-map-marker"></i>
+                @*<input type="submit" class="btn btn-change btn-4 btn-city" value="Submit" id="citySearchBtn" />
+                    <label for="menuToggle" class="btn btn-change btn-3 btn-city">City Info</label>*@
             </div>
 
             <!-- Profile Dropdown -->
-            <div class="header-profile">
+            <div class="header-profile navbar">
                 <img src="https://placekitten.com/200/300" class="header-avatar">
                 <p>MyName@*@Html.DisplayFor(model => model.FirstName)*@</p>
-                <i class="material-icons">expand_more</i>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        <a asp-area="" asp-controller="Travelers" asp-action="WorldMap">Maps</a>
+                        <a asp-area="" asp-controller="Travelers" asp-action="VisionBoard">Vision Board</a>
+                    </div>
+                </div>
             </div>
 
 
@@ -112,14 +126,55 @@
             <!-- SOCIAL LINKS -->
             <div class="detail-section">
                 <p class="type-caption">Social Links</p>
-                <p>...</p>
-            </div>
-
-            <!-- SUPPORTERS -->
-            <div class="detail-section">
-                <p class="type-caption">Supporters</p>
-                <p>...</p>
+                <div class="iconRow">
+                    <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f fa-2x"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g fa-2x"></i></a>
+                    <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="#"><i class="fab fa-github fa-2x"></i></a>
+                    <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+                    <a href="#"><i class="fab fa-snapchat fa-2x"></i></a>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-xs-3">
+            @*<input type="text" placeholder="Enter a city (Milwaukee, Wisconsin)" class="city-search form-control" name="city" id="citySearch" />
+                <i class="icon-map-marker"></i>*@
+        </div>
+        <div class="col-xs-6">
+            <div>
+                <input id="menuToggle" type="checkbox">
+                <div class="infobox md-card">
+                    <div class="md-card-content">
+                        <p>Will display information about selected city from wikipedia, time permitting</p>
+                        <div id="wiki"></div>
+                    </div>
+                    <div class="md-card-btns">
+                        <label for="menuToggle" class="btn btn-1">Close Box</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <div id="map"></div>
+        </div>
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+            <div class="info-container">
+                @*appending here*@
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9VqyRQ0U9jrBEYpymyq1xB5zzGsnbLnc&libraries=places">
+</script>
+<script src="~/js/TravelersScripts.js"></script>
