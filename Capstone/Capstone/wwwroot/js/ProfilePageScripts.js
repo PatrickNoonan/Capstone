@@ -64,6 +64,7 @@
                         let newPlacesMap = new google.maps.LatLng(loc[0], loc[1]);
 
                         initialize(newPlacesMap);
+                        wikiSearch(userInput);
 
                     } else {
                         alert('Geocode was not successful for the following reason: ' + status);
@@ -74,7 +75,6 @@
     });
 
     function initialize(newMap) {
-
         map = new google.maps.Map(document.getElementById('map'), {
             center: newMap,
             zoom: 14
@@ -94,7 +94,6 @@
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             $(".info-container").empty();
             for (var i = 0; i < 4; i++) {
-                var place = results[i];
                 displayPlaces(results[i]);
                 createMarker(results[i]);
             }
@@ -118,7 +117,7 @@
             .append(
                 `<div class="row box" style="padding:10px 0 10px 0">
                      <div class="col-xs-6">
-                        <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) + `">    
+                        <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 150 }) + `">    
                     </div>
                 <div class="col-xs-6">
                 <p>` + placeData.name + `</p>
@@ -167,22 +166,6 @@
             'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
     }
-
-    //let submitReviewBtnId = "";
-
-    //$(".info-container").on("click", "#submitReviewBtn0", function () {
-    //    submitReviewBtnId = "0";
-    //    });
-    //$(".info-container").on("click", "#submitReviewBtn1", function () {
-    //    submitReviewBtnId = "1";
-    //    });
-    //$(".info-container").on("click", "#submitReviewBtn2", function () {
-    //    submitReviewBtnId = "2";
-    //    });
-    //$(".info-container").on("click", "#submitReviewBtn3", function () {
-    //    submitReviewBtnId = "3";
-    //    });
-
 
     $(".info-container").on("click", "#submitReviewBtn0", function postSurvey() {
 
@@ -233,25 +216,24 @@
 
             });
     }
+
+    function wikiSearch(item) {
+        console.log(item);
+        // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY?
+        url = "https://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
+        $.getJSON(url, function (json) {
+            var item_id = Object.keys(json.query.pages)[0];
+            sent = json.query.pages[item_id].extract;
+            longResult = "<t><strong>" + item + "</strong></t>: " + sent;
+            result = longResult.split(" ").splice(12, 50).join(" ")
+            cityName = longResult.split(" ").splice(0, 1).join(" ");
+            $('.cityInfo-container')
+                .append(`
+                        <h1>` + cityName + `</h1>
+                        <div>` + result + `...  <a href="https://en.wikipedia.org/wiki/` + item +`">Read more on Wikipedia</a></div>
+                        `)
+        });
+    }
 });
-
-
-
-
-
-
-
-
-
-//function wikiSearch(item) {
-//    // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY?
-//    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
-//    $.getJSON(url, function (json) {
-//        var item_id = Object.keys(json.query.pages)[0];
-//        sent = json.query.pages[item_id].extract;
-//        result = "<t><strong>" + item + "</strong></t>: " + sent;
-//        $('#wiki').html("<div>" + result + "</div>"); // Replace 
-//    });
-//}
 
 

@@ -183,10 +183,6 @@ div.divider {
         margin: 16px 0px;
     }
 
-    #app-header .content .header-profile i {
-        margin: 13.5px 4px;
-    }
-
     #app-header .content .header-profile:hover {
         background: rgba(255, 255, 255, 0.05);
     }
@@ -524,8 +520,8 @@ div.divider {
 /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
 #map {
-    height: 500px;
-    width: 500px;
+    height: 650px;
+    width: 550px;
 }
 
 /* Wrapping element */
@@ -735,25 +731,10 @@ info-box {
     padding-top: 50px;
 }
 
-/*.navbar-inverse {
-    background-color: #ffff0000;
-    border-color: #ffff0000;
+.location-row {
+    background-color:#1f1f1f;
 }
 
-@media (min-width: 768px) and (max-width: 2000px) {
-    .navbar-collapse.collapse {
-        display: none !important;
-    }
-
-        .navbar-collapse.collapse.in {
-            display: block !important;
-        }
-
-    .navbar-header .collapse, .navbar-toggle {
-        display: block !important;
-    }
-
-    .navbar-header {
-        float: none;
-    }
-}*/
+.cityInfo-container {
+    margin:-15px 0 0 50px;
+}
