@@ -1,7 +1,4 @@
-﻿
-
-
-/*
+﻿/*
 * VisionBoard React component
 */
 class VisionBoard extends React.Component {

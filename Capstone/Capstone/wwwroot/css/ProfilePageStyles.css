@@ -1,0 +1,460 @@
+﻿@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700");
+
+p {
+    font-size: 14px;
+    white-space: pre-wrap;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.type-title {
+    font-size: 24px;
+    margin: 0;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.type-subtitle {
+    font-size: 24px;
+    font-weight: lighter;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.type-heading-4 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.type-caption {
+    font-size: 14px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    margin-bottom: 4px !important;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 2000px;
+    background: #1a1a1a;
+}
+
+div.divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 14px 8px;
+    float: left;
+}
+
+.hide {
+    display: none;
+}
+
+@media (max-width: 1232px) {
+    .hide-l {
+        display: none;
+    }
+}
+
+@media (max-width: 960px) {
+    .hide-m {
+        display: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .hide-s {
+        display: none;
+    }
+}
+
+@media (sl) {
+    .hide-sl {
+        display: none;
+    }
+}
+
+.show {
+    display: block;
+}
+
+@media (max-width: 1232px) {
+    .show-l {
+        display: block;
+    }
+}
+
+@media (max-width: 960px) {
+    .show-m {
+        display: block;
+    }
+}
+
+@media (max-width: 760px) {
+    .show-s {
+        display: block;
+    }
+}
+
+@media (sl) {
+    .show-sl {
+        display: block;
+    }
+}
+
+#app-header {
+    width: 100%;
+    height: 52px;
+    background: rgba(38, 38, 38, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 0 rgba(38, 38, 38, 0.3);
+    z-index: 9999;
+}
+
+    #app-header .content {
+        display: grid;
+        grid-template-columns: 52px auto 320px 137px;
+        width: 1200px;
+        margin: auto;
+    }
+
+@media (max-width: 1232px) {
+    #app-header .content {
+        width: calc(100% - 32px);
+    }
+}
+
+#app-header .content input {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    padding: 17px 16px;
+    width: 190px;
+    color: #fff;
+    transition: 0.1s ease;
+    box-sizing: border-box;
+}
+
+    #app-header .content input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    #app-header .content input:focus {
+        background: rgba(255, 255, 255, 0.1);
+        outline: none;
+        width: 100%;
+        font-size: 20px;
+        padding: 14px 16px;
+    }
+
+#app-header .content .header-profile {
+    cursor: pointer;
+    justify-self: right;
+}
+
+    #app-header .content .header-profile * {
+        float: left;
+    }
+
+    #app-header .content .header-profile .header-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        box-shadow: 0 2px 0 rgba(38, 38, 38, 0.3);
+        margin: 10px;
+    }
+
+    #app-header .content .header-profile .header-logo {
+        width: 53px;
+        height: 53px;
+    }
+
+    #app-header .content .header-profile p {
+        min-width: 100px;
+        color: white;
+        margin: 18px 0px;
+    }
+
+    #app-header .content .header-profile i {
+        margin: 13.5px 4px;
+    }
+
+    #app-header .content .header-profile:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+#app-header .content button {
+    background: transparent;
+    border: none;
+    padding: 14px 8px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    float: left;
+}
+
+    #app-header .content button.unread {
+        position: relative;
+    }
+
+        #app-header .content button.unread i {
+            color: white;
+        }
+
+        #app-header .content button.unread:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00a6ff;
+            position: absolute;
+            top: 12px;
+            right: 6px;
+            border-radius: 50%;
+        }
+
+    #app-header .content button:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    #app-header .content button:focus {
+        outline: none;
+    }
+
+#app-header .content i {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#app-landing {
+    width: 100%;
+    height: 352px;
+    box-shadow: 0 2px 0 rgba(38, 38, 38, 0.3);
+    overflow: hidden;
+}
+
+    #app-landing #app-landing-bg {
+        background-image: url('../images/CloudyResize.jpg');
+        background-size: cover !important;
+        background-position: center !important;
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        /* Set a specific height */
+        height: 500px;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    #app-landing.locked #app-landing-bg {
+        position: fixed;
+        height: 52px;
+        top: 0;
+        left: 0;
+        z-index: 9998;
+        margin-top: 0 !important;
+    }
+
+
+
+#app-content {
+    background: #1f1f1f;
+    width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto 360px;
+    grid-template-rows: 80px auto;
+}
+
+@media (max-width: 1232px) {
+    #app-content {
+        width: calc(100% - 32px);
+        margin: 0 16px;
+    }
+}
+
+@media (max-width: 960px) {
+    #app-content {
+        grid-template-columns: 100%;
+    }
+}
+
+#app-content .profile-header {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background: #1f1f1f;
+    height: 80px;
+    display: grid;
+    grid-template-columns: 168px auto auto;
+    grid-template-rows: 80px;
+}
+
+@media (max-width: 960px) {
+    #app-content .profile-header {
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+        #app-content .profile-header .title {
+            margin-top: 16px;
+        }
+
+        #app-content .profile-header .title, #app-content .profile-header .subtitle {
+            font-size: 18px;
+        }
+}
+
+@media (max-width: 760px) {
+    #app-content .profile-header {
+        grid-template-columns: 80px auto auto !important;
+    }
+
+        #app-content .profile-header .avatar {
+            width: 48px !important;
+            height: 48px !important;
+            transform: translate(0, 0) !important;
+            margin-top: 10px !important;
+        }
+}
+
+#app-content .profile-header .avatar {
+    width: 128px;
+    height: 128px;
+    border: 4px solid #1f1f1f;
+    border-radius: 2px;
+    margin-left: 16px;
+    transform: translate(0, -50%);
+}
+
+#app-content .profile-header .profile-actions {
+    justify-self: right;
+}
+
+    #app-content .profile-header .profile-actions button {
+        color: rgba(255, 255, 255, 0.3);
+        background: transparent;
+        border: none;
+        padding: 16px;
+        cursor: pointer;
+        vertical-align: top;
+        float: left;
+        height: 80px;
+        transition: 0.1s ease;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+        #app-content .profile-header .profile-actions button.more-btn {
+            padding: 13px 16px 10.5px 16px;
+        }
+
+        #app-content .profile-header .profile-actions button:focus {
+            outline: none;
+        }
+
+        #app-content .profile-header .profile-actions button:hover {
+            background: #1a1a1a;
+        }
+
+        #app-content .profile-header .profile-actions button.following-true {
+            color: #7597c7;
+            background: rgba(117, 151, 199, 0.15);
+        }
+
+#app-content.header-locked .profile-header {
+    position: fixed;
+    width: 1200px;
+    top: 52px;
+    grid-template-columns: 80px auto auto;
+}
+
+@media (max-width: 1232px) {
+    #app-content.header-locked .profile-header {
+        width: calc(100% - 32px);
+    }
+}
+
+#app-content.header-locked .profile-header .avatar {
+    width: 48px;
+    height: 48px;
+    transform: translate(0, 0);
+    margin-top: 10px;
+}
+
+#app-content .profile-content {
+    grid-row-start: 2;
+}
+
+@media (max-width: 960px) {
+    #app-content .profile-content {
+        grid-row-start: 3;
+    }
+}
+
+#app-content .profile-content .content-navigation ul {
+    height: 49px;
+    padding: 0;
+    list-style: none;
+    margin: 0 16px;
+}
+
+    #app-content .profile-content .content-navigation ul li {
+        float: left;
+        padding: 16px;
+        cursor: pointer;
+    }
+
+        #app-content .profile-content .content-navigation ul li:hover {
+            background: #1a1a1a;
+        }
+
+        #app-content .profile-content .content-navigation ul li.active {
+            color: #7597c7;
+            background: rgba(117, 151, 199, 0.15);
+            box-shadow: 0 4px 0 #7597c7 inset;
+        }
+
+#app-content .profile-details {
+    background: rgba(26, 26, 26, .5);
+    padding: 16px;
+    grid-row-start: 2;
+}
+
+@media (max-width: 960px) {
+    #app-content .profile-details {
+        grid-row-start: 2;
+    }
+}
+
+#app-content .profile-details .detail-section {
+    margin-bottom: 32px;
+}
+
+#app-content .profile-details .detail-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+}
+
+    #app-content .profile-details .detail-grid-4 .grid-icon {
+        color: rgba(255, 255, 255, 0.5);
+        height: 100%;
+        cursor: pointer;
+    }
+
+        #app-content .profile-details .detail-grid-4 .grid-icon:hover:hover {
+            background: #1a1a1a;
+        }
+
+        #app-content .profile-details .detail-grid-4 .grid-icon i {
+            padding: 12.5px;
+            width: calc(100% - 25px);
+            text-align: center;
+        }

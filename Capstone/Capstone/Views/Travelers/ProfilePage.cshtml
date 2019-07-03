@@ -1,0 +1,125 @@
+﻿@model Domain.Traveler
+
+@{
+    Layout = "_ProfilePageLayout";
+}
+
+@{
+    ViewData["Title"] = "Profile Page";
+}
+
+<div id="app">
+    <div id="app-header">
+        <div class="content">
+            <div class="header-profile">
+                <img src="https://placekitten.com/200/300" class="header-logo">
+            </div>
+
+            <!-- Search Field -->
+            <div>
+                <input type="text" placeholder="Search city...">
+            </div>
+
+            <!-- Profile Dropdown -->
+            <div class="header-profile">
+                <img src="https://placekitten.com/200/300" class="header-avatar">
+                <p>MyName@*@Html.DisplayFor(model => model.FirstName)*@</p>
+                <i class="material-icons">expand_more</i>
+            </div>
+
+
+            <!-- Icons -->
+            <div>
+                <div class="divider"></div>
+
+                <button class="unread">
+                    <i class="material-icons">chat</i>
+                </button>
+                <button>
+                    <i class="material-icons">notifications</i>
+                </button>
+                <button>
+                    <i class="material-icons">more_horiz</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="app-landing">
+        <div id="app-landing-bg"></div> @*dynamic background based on current weather*@
+    </div>
+    <div id="app-content">
+        <!-- PROFILE HEADER -->
+        <div class="profile-header" id="app-profile-header">
+            <div class="profile-avatar">
+                <img src="https://placekitten.com/300/300" class="avatar">@*@Html.DisplayFor(model => model.TravelerAvatar)*@
+            </div>
+
+            <div>
+                <p class="type-title">MyName@*@Html.DisplayFor(model => model.FirstName)*@</p>
+                <p class="type-subtitle">Journeyman Journier</p> @*@Html.DisplayFor(model => model.TravelerRank)*@
+            </div>
+
+            <div class="profile-actions">
+                <button>
+                    <div class="hide-s">following</div>
+                </button>
+                <button class="hide-s">Share</button>
+                <button class="hide-s">Message</button>
+                <button class="more-btn"><i class="material-icons">more_horiz</i></button>
+            </div>
+        </div>
+
+        <!-- PROFILE CONTENT -->
+        <div class="profile-content">
+            <div class="content-navigation">
+                <ul>
+                    <li class="type-caption active">All</li>
+                    <li class="type-caption">Countries Visited</li>
+                    <li class="type-caption">US States</li>
+                    <li class="type-caption">Reviews</li>
+                    <li class="type-caption">Awards</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PROFILE DETAILS -->
+        <div class="profile-details">
+            <!-- BASIC STATISTICS -->
+            <div class="detail-grid-4 detail-section">
+                <div>
+                    <p class="type-caption">Followers</p>
+                    <p class="type-heading-4">2</p> @*@Html.DisplayFor(model => model.Followers)*@
+                </div>
+                <div>
+                    <p class="type-caption">Following</p>
+                    <p class="type-heading-4">50</p> @*@Html.DisplayFor(model => model.Followers)*@
+                </div>
+                <div>
+                    <p class="type-caption">Trips</p>
+                    <p class="type-heading-4">13</p> @*@Html.DisplayFor(model => model.TripsLogged)*@
+                </div>
+                <div class="grid-icon">
+                    <i class="material-icons">bar_chart</i>
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="detail-section">
+                <p class="type-caption">Description</p>
+                <p>Hey whats up Im a pretty cool guy I like doing stuff and also enjoy when I'm able to do stuff</p>
+            </div>
+
+            <!-- SOCIAL LINKS -->
+            <div class="detail-section">
+                <p class="type-caption">Social Links</p>
+                <p>...</p>
+            </div>
+
+            <!-- SUPPORTERS -->
+            <div class="detail-section">
+                <p class="type-caption">Supporters</p>
+                <p>...</p>
+            </div>
+        </div>
+    </div>
+</div>

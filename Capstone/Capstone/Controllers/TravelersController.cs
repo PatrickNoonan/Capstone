@@ -157,6 +157,12 @@ namespace Capstone.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult ProfilePage()
+        {
+            ViewData["Message"] = "Your Profile Page";
+
+            return View();
+        }
         public IActionResult WorldMap()
         {
             ViewData["Message"] = "Your World Map";
