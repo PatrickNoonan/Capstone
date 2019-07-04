@@ -518,7 +518,7 @@ div.divider {
 /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
 #map {
-    height: 650px;
+    height: 625px;
     width: 550px;
 }
 
@@ -737,3 +737,12 @@ info-box {
 .cityInfo-container {
     margin:-15px 0 0 50px;
 }
+
+.wrapper {
+    text-align: center;
+}
+
+/*.button {
+    position: absolute;
+    top: 50%;
+}*/

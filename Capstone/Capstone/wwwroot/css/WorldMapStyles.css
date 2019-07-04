@@ -1,9 +1,10 @@
 ﻿body {
     /*height: 100%;
     overflow: hidden;*/
-    background: #b5e1f3;
+    /*background: #b5e1f3;
     background: -webkit-linear-gradient(to right, #396afc, #2948ff);
-    background: linear-gradient(to right, #b5e1f3, #7d90ff);
+    background: linear-gradient(to right, #b5e1f3, #7d90ff);*/
+    background-image: linear-gradient(to left, #243949 0%, #517fa4 100%);
 }
 
    
@@ -20,8 +21,9 @@ nav ul, nav ol {
 
 #timeline {
     /*background-color: rgba(122,201,67,0.6);*/
+    color: rgba(255, 255, 255, 0.5);
     height: 90px;
-    margin-top:22px;
+    margin-top: 22px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -45,7 +47,7 @@ nav ul, nav ol {
     }
 
         #timeline li:hover {
-            background-color: rgba(122,201,67,1);
+            background-color: #67B7DC;
             cursor: pointer;
         }
 
@@ -58,7 +60,8 @@ nav ul, nav ol {
         }
 
         #timeline li p.timeline-date {
-            background-color: #8e8f90;
+            /*background-color: #8e8f90;*/
+            background-color: #454545;
             border: 1px solid #838383;
             bottom: 9em;
             box-shadow: -10px 10px 5px 0 rgba(0, 0, 0, 0.35);
@@ -72,7 +75,7 @@ nav ul, nav ol {
         }
 
             #timeline li p.timeline-date strong {
-                color: rgba(122,201,67,1);
+                color: #67B7DC;
             }
 
             #timeline li p.timeline-date img.timeline-dateicon {
@@ -110,13 +113,13 @@ nav ul, nav ol {
         }
 
             #timeline li.date:hover {
-                background-color: rgba(122,201,67,0.6);
+                background-color: #67B7DC;
             }
 
             #timeline li.date p {
                 bottom: 4em;
                 left: -0.6em;
-                position: absolute;
+                position: absolute;                
             }
 /*------------------------------------------------------------------------------------------------*/
 #chartdiv {
