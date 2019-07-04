@@ -123,7 +123,7 @@
                 <p>` + placeData.name + `</p>
                 <p>` + placeData.vicinity + `</p>
                 <p>Rating: ` + placeData.rating + ` | Price: ` + placeData.price_level + `</p>
-                <label for="submitToggle` + counter + `" class="btn btn-change btn-2 btn-review">Leave a review</label>
+                <label for="submitToggle` + counter + `" class="btn btn-change btn-4 btn-review">Leave a review</label>
                     <div>
                     <input hidden id="submitToggle` + counter + `" type="checkbox">
                         <div class="infobox submit-card">
@@ -134,18 +134,19 @@
                                     <input hidden type="text" id="poiAddressValue" value="` + placeData.vicinity + `">
                                     <input type="text" id="surveyTitleInput" placeholder="Title of your review" />
                                 </div>
+                                <br/>
                                 <div>
                                     <form action="/action_page.php">
-                                      Give Rating (between 1 and 10):
-                                      <input type="number" id="surveyRatingInput" name="quantity" min="1" max="10">
-                                      
+                                      <p style="color:rgba(255, 255, 255, 0.5)">Give Rating (between 1 and 10):</p>                                          
+                                      <input style="color:black" type="number" id="surveyRatingInput" name="quantity" min="1" max="10">                                       
                                     </form>
                                 </div>
+                                <br/>
                                 <div>
                                       <textarea rows="5" cols="80" id="surveyReviewInput" placeholder="Leave your review"></textarea>  
                                 </div>
                                 <div class="submitDiv">
-                                <input type="submit" class="btn btn-change btn-3" value="Submit" id="submitReviewBtn` + counter + `" >
+                                <input type="submit" class="btn btn-change btn-4" value="Submit" id="submitReviewBtn` + counter + `" >
                                 </div>
                             </div>
                             <div class="md-card-btns">
@@ -219,7 +220,6 @@
 
     function wikiSearch(item) {
         console.log(item);
-        // ADD A METHOD TO UPPERCASE FIRST LETTER OF EVERY WORD IN A QUERY?
         url = "https://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
         $.getJSON(url, function (json) {
             var item_id = Object.keys(json.query.pages)[0];
@@ -229,6 +229,7 @@
             cityName = longResult.split(" ").splice(0, 1).join(" ");
 
             $('.cityInfo-container')
+                .empty()
                 .append(`
                         <h1 style="color: rgba(255, 255, 255, 0.5)">` + cityName + `</h1>
                         <p style="color: rgba(255, 255, 255, 0.5)">` + result + `...  <a href="https://en.wikipedia.org/wiki/` + item + `">Read more on Wikipedia</a></p>

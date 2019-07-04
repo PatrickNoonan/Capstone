@@ -716,6 +716,7 @@ p + p {
 }
 
 :checked + .infobox {
+    background-color: #454545;
     visibility: visible;
     opacity: 1;
     filter: alpha(opacity=100);
