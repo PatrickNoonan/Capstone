@@ -247,6 +247,22 @@
                         `)
         });
     }
+
+    
 });
+
+var scrollingElement = document.body;
+
+function scrollSmoothToBottom() {
+    $(scrollingElement).animate({
+        scrollTop: document.body.scrollHeight
+    }, 500);
+}
+
+function scrollSmoothToTop() {
+    $(scrollingElement).animate({
+        scrollTop: 0
+    }, 500);
+}
 
 
