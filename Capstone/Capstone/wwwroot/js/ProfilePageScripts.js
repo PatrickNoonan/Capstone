@@ -64,7 +64,6 @@
                         let newPlacesMap = new google.maps.LatLng(loc[0], loc[1]);
 
                         initialize(newPlacesMap);
-                        wikiSearch(userInput);
 
                     } else {
                         alert('Geocode was not successful for the following reason: ' + status);
@@ -92,6 +91,9 @@
 
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
+            let vicinityArray = results[0].vicinity.split(" ");
+            let item = vicinityArray[vicinityArray.length - 1];
+            wikiSearch(item)
             $(".info-container").empty();
             for (var i = 0; i < 4; i++) {
                 displayPlaces(results[i]);
@@ -112,7 +114,7 @@
         });
     }
 
-    function displayPlaces(placeData) {
+    function displayPlaces(placeData) {        
         $(".info-container")
             .append(
                 `<div class="row box" style="padding:10px 0 10px 0">
@@ -225,14 +227,23 @@
             var item_id = Object.keys(json.query.pages)[0];
             sent = json.query.pages[item_id].extract;
             longResult = "<t><strong>" + item + "</strong></t> " + sent;
-            result = longResult.split(" ").splice(12, 70).join(" ")
-            cityName = longResult.split(" ").splice(0, 1).join(" ");
+
+            resultArray = longResult.split(" ")
+
+            var arrCounter = 0; //searching for any ending parenthesis in the first 20 words of the extract, returns word index of last occuring one
+            for (let i = 0; i < 20; i++) {                
+                if (resultArray[i].indexOf(")") != -1) {
+                    arrCounter = i;
+                }
+            }        
+           
+            resultString = resultArray.splice(arrCounter + 1, 70).join(" ")
 
             $('.cityInfo-container')
                 .empty()
                 .append(`
-                        <h1 style="color: rgba(255, 255, 255, 0.5)">` + cityName + `</h1>
-                        <p style="color: rgba(255, 255, 255, 0.5)">` + result + `...  <a href="https://en.wikipedia.org/wiki/` + item + `">Read more on Wikipedia</a></p>
+                        <h1 style="color: rgba(255, 255, 255, 0.5)">` + item + `</h1>
+                        <p style="color: rgba(255, 255, 255, 0.5)">` + resultString + `...  <a href="https://en.wikipedia.org/wiki/` + item + `">Read more on Wikipedia</a></p>
                         `)
         });
     }

@@ -30,6 +30,8 @@ namespace Capstone.Controllers
             }
             else
             {
+                ViewData["Message"] = "Your Profile Page";
+
                 return View(loggedInMember);
             }
 
@@ -156,12 +158,6 @@ namespace Capstone.Controllers
             _context.Travelers.Remove(traveler);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-        public IActionResult ProfilePage()
-        {
-            ViewData["Message"] = "Your Profile Page";
-
-            return View();
         }
         public IActionResult WorldMap()
         {
