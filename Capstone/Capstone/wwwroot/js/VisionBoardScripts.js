@@ -6,11 +6,12 @@ class VisionBoard extends React.Component {
         const style = {
             'padding': '30px',
             'paddingTop': '5px',
+            'float': 'right',
         };
 
         return (
             <div style={style}>
-                <h1>Vision Board</h1>
+                <h1 className="whiteText">Vision Board</h1>                
                 <VBoard />
             </div>
         );
@@ -31,11 +32,9 @@ class VBoard extends React.Component {
         this.handleOnDragEnter = this.handleOnDragEnter.bind(this);
         this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
         this.columns = [
-            { name: 'Wanting', stage: 1 },
-            { name: 'Saving', stage: 2 },
-            { name: 'Planning', stage: 3 },
-            { name: 'Making Time', stage: 4 },
-            { name: 'Booking', stage: 5 },
+            { name: 'Cool Places', stage: 1 },
+            { name: 'Bucket List', stage: 2 },
+            { name: 'Must see', stage: 3 },
         ];
     }
 
@@ -51,7 +50,7 @@ class VBoard extends React.Component {
     //this is called when a VisionBoard card dropped over a column (called by card)
     handleOnDragEnd(e, project) {
         const updatedProjects = this.state.projects.slice(0);
-        updatedProjects.find((projectObject) => { return projectObject.name === project.name; }).project_stage = this.state.draggedOverCol;
+        updatedProjects.find((projectObject) => { return projectObject.name === project.name; }).columnNum = this.state.draggedOverCol;
         this.setState({ projects: updatedProjects });
     }
 
@@ -67,7 +66,7 @@ class VBoard extends React.Component {
                     return (
                         <VBColumn name={column.name}
                             stage={column.stage}
-                            projects={this.state.projects.filter((project) => { return parseInt(project.project_stage, 10) === column.stage; })}
+                            projects={this.state.projects.filter((project) => { return parseInt(project.columnNum, 10) === column.stage; })}
                             onDragEnter={this.handleOnDragEnter}
                             onDragEnd={this.handleOnDragEnd}
                             key={column.stage}
@@ -112,14 +111,14 @@ class VBColumn extends React.Component {
             'paddingTop': '0px',
             'width': '230px',
             'textAlign': 'center',
-            'backgroundColor': (this.state.mouseIsHovering) ? '#d3d3d3' : '#f0eeee',
+            'backgroundColor': (this.state.mouseIsHovering) ? '#517FA4' : 'rgba(38, 38, 38, 0.3)',
         };
         return (
             <div style={columnStyle}
                 onDragEnter={(e) => { this.setState({ mouseIsHovering: true }); this.props.onDragEnter(e, this.props.stage); }}
                 onDragExit={(e) => { this.setState({ mouseIsHovering: false }); }}
             >
-                <h4>{this.props.stage}. {this.props.name} ({this.props.projects.length})</h4>
+                <h4 className="whiteText">{this.props.stage}. {this.props.name} ({this.props.projects.length})</h4>
                 {this.generateVBCards()}
                 <br />
             </div>);
@@ -139,7 +138,7 @@ class VBCard extends React.Component {
 
     render() {
         const cardStyle = {
-            'backgroundColor': '#f9f7f7',
+            'backgroundColor': '#B0D5FC',
             'paddingLeft': '0px',
             'paddingTop': '5px',
             'paddingBottom': '5px',
@@ -171,43 +170,86 @@ class VBCard extends React.Component {
 /*
 * Projects to be displayed on VisionBoard Board
 */
-let projectList = [
+var projectList = [
     {
         name: 'Place 1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        project_stage: 1
+        columnNum: 1
     },
     {
         name: 'Place 2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        project_stage: 1
+        columnNum: 1
     },
     {
         name: 'Place 3',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        project_stage: 1
+        columnNum: 1
     },
     {
         name: 'Place 4',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        project_stage: 2
+        columnNum: 2
     },
     {
         name: 'Place 5',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        project_stage: 3
+        columnNum: 3
     },
     {
         name: 'Place 6',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        project_stage: 3
-    },
-    {
-        name: 'Place 7',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        project_stage: 4
+        columnNum: 3
     },
 ];
+
+/*---------------------------------------------------------------------------------------------------------*/
+
+
+function addToList(nameInput, descriptionInput, columnNumInput) {
+    var item = {
+        name: nameInput,
+        description: descriptionInput,
+        columnNum: columnNumInput
+    }
+    projectList.push(item);
+}
+
+function deleteFromList(cardName) {
+    for (let i = 0; i < projectList.length; i++) {
+        if (projectList[i].name == cardName) {
+            projectList = projectList.splice(i, 1);
+        }
+    }
+
+}
+
+function dragOver(ev) {
+    ev.preventDefault();
+    ev.target.style.color = 'blue';
+}
+
+function stopDrop(ev) {
+    ev.preventDefault();
+    ev.target.style.color = 'red';
+}
+
+function dragStart(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function dropped(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("Text");
+    //ev.target.appendChild(document.getElementById(data));
+    document.getElementById(data).style.display = 'none';
+    ev.target.style.color = 'green';
+}
+
+
+
+
+
 
 /*
 * Render the VisionBoard Board in the "app" div

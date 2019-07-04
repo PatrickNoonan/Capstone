@@ -21,7 +21,7 @@
     var polygonTemplate = worldSeries.mapPolygons.template;
     polygonTemplate.tooltipText = "{name}";
     polygonTemplate.fill = chart.colors.getIndex(0);
-    polygonTemplate.nonScalingStroke = true;
+    polygonTemplate.nonScalingStroke = true;    
 
     // Hover state
     var hs = polygonTemplate.states.create("hover");
@@ -45,6 +45,8 @@
 
     //var countryCounter = @Html.Raw(Json.Encode(Model.CountriesVisited));
     //var stateCounter = @Html.Raw(Json.Encode(Model.StatesVisited));
+    //console.log(worldSeries);
+    //console.log(polygonTemplate);
 
     var countryCounter = 0;
     var stateCounter = 0;
@@ -52,13 +54,19 @@
     $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
     $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
 
+
     // Create an event to toggle "active" state
     polygonTemplate.events.on("hit", function (ev) {
+        var targetObject = ev.target.dataItem.dataContext;
+        
+        console.log(Object.keys(targetObject))
+
         $('#countryCounterSpan').remove();
         if (ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive;
             if (countryCounter > 0) {
                 countryCounter--;
+                console.log(targetObject.name);
                 $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
             }
         }
@@ -66,7 +74,9 @@
             ev.target.isActive = !ev.target.isActive
             countryCounter++;
             $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
+            console.log(targetObject.name);
         }
+        console.log(targetObject.name);
     })
 
     usPolygonTemplate.events.on("hit", function (ev) {
