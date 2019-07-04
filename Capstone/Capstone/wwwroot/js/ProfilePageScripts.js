@@ -251,15 +251,15 @@
     
 });
 
-var scrollingElement = document.body;
+var scrollingElement = (document.scrollingElement || document.body || body);
 
-function scrollSmoothToBottom() {
+function scrollSmoothToBottom(id) {
     $(scrollingElement).animate({
         scrollTop: document.body.scrollHeight
     }, 500);
 }
 
-function scrollSmoothToTop() {
+function scrollSmoothToTop(id) {
     $(scrollingElement).animate({
         scrollTop: 0
     }, 500);
