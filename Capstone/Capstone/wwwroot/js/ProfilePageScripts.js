@@ -279,16 +279,16 @@
                 console.log(data);
                 //get necessary data
                 let extractedData = {
-                    "20_24": data.response.result.package.item[0].age20_24,
-                    "25_29": data.response.result.package.item[0].age25_29,
-                    "30_34": data.response.result.package.item[0].age30_34,
-                    "35_39": data.response.result.package.item[0].age35_39,
-                    "40_44": data.response.result.package.item[0].age40_44,
-                    "45_49": data.response.result.package.item[0].age45_49,
-                    "50_54": data.response.result.package.item[0].age50_54,
-                    "55_59": data.response.result.package.item[0].age55_59,
-                    "60_64": data.response.result.package.item[0].age60_64,
-                    "65_69": data.response.result.package.item[0].age65_69
+                    "20-24": data.response.result.package.item[0].age20_24,
+                    "25-29": data.response.result.package.item[0].age25_29,
+                    "30-34": data.response.result.package.item[0].age30_34,
+                    "35-39": data.response.result.package.item[0].age35_39,
+                    "40-44": data.response.result.package.item[0].age40_44,
+                    "45-49": data.response.result.package.item[0].age45_49,
+                    "50-54": data.response.result.package.item[0].age50_54,
+                    //"55-59": data.response.result.package.item[0].age55_59,
+                    //"60-64": data.response.result.package.item[0].age60_64,
+                    //"65-69": data.response.result.package.item[0].age65_69
                 }
                 displayPopulationGraph(extractedData);
             }
@@ -296,7 +296,6 @@
     }
 
     function displayPopulationGraph(attomData) {
-        console.log(attomData);
         let chartData = [];
         let chartDates = [];//chart Ages
 
@@ -307,65 +306,10 @@
             }
         }
 
-
-        //let pastSevenDays = [];
-        //let pastThirtyData = checkPastThirty();
-        //let allTimeVisitors = checkAllTime();
-
-        //for (let i = data.length - 7; i < data.length; i++) {
-        //    chartData.push(data[i].count);
-        //}
-
-        //for (let i = 0; i < 7; i++) {
-        //    let d = new Date();
-        //    d.setDate(d.getDate() - i);
-        //    let dString = (d.getMonth() + 1 + "-" + d.getDate());
-        //    pastSevenDays.unshift(dString)
-        //}
-
-        //for (let i = data.length - 7; i < data.length; i++) {
-        //    chartDates.push(data[i].date);
-        //}
-
-        //function checkPastThirty() {
-        //    let pastThirtyArray = [];
-        //    if (data.length < 30) {
-        //        for (let i = 0; i < data.length; i++) {
-        //            pastThirtyArray.push(data[i].count);
-        //        }
-        //    } else {
-        //        for (let i = data.length - 30; i < data.length; i++) {
-        //            pastThirtyArray.push(data[i].count);
-        //        }
-        //    }
-        //    return pastThirtyArray;
-        //}
-
-        //function checkAllTime() {
-        //    let allTimeArray = [];
-        //    for (let i = 0; i < data.length; i++) {
-        //        allTimeArray.push(data[i].count);
-        //    }
-        //    return allTimeArray;
-        //}
-
-        //document.getElementById("past7Total").innerHTML = chartData.reduce(pastSevenTotal);
-        //function pastSevenTotal(total, num) {
-        //    return total + num;
-        //}
-        //document.getElementById("past30Total").innerHTML = pastThirtyData.reduce(pastThirtyTotal);
-        //function pastThirtyTotal(total, num) {
-        //    return total + num;
-        //}
-        //document.getElementById("allTimeTotal").innerHTML = allTimeVisitors.reduce(allTimeTotal);
-        //function allTimeTotal(total, num) {
-        //    return total + num;
-        //}
-
         //----------------------------------------Bar Chart-----------------------------
 
         function BarChart() {
-
+            d3.select("svg").remove()
             let margin = {
                 top: 30,
                 right: 10,
@@ -373,8 +317,8 @@
                 left: 50
             }
 
-            let height = 300 - margin.top - margin.bottom;
-            let width = 620 - margin.left - margin.right;
+            let height = 350 - margin.top - margin.bottom;
+            let width = 420 - margin.left - margin.right;
 
             let dynamicColor;
 
@@ -413,9 +357,6 @@
 
                 .attr('height', 0)
                 .attr('y', height)
-                //.append('svg:title')
-                //        .text(function (data, i) { return i.count; })
-                //        .text("hello")
 
                 .on('mouseover', function (data) {
                     dynamicColor = this.style.fill;
@@ -450,6 +391,7 @@
 
             let vAxis = d3.axisLeft(verticalGuideScale)
                 .ticks()
+                
 
             let verticalGuide = d3.select('svg').append('g')
             vAxis(verticalGuide)
@@ -469,10 +411,11 @@
                 .domain([0, d3.max(chartDates)])
                 .range([width, 0])
 
-            let hAxis = d3.axisBottom(xScale)
+            let hAxis = d3.axisBottom(xScale)                
                 .tickFormat(function (d, i) {
                     return chartDates[i];//------------------------------------
                 })
+                
 
             let horizontalGuide = d3.select('svg').append('g')
 

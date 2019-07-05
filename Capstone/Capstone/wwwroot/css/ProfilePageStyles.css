@@ -741,7 +741,16 @@ info-box {
     text-align: center;
 }
 
-/*.button {
-    position: absolute;
-    top: 50%;
-}*/
+#bar-chart {
+    margin: 0px 0px 0px 50px;
+}
+
+.chartHeader {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    margin-top: 50px;
+}
+
+text {
+    fill: rgba(255, 255, 255, 0.5) !important;
+}
