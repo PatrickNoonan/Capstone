@@ -114,7 +114,8 @@
         });
     }
 
-    function displayPlaces(placeData) {        
+    function displayPlaces(placeData) {
+        console.log(placeData);
         $(".info-container")
             .append(
                 `<div class="row box" style="padding:10px 0 10px 0">
@@ -221,22 +222,22 @@
     }
 
     function wikiSearch(item) {
-        console.log(item);
         url = "https://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
         $.getJSON(url, function (json) {
             var item_id = Object.keys(json.query.pages)[0];
+            console.log(json);
             sent = json.query.pages[item_id].extract;
             longResult = "<t><strong>" + item + "</strong></t> " + sent;
 
             resultArray = longResult.split(" ")
 
             var arrCounter = 0; //searching for any ending parenthesis in the first 20 words of the extract, returns word index of last occuring one
-            for (let i = 0; i < 20; i++) {                
+            for (let i = 0; i < 20; i++) {
                 if (resultArray[i].indexOf(")") != -1) {
                     arrCounter = i;
                 }
-            }        
-           
+            }
+
             resultString = resultArray.splice(arrCounter + 1, 70).join(" ")
 
             $('.cityInfo-container')
@@ -246,9 +247,30 @@
                         <p style="color: rgba(255, 255, 255, 0.5)">` + resultString + `...  <a href="https://en.wikipedia.org/wiki/` + item + `">Read more on Wikipedia</a></p>
                         `)
         });
+        attomDataSearch(item);
     }
 
-    
+    function attomDataSearch(item) {
+
+        
+
+        $.ajax({
+            method: "Get",
+            url: "https://api.gateway.attomdata.com/communityapi/v2.0.0/area/full?AreaId=CO44003",
+            datatype: "JSON",
+            headers: {
+                "accept": "application/json",
+                "apikey": "4d63b443139302c3698bbbbeef2b4dbf"
+            },
+            success: function (data) {
+                console.log(data);
+            }
+
+           
+
+        });
+
+    }
 });
 
 var scrollingElement = (document.scrollingElement || document.body || body);

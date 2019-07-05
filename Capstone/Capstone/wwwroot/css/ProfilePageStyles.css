@@ -310,7 +310,6 @@ div.divider {
     background: #1f1f1f;
     width: 1200px;
     margin: auto;
-    padding-bottom:25px;
     display: grid;
     grid-template-columns: auto 360px;
     grid-template-rows: 80px auto;
