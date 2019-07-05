@@ -47,7 +47,7 @@
     //var stateCounter = @Html.Raw(Json.Encode(Model.StatesVisited));
     //console.log(worldSeries);
     //console.log(polygonTemplate);
-
+    
     var countryCounter = 0;
     var stateCounter = 0;
 
@@ -57,34 +57,54 @@
 
     // Create an event to toggle "active" state
     polygonTemplate.events.on("hit", function (ev) {
-        var targetObject = ev.target.dataItem.dataContext;
-        
-        console.log(Object.keys(targetObject))
-
         $('#countryCounterSpan').remove();
+
+        let countryArray = [];
+        let targetObjectName = ev.target.dataItem.dataContext.name;
+
+        console.log(ev.target.dataItem.dataContext)
+        console.log(ev.target.dataItem.dataContext.name) 
+        
         if (ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive;
-            if (countryCounter > 0) {
+            for (var i = 0; i < placeArray.length; i++) {
+                if (countryArray[i] == targetObjectName) {
+                    placeArray.splice(i, 1);
+                    break;
+                }
+            }
+            if (countryCounter > 0) {                
                 countryCounter--;
-                console.log(targetObject.name);
                 $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
             }
         }
         else if (!ev.target.isActive) {
-            ev.target.isActive = !ev.target.isActive
+            ev.target.isActive = !ev.target.isActive;
+            countryArray.push(targetObjectName);
             countryCounter++;
             $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
-            console.log(targetObject.name);
         }
-        console.log(targetObject.name);
     })
 
     usPolygonTemplate.events.on("hit", function (ev) {
         $('#stateCounterSpan').remove();
+
+        var stateArray = [];
+        let targetObjectName = ev.target.dataItem.dataContext.name;
+
+        console.log(ev.target.dataItem.dataContext.name) 
+
         if (ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive;
+            for (var i = 0; i < placeArray.length; i++) {
+                if (stateArray[i] == targetObjectName) {
+                    stateArray.splice(i, 1);
+                    break;
+                }
+            }
+            console.log(stateArray)
             if (stateCounter > 0) {
-                if (stateCounter == 1) {
+                if (stateCounter == 1) {                    
                     countryCounter--;
                     $('#countryCounterSpan').remove();
                     $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
@@ -95,11 +115,13 @@
         }
         else if (!ev.target.isActive) {
             ev.target.isActive = !ev.target.isActive
+            stateArray.push(targetObjectName);
+            console.log(stateArray) 
             if (stateCounter == 0) {
                 countryCounter++;
                 $('#countryCounterSpan').remove();
                 $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
-            }
+            }            
             stateCounter++;
             $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
         }
