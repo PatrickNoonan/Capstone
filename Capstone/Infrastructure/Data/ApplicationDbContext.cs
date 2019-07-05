@@ -13,6 +13,7 @@ namespace Infrastructure.Data
         public DbSet<UserReviews> UserReviews { get; set; }
         public DbSet<TravelDetails> TravelDetails { get; set; }
         public DbSet<ApplicationRole> Role { get; set; }
+        public DbSet<usStates> usStates { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

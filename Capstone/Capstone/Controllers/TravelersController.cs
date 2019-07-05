@@ -218,5 +218,27 @@ namespace Capstone.Controllers
 
             return Json(data);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetVisitedDetails()
+        {
+            List<usStates> data = new List<usStates>();
+            Traveler currentTraveler = GetLoggedInMember();
+            data = _context.usStates
+                .Where(c => c.TravelerId == (currentTraveler.FirstName + " " + currentTraveler.LastName))
+                .ToList();
+
+            return Json(data);
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostVisitedDetails([FromBody]usStates newState)
+        {
+            var loggedInMember = GetLoggedInMember();
+            newState.TravelerId = loggedInMember.FirstName + " " + loggedInMember.LastName;
+            _context.usStates.Add(newState);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+        
     }
 }
