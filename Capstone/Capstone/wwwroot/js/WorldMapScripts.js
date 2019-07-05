@@ -108,7 +108,7 @@
         // Create an event to toggle "active" state
         polygonTemplate.events.on("hit", function (ev) {
             $('#countryCounterSpan').remove();
-
+            
             let targetObjectName = ev.target.dataItem.dataContext.name;
 
 
@@ -134,7 +134,7 @@
         })
 
         usPolygonTemplate.events.on("hit", function (ev) {
-            $('#stateCounterSpan').remove();
+            $('#stateCounterSpan').remove();   
             getStates();
 
             let targetObjectName = ev.target.dataItem.dataContext.name;
@@ -320,6 +320,6 @@
         })
     };
 
-    getTravelDetails();
+    getTravelDetails();  
 
 });

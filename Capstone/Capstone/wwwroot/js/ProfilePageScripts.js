@@ -81,8 +81,8 @@
 
         var request = {
             location: newMap,
-            radius: '500',
-            type: ['restaurant']
+            radius: '1000',
+            type: ['point_of_interest']
         };
 
         service = new google.maps.places.PlacesService(map);
@@ -92,7 +92,7 @@
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             let vicinityArray = results[0].vicinity.split(" ");
-            let item = vicinityArray[vicinityArray.length - 1];
+            let item = vicinityArray[vicinityArray.length - 1]; 
             wikiSearch(item)
             $(".info-container").empty();
             for (var i = 0; i < 4; i++) {
@@ -119,7 +119,7 @@
             .append(
                 `<div class="row box" style="padding:10px 0 10px 0">
                      <div class="col-xs-6">
-                        <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 150 }) + `">    
+                        <img src="`+ placeData.photos[0].getUrl({ maxWidth: 200, maxHeight: 150 }) + `">
                     </div>
                 <div class="col-xs-6">
                 <p>` + placeData.name + `</p>
@@ -158,7 +158,7 @@
                     </div>
                   </div>
                 </div>`
-            )
+        )
         counter++;
     }
 
@@ -245,9 +245,9 @@
                         `)
         });
         attomDataSearch(item);
-    }
+    }    
 
-    function attomDataSearch(item) {
+    function attomDataSearch(item) {   
         let fipsArray = [
             {
                 countyName: "Milwaukee",
@@ -256,16 +256,25 @@
             {
                 countyName: "Chicago",
                 fips: 17031
+            },
+            {
+                countyName: "Angeles",
+                fips: 06037
+            },
+            {
+                countyName: "Cincinnati",
+                fips: 39061
             }
-        ]
+        ]        
+
         var itemFips;
 
         for (let i = 0; i < fipsArray.length; i++) {
             if (item == fipsArray[i].countyName) {
                 itemFips = fipsArray[i].fips;
                 break;
-            }
-        }
+            }            
+        }       
 
         $.ajax({
             method: "Get",
@@ -298,6 +307,7 @@
     function displayPopulationGraph(attomData) {
         let chartData = [];
         let chartDates = [];//chart Ages
+        console.log(attomData);
 
         for (var key in attomData) {
             if (attomData.hasOwnProperty(key)) {

@@ -30,7 +30,7 @@
             <!-- Profile Dropdown -->
             <div class="header-profile navbar">
                 <img src="https://placekitten.com/200/300" class="header-avatar">
-                <p>MyName@*@Html.DisplayFor(model => model.FirstName)*@</p>
+                <p>@Html.DisplayFor(model => model.FirstName)</p>
                 <div class="dropdown">
                     <button class="dropbtn">
                         <i class="fa fa-caret-down"></i>
@@ -73,7 +73,7 @@
             </div>
 
             <div>
-                <p class="type-title">MyName@*@Html.DisplayFor(model => model.FirstName)*@</p>
+                <p class="type-title">@Html.DisplayFor(model => model.FirstName)'s Profile</p>
                 <p class="type-subtitle">Journeyman Journeyer</p> @*@Html.DisplayFor(model => model.TravelerRank)*@
             </div>
 
