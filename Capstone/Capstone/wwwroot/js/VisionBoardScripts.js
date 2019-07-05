@@ -11,7 +11,7 @@ class VisionBoard extends React.Component {
 
         return (
             <div style={style}>
-                <h1 className="whiteText">Vision Board</h1>                
+                <h1 className="whiteText">Vision Board</h1>
                 <VBoard />
             </div>
         );
@@ -39,7 +39,7 @@ class VBoard extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ projects: projectList, isLoading: false });
+        this.setState({ projects: placeList, isLoading: false });
     }
 
     //this is called when a VisionBoard card is dragged over a column (called by column)
@@ -101,6 +101,7 @@ class VBColumn extends React.Component {
         });
     }
 
+
     render() {
         const columnStyle = {
             'display': 'inline-block',
@@ -118,7 +119,9 @@ class VBColumn extends React.Component {
                 onDragEnter={(e) => { this.setState({ mouseIsHovering: true }); this.props.onDragEnter(e, this.props.stage); }}
                 onDragExit={(e) => { this.setState({ mouseIsHovering: false }); }}
             >
-                <h4 className="whiteText">{this.props.stage}. {this.props.name} ({this.props.projects.length})</h4>
+                <h4 className="whiteText">{this.props.name} ({this.props.projects.length}) <div>
+
+                </div></h4>
                 {this.generateVBCards()}
                 <br />
             </div>);
@@ -161,7 +164,9 @@ class VBCard extends React.Component {
                     onClick={(e) => { this.setState({ collapsed: !this.state.collapsed }); }}
                 >
                     {(this.state.collapsed) ? String.fromCharCode('9660') : String.fromCharCode('9650')}
+
                 </div>
+
             </div>
         );
     }
@@ -170,84 +175,73 @@ class VBCard extends React.Component {
 /*
 * Projects to be displayed on VisionBoard Board
 */
-var projectList = [
+var placeList = [
     {
-        name: 'Place 1',
+        name: 'Hawaii',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1
+        columnNum: 1,
+        id: 1
     },
     {
-        name: 'Place 2',
+        name: 'New York',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1
+        columnNum: 1,
+        id: 2
     },
     {
-        name: 'Place 3',
+        name: 'Sydney',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1
+        columnNum: 1,
+        id: 3
     },
     {
-        name: 'Place 4',
+        name: 'Jamaica',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 2
+        columnNum: 2,
+        id: 4
     },
     {
-        name: 'Place 5',
+        name: 'London',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 3
+        columnNum: 3,
+        id: 5
     },
     {
-        name: 'Place 6',
+        name: 'Tokyo',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 3
+        columnNum: 3,
+        id: 6
     },
 ];
 
-/*---------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------*/
 
+$("#addCardBtn").on("click", function () {
+    let count = placeList.length++;
+    let newPlace = $("#placeName").val();
+    let newDescription = $("#placeDescription").val();
+    let columnPlacement = parseInt($("#columnNum").val());
 
-function addToList(nameInput, descriptionInput, columnNumInput) {
     var item = {
-        name: nameInput,
-        description: descriptionInput,
-        columnNum: columnNumInput
+        name: newPlace,
+        description: newDescription,
+        columnNum: columnPlacement,
+        id: count
     }
-    projectList.push(item);
-}
+    placeList.push(item);
 
-function deleteFromList(cardName) {
-    for (let i = 0; i < projectList.length; i++) {
-        if (projectList[i].name == cardName) {
-            projectList = projectList.splice(i, 1);
-        }
-    }
+});
 
-}
-
-function dragOver(ev) {
-    ev.preventDefault();
-    ev.target.style.color = 'blue';
-}
-
-function stopDrop(ev) {
-    ev.preventDefault();
-    ev.target.style.color = 'red';
-}
-
-function dragStart(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function dropped(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("Text");
-    //ev.target.appendChild(document.getElementById(data));
-    document.getElementById(data).style.display = 'none';
-    ev.target.style.color = 'green';
-}
-
-
-
+//$({ "#trash" + this.props.project.id }).click(function () {
+//    let cardVal = $("#placeName").val();
+//    for (let i = 0; i < placeList.length; i++) {
+//        if (placeList[i].name == cardVal) {
+//            placeList = placeList.splice(i, 1);
+//        }
+//    }
+//});
+//<i id="add" className="fas fa-plus"></i>
+//<i id={"trash" + this.props.project.id} className="fa fa-trash"></i>
 
 
 
