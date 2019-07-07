@@ -51,3 +51,11 @@
 .btn-5 {
     background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
 }
+
+.logo {
+    margin-left: 40px;
+}
+
+.logoPlaceHolder {
+    color: white;
+}

@@ -14,6 +14,7 @@ namespace Infrastructure.Data
         public DbSet<TravelDetails> TravelDetails { get; set; }
         public DbSet<ApplicationRole> Role { get; set; }
         public DbSet<usStates> usStates { get; set; }
+        public DbSet<worldCountries> worldCountries { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

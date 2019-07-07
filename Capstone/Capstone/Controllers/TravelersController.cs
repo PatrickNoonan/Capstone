@@ -219,7 +219,7 @@ namespace Capstone.Controllers
             return Json(data);
         }
         [HttpGet]
-        public async Task<IActionResult> GetVisitedDetails()
+        public async Task<IActionResult> GetStatesVisitedDetails()
         {
             List<usStates> data = new List<usStates>();
             Traveler currentTraveler = GetLoggedInMember();
@@ -230,7 +230,7 @@ namespace Capstone.Controllers
             return Json(data);
         }
         [HttpPost]
-        public async Task<IActionResult> PostVisitedDetails([FromBody]usStates newState)
+        public async Task<IActionResult> PostStatesVisitedDetails([FromBody]usStates newState)
         {
             var loggedInMember = GetLoggedInMember();
             newState.TravelerId = loggedInMember.FirstName + " " + loggedInMember.LastName;
@@ -239,6 +239,27 @@ namespace Capstone.Controllers
 
             return Ok();
         }
-        
+        [HttpGet]
+        public async Task<IActionResult> GetCountriesVisitedDetails()
+        {
+            List<worldCountries> data = new List<worldCountries>();
+            Traveler currentTraveler = GetLoggedInMember();
+            data = _context.worldCountries
+                .Where(c => c.TravelerId == (currentTraveler.FirstName + " " + currentTraveler.LastName))
+                .ToList();
+
+            return Json(data);
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostCountriesVisitedDetails([FromBody]worldCountries newCountry)
+        {
+            var loggedInMember = GetLoggedInMember();
+            newCountry.TravelerId = loggedInMember.FirstName + " " + loggedInMember.LastName;
+            _context.worldCountries.Add(newCountry);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
     }
 }

@@ -1,4 +1,10 @@
 ﻿$(document).ready(function () {
+
+    var countryCounter = 0;
+    var countryArray = [];
+    var stateCounter = 0;
+    var stateArray = [];
+
     am4core.ready(function () {
 
         // Themes begin
@@ -47,11 +53,9 @@
         var usActiveState = usPolygonTemplate.states.create("active");
         usActiveState.properties.fill = am4core.color("#2776BD");
 
-        console.log(usaSeries);
-
         function getStates() {
             $.ajax({
-                url: '/Travelers/GetVisitedDetails',
+                url: '/Travelers/GetStatesVisitedDetails',
                 data: "",
                 dataType: "json",
                 type: "GET",
@@ -59,13 +63,43 @@
             })
                 .done(function (data) {
                     let usaStatesArray = usaSeries.dataItems.values;
-                    console.log(data);
-                    console.log(usaSeries.dataItems.values[3].mapObject.isActive)
+                    stateCounter = data.length;
+                    $("#pie-chartState").empty();
+                    let pieData3 = { a: stateCounter, b: 50 - stateCounter } //50
+                    makePie(pieData3, "state");
 
                     for (let i = 0; i < data.length; i++) {
                         for (let j = 0; j < usaStatesArray.length; j++) {
                             if (data[i].stateName == usaStatesArray[j].dataContext.name) {
                                 usaSeries.dataItems.values[j].mapObject.isActive = true;
+                            }
+                        }
+                    }
+
+                });
+        }
+
+        function getCountries() {
+            $.ajax({
+                url: '/Travelers/GetCountriesVisitedDetails',
+                data: "",
+                dataType: "json",
+                type: "GET",
+                contentType: "application/json; chartset=utf-8",
+            })
+                .done(function (data) {
+                    let countriesArray = worldSeries.dataItems.values;
+                    console.log(data);
+                    console.log(worldSeries.dataItems.values[3].mapObject.isActive)
+                    countryCounter = data.length;
+                    $("#pie-chartCountry").empty();
+                    let pieData3 = { a: countryCounter, b: 195 - countryCounter } //195
+                    makePie(pieData3, "country");
+
+                    for (let i = 0; i < data.length; i++) {
+                        for (let j = 0; j < countriesArray.length; j++) {
+                            if (data[i].countryName == countriesArray[j].dataContext.name) {
+                                worldSeries.dataItems.values[j].mapObject.isActive = true;
                             }
                         }
                     }
@@ -79,7 +113,7 @@
                 let stateNameInput = stateArray[i];
                 $.ajax({
                     method: "POST",
-                    url: "/Travelers/PostVisitedDetails",
+                    url: "/Travelers/PostStatesVisitedDetails",
                     datatype: "JSON",
                     headers: {
                         "Content-Type": "application/json"
@@ -98,12 +132,35 @@
                 $('.message').remove();
             }, 3000);
 
+            for (let i = 0; i < countryArray.length; i++) {
+                let countryNameInput = countryArray[i];
+                $.ajax({
+                    method: "POST",
+                    url: "/Travelers/PostCountriesVisitedDetails",
+                    datatype: "JSON",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        "CountryName": countryNameInput,
+                        "HasVisited": true,
+                    }),
+                    success: function (data) {
+                    }
+                });
+            }
+            $("#saveMessage").append("<div class='message success'>Your visits have been logged!</div>")
+            setTimeout(function () {
+                $('.message').remove();
+            }, 3000);
+
         });
 
-        var countryCounter = 0;
-        var countryArray = [];
-        var stateCounter = 0;
-        var stateArray = [];
+        //var countryCounter = 0;
+        //var countryArray = [];
+        //var stateCounter = 0;
+        //var stateArray = [];
 
         $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
         $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
@@ -112,6 +169,7 @@
         // Create an event to toggle "active" state
         polygonTemplate.events.on("hit", function (ev) {
             $('#countryCounterSpan').remove();
+            getCountries();
             
             let targetObjectName = ev.target.dataItem.dataContext.name;
 
@@ -191,7 +249,7 @@
 
                 data.sort(function (a, b) {
                     return (a.yearMonthVisited - (a.monthVisited * 2)) - (b.yearMonthVisited - (b.monthVisited * 2));
-                });//Im a god damn genius
+                });
 
                 for (i = 0; i < data.length; i++) {
                     addEventToTimelineOnInit(data[i]);
@@ -327,8 +385,8 @@
     getTravelDetails();  
 
     //----------------------------------------------------------------- Pie Chart -----------------------------------
-    let pieData1 = { a: 10, b: 40 } //50
-    let pieData2 = { a: 30, b: 185 }//195
+    let pieData1 = { a: 0, b: 50 } //50
+    let pieData2 = { a: 0, b: 195 }//195
     let type1 = "state";
     let type2 = "country";
 
