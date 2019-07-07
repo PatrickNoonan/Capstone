@@ -26,7 +26,10 @@
 
         // Hover state
         var hs = polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("#367B25");
+        hs.properties.fill = am4core.color("rgb(163, 103, 220)");
+
+        hs = polygonTemplate.states.create("hover");
+        hs.properties.fill = am4core.color("rgb(163, 103, 220)");
 
         // Series for United States map
         var usaSeries = chart.series.push(new am4maps.MapPolygonSeries());
@@ -38,10 +41,10 @@
         usPolygonTemplate.nonScalingStroke = true;
 
         var activeState = polygonTemplate.states.create("active");
-        activeState.properties.fill = chart.colors.getIndex(4);
+        activeState.properties.fill = am4core.color("#2776BD");
 
         var usActiveState = usPolygonTemplate.states.create("active");
-        usActiveState.properties.fill = chart.colors.getIndex(4);
+        usActiveState.properties.fill = am4core.color("#2776BD");
 
         console.log(usaSeries);
 
@@ -322,4 +325,77 @@
 
     getTravelDetails();  
 
+    //----------------------------------------------------------------- Pie Chart -----------------------------------
+    let pieData1 = { a: 10, b: 40 } //50
+    let pieData2 = { a: 30, b: 185 }//195
+    let type1 = "state";
+    let type2 = "country";
+
+    makePie(pieData1, type1);
+    makePie(pieData2, type2);
+
+    function makePie(data, type) {
+        $('#pie-chart').empty();
+
+        let width = 100
+        height = 100
+        margin = 5
+
+        //the radius of the pieplot is half the width or half the height (smallest one)
+        let radius = Math.min(width, height) / 2 - margin
+
+        if (type == "state") {
+            var svg = d3.select("#pie-chartState")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        } else if (type == "country") {
+            var svg = d3.select("#pie-chartCountry")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        }
+
+
+
+
+        let color = d3.scaleOrdinal()
+            .domain(data)
+            .range(d3.schemePaired);
+
+        let pie = d3.pie()
+            .value(function (d) { return d.value; })
+        let data_ready = pie(d3.entries(data))
+        //now I know that group A goes from 0 degrees to x degrees and so on
+
+        let arcGenerator = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius)
+
+        svg
+            .selectAll('mySlices')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', arcGenerator)
+            .attr('fill', function (d) {return (color(d.data.key))
+            })
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.85)
+
+        svg
+            .selectAll('mySlices')
+            .data(data_ready)
+            .enter()
+            .append('text')
+            .text(function (d) { return d.data.value })
+            .attr("transform", function (d) { return "translate(" + arcGenerator.centroid(d) + ")"; })
+            .style("text-anchor", "middle")
+            .style("font-size", 17)
+    }            
 });

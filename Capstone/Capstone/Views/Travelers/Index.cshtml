@@ -19,7 +19,7 @@
                 <img src="https://placekitten.com/200/300" class="header-logo">
             </div>
 
-            <!-- Search Field -->
+            <!-- Search -->
             <div>
                 <input type="text" placeholder="Enter a city" name="city" id="citySearch">
                 <i class="icon-map-marker"></i>
@@ -27,7 +27,7 @@
                     <label for="menuToggle" class="btn btn-change btn-3 btn-city">City Info</label>*@
             </div>
 
-            <!-- Profile Dropdown -->
+            <!-- Dropdown -->
             <div class="header-profile navbar">
                 <img src="https://placekitten.com/200/300" class="header-avatar">
                 <p>@Html.DisplayFor(model => model.FirstName)</p>
@@ -45,7 +45,6 @@
             </div>
 
 
-            <!-- Icons -->
             <div>
                 <div class="divider"></div>
 
@@ -62,10 +61,10 @@
         </div>
     </div>
     <div id="app-landing">
-        <div id="app-landing-bg"></div> @*dynamic background based on current weather*@
+        <div id="app-landing-bg"></div> @*dynamic background based on current weather?*@
     </div>
     <div id="app-content">
-        <!-- PROFILE HEADER -->
+         
         <div class="profile-header" id="app-profile-header">
             <div class="profile-avatar">
                 <img src="https://placekitten.com/300/300" class="avatar">@*@Html.DisplayFor(model => model.TravelerAvatar)*@
@@ -86,7 +85,7 @@
             </div>
         </div>
 
-        <!-- PROFILE CONTENT -->
+        <!-- CONTENT -->
         <div class="profile-content">
             <div class="content-navigation">
                 <ul>
@@ -99,9 +98,9 @@
             </div>
         </div>
 
-        <!-- PROFILE DETAILS -->
+        <!-- DETAILS -->
         <div class="profile-details">
-            <!-- BASIC STATISTICS -->
+
             <div class="detail-grid-4 detail-section">
                 <div>
                     <p class="type-caption">Followers</p>
@@ -120,13 +119,11 @@
                 </div>
             </div>
 
-            <!-- DESCRIPTION -->
             <div class="detail-section">
                 <p class="type-caption">Description</p>
                 <p>Hey whats up Im a pretty cool guy I like doing stuff and also enjoy when I'm able to do stuff</p>
             </div>
 
-            <!-- SOCIAL LINKS -->
             <div class="detail-section">
                 <p class="type-caption">Social Links</p>
                 <div class="iconRow">

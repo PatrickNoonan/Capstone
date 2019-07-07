@@ -277,3 +277,25 @@ p + p {
 info-box {
     padding-top: 50px;
 }
+
+.legend {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.lightBlue {
+    background: rgb(166, 206, 227);
+}
+
+.darkBlue {
+    background: rgb(31, 120, 180);
+}
+
+.legendText {
+    text-align: center;
+    color:white;
+    padding-top: 5px;
+}

@@ -8,10 +8,32 @@
     ViewData["Title"] = "WorldMap";
 }
     <body>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+
+
         <div class="row">
             <div class="col-xs-1">
-                <p id="countriesVisited">Countries Visited: </p>
-                <p id="statesVisited">States Visited: </p>
+                <p hidden id="countriesVisited">Countries Visited: </p>
+                <p hidden id="statesVisited">States Visited: </p>
+                <div class="legend lightBlue"></div>
+                <div class="legendText">
+                    <p>Not Visited</p>
+                </div>
+                <div class="legend darkBlue"></div>
+                <div class="legendText">
+                    <p>Visited</p>
+                </div>
+                <div class="legendText">
+                    <p>Countries</p>
+                </div>
+                <div id="pie-chartCountry"></div>
+                <div class="legendText">
+                    <p>States</p>
+                </div>
+                <div id="pie-chartState"></div>
                 <label id="saveInputs" class="btn btn-change btn-4">Save</label>
             </div>
             <div class="col-xs-11">
@@ -56,7 +78,7 @@
                 </div>
             </div>
         </div>
-                              
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="~/js/core.js"></script>
