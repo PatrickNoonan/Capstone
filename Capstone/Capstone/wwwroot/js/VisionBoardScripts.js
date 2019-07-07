@@ -11,7 +11,8 @@ class VisionBoard extends React.Component {
 
         return (
             <div style={style}>
-                <h1 className="whiteText">Vision Board</h1>
+
+                <h1 className="whiteText">Destination Board</h1>
                 <VBoard />
             </div>
         );
@@ -101,7 +102,6 @@ class VBColumn extends React.Component {
         });
     }
 
-
     render() {
         const columnStyle = {
             'display': 'inline-block',
@@ -119,7 +119,7 @@ class VBColumn extends React.Component {
                 onDragEnter={(e) => { this.setState({ mouseIsHovering: true }); this.props.onDragEnter(e, this.props.stage); }}
                 onDragExit={(e) => { this.setState({ mouseIsHovering: false }); }}
             >
-                <h4 className="whiteText">{this.props.name} ({this.props.projects.length}) <div>
+                <h4 className="whiteText">{this.props.name}<div>
 
                 </div></h4>
                 {this.generateVBCards()}
@@ -177,47 +177,87 @@ class VBCard extends React.Component {
 */
 var placeList = [
     {
-        name: 'Hawaii',
+        name: 'Hawaii, US',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         columnNum: 1,
-        id: 1
     },
     {
-        name: 'New York',
+        name: 'New York, US',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         columnNum: 1,
-        id: 2
     },
     {
-        name: 'Sydney',
+        name: 'Sydney, Australia',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         columnNum: 1,
-        id: 3
     },
     {
-        name: 'Jamaica',
+        name: 'Paris, France',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         columnNum: 2,
-        id: 4
     },
     {
-        name: 'London',
+        name: 'London, England',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         columnNum: 3,
-        id: 5
     },
     {
-        name: 'Tokyo',
+        name: 'Tokyo, Japan',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         columnNum: 3,
-        id: 6
+    },
+    {
+        name: 'Buenos Aires, Argentina',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 3,
+    },
+    {
+        name: 'Bora Bora, French Polynesia',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 3,
+    },
+    {
+        name: 'Bali, Indonesia',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 2,
+    },
+    {
+        name: 'Amsterdam, Netherlands',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 2,
+    },
+    {
+        name: 'Venice, Italy',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 2,
+    },
+    {
+        name: 'Geneva, Switzerland',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 1,
+    },
+    {
+        name: 'Reykjavík, Iceland',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 1,
+    },
+    {
+        name: 'Lisbon, Portugal',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 2,
+    },
+    {
+        name: 'Dubai, UAE',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        columnNum: 1,
     },
 ];
 
-/*----------------------------------------------------------------------------------------------------------------------------*/
+
+
+
 
 $("#addCardBtn").on("click", function () {
-    let count = placeList.length++;
     let newPlace = $("#placeName").val();
     let newDescription = $("#placeDescription").val();
     let columnPlacement = parseInt($("#columnNum").val());
@@ -226,27 +266,11 @@ $("#addCardBtn").on("click", function () {
         name: newPlace,
         description: newDescription,
         columnNum: columnPlacement,
-        id: count
     }
     placeList.push(item);
 
 });
 
-//$({ "#trash" + this.props.project.id }).click(function () {
-//    let cardVal = $("#placeName").val();
-//    for (let i = 0; i < placeList.length; i++) {
-//        if (placeList[i].name == cardVal) {
-//            placeList = placeList.splice(i, 1);
-//        }
-//    }
-//});
-//<i id="add" className="fas fa-plus"></i>
-//<i id={"trash" + this.props.project.id} className="fa fa-trash"></i>
-
-
-
-/*
-* Render the VisionBoard Board in the "app" div
-*/
+// Render the VisionBoard Board in the "app" div
 ReactDOM.render(
     <VisionBoard />, document.getElementById('app'));
