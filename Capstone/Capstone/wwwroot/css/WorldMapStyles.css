@@ -235,7 +235,6 @@ p + p {
     margin-top: 20px;
 }
 
-/* TOGGLE */
 #menuToggle {
     display: none;
 }
@@ -244,8 +243,12 @@ p + p {
     display: none;
 }
 
+.instruct {
+    color:white;
+}
+
 .infobox {
-    color: black;
+    /*color: white;*/
     visibility: hidden;
     opacity: 0;
     filter: alpha(opacity=0);
@@ -263,6 +266,7 @@ p + p {
 }
 
 :checked + .infobox {
+    background-color: #454545;
     visibility: visible;
     opacity: 1;
     filter: alpha(opacity=100);
@@ -276,6 +280,10 @@ p + p {
 
 info-box {
     padding-top: 50px;
+}
+
+.legendDiv {
+    margin-bottom:50px;
 }
 
 .legend {
@@ -298,4 +306,20 @@ info-box {
     text-align: center;
     color:white;
     padding-top: 5px;
+}
+
+.pieChartDiv {
+    margin-bottom: 75px;
+}
+
+#saveInputs {
+    margin-left:25px;
+}
+
+.logo {
+    margin-left:40px;
+}
+
+.logoPlaceHolder {
+    color: white;
 }

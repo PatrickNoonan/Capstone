@@ -28,8 +28,6 @@
         var hs = polygonTemplate.states.create("hover");
         hs.properties.fill = am4core.color("rgb(163, 103, 220)");
 
-        hs = polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("rgb(163, 103, 220)");
 
         // Series for United States map
         var usaSeries = chart.series.push(new am4maps.MapPolygonSeries());
@@ -37,8 +35,11 @@
 
         var usPolygonTemplate = usaSeries.mapPolygons.template;
         usPolygonTemplate.tooltipText = "{name}";
-        usPolygonTemplate.fill = chart.colors.getIndex(1);
+        usPolygonTemplate.fill = chart.colors.getIndex(0);
         usPolygonTemplate.nonScalingStroke = true;
+
+        var uhs = usPolygonTemplate.states.create("hover");
+        uhs.properties.fill = am4core.color("rgb(163, 103, 220)");
 
         var activeState = polygonTemplate.states.create("active");
         activeState.properties.fill = am4core.color("#2776BD");

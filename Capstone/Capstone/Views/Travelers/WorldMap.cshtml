@@ -7,17 +7,22 @@
 @{
     ViewData["Title"] = "WorldMap";
 }
-    <body>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
-        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<body>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 
 
-        <div class="row">
-            <div class="col-xs-1">
-                <p hidden id="countriesVisited">Countries Visited: </p>
-                <p hidden id="statesVisited">States Visited: </p>
+    <div class="row">
+        <div class="col-xs-1">
+            <div class="logo">
+                @*<img src="https://placekitten.com/50/50" class="header-logo">*@                
+                <a asp-area="" asp-controller="Home" asp-action="Index"><h1 class="logoPlaceHolder">T</h1></a>
+            </div>
+            <p hidden id="countriesVisited">Countries Visited: </p>
+            <p hidden id="statesVisited">States Visited: </p>
+            <div class="legendDiv">
                 <div class="legend lightBlue"></div>
                 <div class="legendText">
                     <p>Not Visited</p>
@@ -26,6 +31,8 @@
                 <div class="legendText">
                     <p>Visited</p>
                 </div>
+            </div>
+            <div class="pieChartDiv">
                 <div class="legendText">
                     <p>Countries</p>
                 </div>
@@ -34,57 +41,58 @@
                     <p>States</p>
                 </div>
                 <div id="pie-chartState"></div>
-                <label id="saveInputs" class="btn btn-change btn-4">Save</label>
             </div>
-            <div class="col-xs-11">
-                <div id="chartdiv"></div>
-            </div>
+            <label id="saveInputs" class="btn btn-change btn-4">Save</label>
         </div>
-        <div class="row">
-            <div class="col-xs-11">
-                <nav id="timeline">
-                    <ul id="timeline-ul">
-                        <hr class="centerline">
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-xs-1">
-                <label id="submitEvent" for="submitToggle" class="btn btn-change btn-4 btn-review">Add Event</label>
-                <div>
-                    <input hidden id="submitToggle" type="checkbox">
-                    <div class="infobox submit-card">
-                        <div class="submit-card-content">
-                            <div>
-                                <div><p>Enter details about your trip!</p></div>
-                                <input type="text" id="enterPlace" placeholder="Where did you go?" />
-                            </div>
-                            <div>
-                                <form action="/action_page.php">
-                                    When? (month and year): <input type="month" name="enterNewDate" id="enterNewDate">
-                                </form>
-                            </div>
-                            <div>
-                                <textarea rows="5" cols="80" placeholder="Describe your experience here..." id="enterDescription"></textarea>
-                                <input type="text" id="enterNewPhoto" placeholder="Enter a photo url" />
-                            </div>
-                            <div class="submitDiv">
-                                <input type="submit" class="btn btn-change btn-3" value="Submit" id="submitEventBtn">
-                            </div>
+        <div class="col-xs-11">
+            <div id="chartdiv"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-11">
+            <nav id="timeline">
+                <ul id="timeline-ul">
+                    <hr class="centerline">
+                </ul>
+            </nav>
+        </div>
+        <div class="col-xs-1">
+            <label id="submitEvent" for="submitToggle" class="btn btn-change btn-4 btn-review">Add Event</label>
+            <div>
+                <input hidden id="submitToggle" type="checkbox">
+                <div class="infobox submit-card">
+                    <div class="submit-card-content">
+                        <div>
+                            <div><p class="instruct">Enter details about your trip!</p></div>
+                            <input type="text" id="enterPlace" placeholder="Where did you go?" />
                         </div>
-                        <div class="md-card-btns">
-                            <label for="submitToggle" class="btn btn-4">Close Box</label>
+                        <div>
+                            <form action="/action_page.php" class="instruct">
+                                When? (month and year): <input type="month" name="enterNewDate" id="enterNewDate">
+                            </form>
                         </div>
+                        <div>
+                            <textarea rows="5" cols="80" placeholder="Describe your experience here..." id="enterDescription"></textarea>
+                            <input type="text" id="enterNewPhoto" placeholder="Enter a photo url" />
+                        </div>
+                        <div class="submitDiv">
+                            <input type="submit" class="btn btn-change btn-4" value="Submit" id="submitEventBtn">
+                        </div>
+                    </div>
+                    <div class="md-card-btns">
+                        <label for="submitToggle" class="btn btn-4">Close Box</label>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="~/js/core.js"></script>
-        <script src="~/js/maps.js"></script>
-        <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-        <script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-        <script src="~/js/WorldMapScripts.js"></script>
-    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="~/js/core.js"></script>
+    <script src="~/js/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="~/js/WorldMapScripts.js"></script>
+</body>
