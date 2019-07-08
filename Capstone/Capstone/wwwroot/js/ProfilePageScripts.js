@@ -423,7 +423,7 @@
 
             let hAxis = d3.axisBottom(xScale)                
                 .tickFormat(function (d, i) {
-                    return chartDates[i];//------------------------------------
+                    return chartDates[i];
                 })
                 
 
@@ -444,10 +444,6 @@
         BarChart();
     }
 });
-
-
-
-
 
 var scrollingElement = (document.scrollingElement || document.body || body);
 

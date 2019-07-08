@@ -7,20 +7,14 @@
 
     am4core.ready(function () {
 
-        // Themes begin
         am4core.useTheme(am4themes_animated);
-        // Themes end
 
-        // Create map instance
         var chart = am4core.create("chartdiv", am4maps.MapChart);
 
-        // Set map definition
         chart.geodata = am4geodata_worldLow;
 
-        // Set projection
         chart.projection = new am4maps.projections.Miller();
 
-        // Series for World map
         var worldSeries = chart.series.push(new am4maps.MapPolygonSeries());
         worldSeries.exclude = ["AQ"];
         worldSeries.useGeodata = true;
@@ -30,12 +24,9 @@
         polygonTemplate.fill = chart.colors.getIndex(0);
         polygonTemplate.nonScalingStroke = true;
 
-        // Hover state
         var hs = polygonTemplate.states.create("hover");
         hs.properties.fill = am4core.color("rgb(163, 103, 220)");
 
-
-        // Series for United States map
         var usaSeries = chart.series.push(new am4maps.MapPolygonSeries());
         usaSeries.geodata = am4geodata_usaLow;
 
@@ -157,16 +148,11 @@
 
         });
 
-        //var countryCounter = 0;
-        //var countryArray = [];
-        //var stateCounter = 0;
-        //var stateArray = [];
-
         $('#countriesVisited').append('<span id="countryCounterSpan">' + countryCounter + '</span>');
         $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
 
 
-        // Create an event to toggle "active" state
+        // event to toggle "active" state
         polygonTemplate.events.on("hit", function (ev) {
             $('#countryCounterSpan').remove();
             getCountries();
@@ -400,7 +386,6 @@
         height = 100
         margin = 5
 
-        //the radius of the pieplot is half the width or half the height (smallest one)
         let radius = Math.min(width, height) / 2 - margin
 
         if (type == "state") {
@@ -419,9 +404,6 @@
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
         }
 
-
-
-
         let color = d3.scaleOrdinal()
             .domain(data)
             .range(d3.schemePaired);
@@ -429,7 +411,6 @@
         let pie = d3.pie()
             .value(function (d) { return d.value; })
         let data_ready = pie(d3.entries(data))
-        //now I know that group A goes from 0 degrees to x degrees and so on
 
         let arcGenerator = d3.arc()
             .innerRadius(0)

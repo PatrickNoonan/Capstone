@@ -1,7 +1,4 @@
-﻿/*
-* VisionBoard React component
-*/
-class VisionBoard extends React.Component {
+﻿class VisionBoard extends React.Component {
     render() {
         const style = {
             'padding': '30px',
@@ -19,9 +16,6 @@ class VisionBoard extends React.Component {
     }
 }
 
-/*
-* VisionBoard Board React component
-*/
 class VBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -43,12 +37,12 @@ class VBoard extends React.Component {
         this.setState({ projects: placeList, isLoading: false });
     }
 
-    //this is called when a VisionBoard card is dragged over a column (called by column)
+    //called by column when card is dragged over
     handleOnDragEnter(e, stageValue) {
         this.setState({ draggedOverCol: stageValue });
     }
 
-    //this is called when a VisionBoard card dropped over a column (called by card)
+    //called by card when dropped over
     handleOnDragEnd(e, project) {
         const updatedProjects = this.state.projects.slice(0);
         updatedProjects.find((projectObject) => { return projectObject.name === project.name; }).columnNum = this.state.draggedOverCol;
@@ -79,9 +73,6 @@ class VBoard extends React.Component {
     }
 }
 
-/*
-* The VisionBoard Board Column React component
-*/
 class VBColumn extends React.Component {
     constructor(props) {
         super(props);
@@ -128,9 +119,6 @@ class VBColumn extends React.Component {
     }
 }
 
-/*
-* The VisionBoard Board Card component
-*/
 class VBCard extends React.Component {
     constructor(props) {
         super(props);
@@ -172,9 +160,6 @@ class VBCard extends React.Component {
     }
 }
 
-/*
-* Projects to be displayed on VisionBoard Board
-*/
 var placeList = [
     {
         name: 'Hawaii, US',
@@ -253,24 +238,19 @@ var placeList = [
     },
 ];
 
+//$("#addCardBtn").on("click", function () {
+//    let newPlace = $("#placeName").val();
+//    let newDescription = $("#placeDescription").val();
+//    let columnPlacement = parseInt($("#columnNum").val());
 
+//    var item = {
+//        name: newPlace,
+//        description: newDescription,
+//        columnNum: columnPlacement,
+//    }
+//    placeList.push(item);
 
+//});
 
-
-$("#addCardBtn").on("click", function () {
-    let newPlace = $("#placeName").val();
-    let newDescription = $("#placeDescription").val();
-    let columnPlacement = parseInt($("#columnNum").val());
-
-    var item = {
-        name: newPlace,
-        description: newDescription,
-        columnNum: columnPlacement,
-    }
-    placeList.push(item);
-
-});
-
-// Render the VisionBoard Board in the "app" div
 ReactDOM.render(
     <VisionBoard />, document.getElementById('app'));
