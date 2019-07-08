@@ -44,7 +44,6 @@
                 </div>
             </div>
 
-
             <div>
                 <div class="divider"></div>
 
@@ -54,9 +53,14 @@
                 <button>
                     <i class="material-icons">notifications</i>
                 </button>
-                <button>
-                    <i class="material-icons">more_horiz</i>
-                </button>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class="material-icons">more_horiz</i>
+                    </button>
+                    <div class="dropdown-content">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,7 +68,7 @@
         <div id="app-landing-bg"></div> @*dynamic background based on current weather?*@
     </div>
     <div id="app-content">
-         
+
         <div class="profile-header" id="app-profile-header">
             <div class="profile-avatar">
                 <img src="https://placekitten.com/300/300" class="avatar">@*@Html.DisplayFor(model => model.TravelerAvatar)*@
