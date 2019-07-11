@@ -1,260 +1,311 @@
-﻿class VisionBoard extends React.Component {
-    render() {
-        const style = {
-            'padding': '30px',
-            'paddingTop': '5px',
-            'float': 'right',
-        };
+﻿$(document).ready(function () {
+    var placeList = [
+        {
+            name: 'Hawaii',
+            country: 'US',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            columnNum: 1,
+        },
+        {
+            name: 'New York',
+            country: 'US',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            columnNum: 1,
+        },
+        {
+            name: 'Sydney',
+            country: 'Australia',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            columnNum: 1,
+        },
+        {
+            name: 'Paris',
+            country: 'France',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            columnNum: 2,
+        },
+        {
+            name: 'London',
+            country: 'England',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            columnNum: 3,
+        },
+        //{
+        //    name: 'Tokyo, Japan',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 3,
+        //},
+        //{
+        //    name: 'Buenos Aires, Argentina',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 3,
+        //},
+        //{
+        //    name: 'Bora Bora, French Polynesia',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 3,
+        //},
+        //{
+        //    name: 'Bali, Indonesia',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 2,
+        //},
+        //{
+        //    name: 'Amsterdam, Netherlands',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 2,
+        //},
+        //{
+        //    name: 'Venice, Italy',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 2,
+        //},
+        //{
+        //    name: 'Geneva, Switzerland',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 1,
+        //},
+        //{
+        //    name: 'Reykjavík, Iceland',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 1,
+        //},
+        //{
+        //    name: 'Lisbon, Portugal',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 2,
+        //},
+        //{
+        //    name: 'Dubai, UAE',
+        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+        //    columnNum: 1,
+        //},
+    ];
 
-        return (
-            <div style={style}>
+    $.ajax({
+        url: '/Travelers/GetFuturePlacesDetails',
+        data: "",
+        dataType: "json",
+        type: "GET",
+        contentType: "application/json; chartset=utf-8",
+        async: false
+    })
+        .done(function (data) {
+            console.log(data);
 
-                <h1 className="whiteText">Destination Board</h1>
-                <VBoard />
-            </div>
-        );
-    }
-}
-
-class VBoard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = ({
-            isLoading: true,
-            projects: [],
-            draggedOverCol: 0,
+            for (let i = 0; i < data.length; i++) {
+                let item = {
+                    name: data[i].placeName,
+                    country: data[i].countryName,
+                    description: data[i].notes,
+                    columnNum: 1
+                }
+                
+                placeList.push(item)
+            }
         });
-        this.handleOnDragEnter = this.handleOnDragEnter.bind(this);
-        this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
-        this.columns = [
-            { name: 'Cool Places', stage: 1 },
-            { name: 'Bucket List', stage: 2 },
-            { name: 'Must see', stage: 3 },
-        ];
-    }
 
-    componentDidMount() {
-        this.setState({ projects: placeList, isLoading: false });
-    }
-
-    //called by column when card is dragged over
-    handleOnDragEnter(e, stageValue) {
-        this.setState({ draggedOverCol: stageValue });
-    }
-
-    //called by card when dropped over
-    handleOnDragEnd(e, project) {
-        const updatedProjects = this.state.projects.slice(0);
-        updatedProjects.find((projectObject) => { return projectObject.name === project.name; }).columnNum = this.state.draggedOverCol;
-        this.setState({ projects: updatedProjects });
-    }
-
-    render() {
-        if (this.state.isLoading) {
+    class VisionBoard extends React.Component {
+        render() {
+            const style = {
+                'padding': '30px',
+                'paddingTop': '5px',
+                'float': 'right',
+            };
             return (
-                <h3>Loading...</h3>);
+                <div style={style}>
+
+                    <h1 className="whiteText">Destination Board</h1>
+                    <VBoard />
+                </div>
+            );
+        }
+    }
+
+    class VBoard extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = ({
+                isLoading: true,
+                projects: [],
+                draggedOverCol: 0,
+            });
+            this.handleOnDragEnter = this.handleOnDragEnter.bind(this);
+            this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
+            this.columns = [
+                { name: 'Cool Places', stage: 1 },
+                { name: 'Bucket List', stage: 2 },
+                { name: 'Must see', stage: 3 },
+            ];
         }
 
-        return (
-            <div>
-                {this.columns.map((column) => {
-                    return (
-                        <VBColumn name={column.name}
-                            stage={column.stage}
-                            projects={this.state.projects.filter((project) => { return parseInt(project.columnNum, 10) === column.stage; })}
-                            onDragEnter={this.handleOnDragEnter}
-                            onDragEnd={this.handleOnDragEnd}
-                            key={column.stage}
-                        />
-                    );
-                })}
-            </div>
-        );
-    }
-}
+        componentDidMount() {
+            this.setState({ projects: placeList, isLoading: false });
+        }
 
-class VBColumn extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = ({ mouseIsHovering: false });
-    }
+        //called by column when card is dragged over
+        handleOnDragEnter(e, stageValue) {
+            this.setState({ draggedOverCol: stageValue });
+        }
 
-    componentWillReceiveProps(nextProps) {
-        this.state = ({ mouseIsHovering: false });
-    }
+        //called by card when dropped over
+        handleOnDragEnd(e, project) {
+            const updatedProjects = this.state.projects.slice(0);
+            updatedProjects.find((projectObject) => { return projectObject.name === project.name; }).columnNum = this.state.draggedOverCol;
+            this.setState({ projects: updatedProjects });
+        }
 
-    generateVBCards() {
-        return this.props.projects.slice(0).map((project) => {
+        render() {
+            if (this.state.isLoading) {
+                return (
+                    <h3>Loading...</h3>);
+            }
+
             return (
-                <VBCard project={project}
-                    key={project.name}
-                    onDragEnd={this.props.onDragEnd} />
+                <div>
+                    {this.columns.map((column) => {
+                        return (
+                            <VBColumn name={column.name}
+                                stage={column.stage}
+                                projects={this.state.projects.filter((project) => { return parseInt(project.columnNum, 10) === column.stage; })}
+                                onDragEnter={this.handleOnDragEnter}
+                                onDragEnd={this.handleOnDragEnd}
+                                key={column.stage}
+                            />
+                        );
+                    })}
+                </div>
             );
-        });
+        }
     }
 
-    addVBCards() {
+    class VBColumn extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = ({ mouseIsHovering: false });
+        }
 
-    }
+        componentWillReceiveProps(nextProps) {
+            this.state = ({ mouseIsHovering: false });
+        }
 
-    render() {
-        const columnStyle = {
-            'display': 'inline-block',
-            'verticalAlign': 'top',
-            'marginRight': '5px',
-            'marginBottom': '5px',
-            'paddingLeft': '5px',
-            'paddingTop': '0px',
-            'width': '230px',
-            'textAlign': 'center',
-            'backgroundColor': (this.state.mouseIsHovering) ? '#517FA4' : 'rgba(38, 38, 38, 0.3)',
-        };
-        return (
-            <div style={columnStyle}
-                onDragEnter={(e) => { this.setState({ mouseIsHovering: true }); this.props.onDragEnter(e, this.props.stage); }}
-                onDragExit={(e) => { this.setState({ mouseIsHovering: false }); }}
-            >
-                <h4 className="whiteText">{this.props.name}<div>
+        generateVBCards() {
+            return this.props.projects.slice(0).map((project) => {
+                return (
+                    <VBCard project={project}
+                        key={project.name}
+                        onDragEnd={this.props.onDragEnd} />
+                );
+            });
+        }
 
-                </div></h4>
-                {this.generateVBCards()}
-                <br />
-            </div>);
-    }
-}
+        addVBCards() {
 
-class VBCard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            collapsed: true,
-        };
-    }
+        }
 
-    render() {
-        const cardStyle = {
-            'backgroundColor': '#B0D5FC',
-            'paddingLeft': '0px',
-            'paddingTop': '5px',
-            'paddingBottom': '5px',
-            'marginLeft': '0px',
-            'marginRight': '5px',
-            'marginBottom': '5px',
-        };
-
-        return (
-            <div style={cardStyle}
-                draggable={true}
-                onDragEnd={(e) => { this.props.onDragEnd(e, this.props.project); }}
-            >
-                <div><h4>{this.props.project.name}</h4></div>
-                {(this.state.collapsed)
-                    ? null
-                    : (<div><strong>Description: </strong>{this.props.project.description}<br /></div>)
-                }
-                <div style={{ 'width': '100%' }}
-                    onClick={(e) => { this.setState({ collapsed: !this.state.collapsed }); }}
+        render() {
+            const columnStyle = {
+                'display': 'inline-block',
+                'verticalAlign': 'top',
+                'marginRight': '5px',
+                'marginBottom': '5px',
+                'paddingLeft': '5px',
+                'paddingTop': '0px',
+                'width': '230px',
+                'textAlign': 'center',
+                'backgroundColor': (this.state.mouseIsHovering) ? '#517FA4' : 'rgba(38, 38, 38, 0.3)',
+            };
+            return (
+                <div style={columnStyle}
+                    onDragEnter={(e) => { this.setState({ mouseIsHovering: true }); this.props.onDragEnter(e, this.props.stage); }}
+                    onDragExit={(e) => { this.setState({ mouseIsHovering: false }); }}
                 >
-                    {(this.state.collapsed) ? String.fromCharCode('9660') : String.fromCharCode('9650')}
+                    <h4 className="whiteText">{this.props.name}<div>
+
+                    </div></h4>
+                    {this.generateVBCards()}
+                    <br />
+                </div>);
+        }
+    }
+
+    class VBCard extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                collapsed: true,
+            };
+        }
+
+        render() {
+            const cardStyle = {
+                'backgroundColor': '#B0D5FC',
+                'paddingLeft': '0px',
+                'paddingTop': '5px',
+                'paddingBottom': '5px',
+                'marginLeft': '0px',
+                'marginRight': '5px',
+                'marginBottom': '5px',
+            };
+
+            return (
+                <div style={cardStyle}
+                    draggable={true}
+                    onDragEnd={(e) => { this.props.onDragEnd(e, this.props.project); }}
+                >
+                    <div><h4>{this.props.project.name}, {this.props.project.country}</h4></div>
+                    {(this.state.collapsed)
+                        ? null
+                        : (<div><strong>Description: </strong>{this.props.project.description}<br /></div>)
+                    }
+                    <div style={{ 'width': '100%' }}
+                        onClick={(e) => { this.setState({ collapsed: !this.state.collapsed }); }}
+                    >
+                        {(this.state.collapsed) ? String.fromCharCode('9660') : String.fromCharCode('9650')}
+
+                    </div>
 
                 </div>
-
-            </div>
-        );
+            );
+        }
     }
-}
 
-var placeList = [
-    {
-        name: 'Hawaii, US',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1,
-    },
-    {
-        name: 'New York, US',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1,
-    },
-    {
-        name: 'Sydney, Australia',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1,
-    },
-    {
-        name: 'Paris, France',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 2,
-    },
-    {
-        name: 'London, England',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 3,
-    },
-    {
-        name: 'Tokyo, Japan',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 3,
-    },
-    {
-        name: 'Buenos Aires, Argentina',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 3,
-    },
-    {
-        name: 'Bora Bora, French Polynesia',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 3,
-    },
-    {
-        name: 'Bali, Indonesia',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 2,
-    },
-    {
-        name: 'Amsterdam, Netherlands',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 2,
-    },
-    {
-        name: 'Venice, Italy',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 2,
-    },
-    {
-        name: 'Geneva, Switzerland',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1,
-    },
-    {
-        name: 'Reykjavík, Iceland',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1,
-    },
-    {
-        name: 'Lisbon, Portugal',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 2,
-    },
-    {
-        name: 'Dubai, UAE',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        columnNum: 1,
-    },
-];
+    $("#addCardBtn").on("click", function () {
+        let newPlace = $("#placeName").val();
+        let newPlaceCountry = $("#placeCountry").val();
+        let newDescription = $("#placeNotes").val();
+        let newPhotoUrl = $("#photoUrl").val();
 
-$("#addCardBtn").on("click", function () {
-    let newPlace = $("#placeName").val();
-    let newDescription = $("#placeDescription").val();
-    let columnPlacement = parseInt($("#columnNum").val());
+        var item = {
+            placeName: newPlace,
+            countryName: newPlaceCountry,
+            notes: newDescription,
+            photoUrl: newPhotoUrl
+        }
+        postFuturePlace(item);
+    });
 
-    var item = {
-        name: newPlace,
-        description: newDescription,
-        columnNum: columnPlacement,
-    }
-    placeList.push(item);
-
+    function postFuturePlace(details) {
+        $.ajax({
+            method: "POST",
+            url: "/Travelers/PostFuturePlacesDetails",
+            datatype: "JSON",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            contentType: "application/json",
+            data: JSON.stringify({
+                "placeName": details.placeName,
+                "countryName": details.countryName,
+                "notes": details.notes,
+                "photoUrl": details.photoUrl
+            }),
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    };
+    console.log(placeList);
+    ReactDOM.render(
+        <VisionBoard />, document.getElementById('app'));
 });
-
-ReactDOM.render(
-    <VisionBoard />, document.getElementById('app'));
