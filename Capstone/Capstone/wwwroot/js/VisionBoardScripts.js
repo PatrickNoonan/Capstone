@@ -93,6 +93,10 @@ class VBColumn extends React.Component {
         });
     }
 
+    addVBCards() {
+
+    }
+
     render() {
         const columnStyle = {
             'display': 'inline-block',
@@ -238,19 +242,19 @@ var placeList = [
     },
 ];
 
-//$("#addCardBtn").on("click", function () {
-//    let newPlace = $("#placeName").val();
-//    let newDescription = $("#placeDescription").val();
-//    let columnPlacement = parseInt($("#columnNum").val());
+$("#addCardBtn").on("click", function () {
+    let newPlace = $("#placeName").val();
+    let newDescription = $("#placeDescription").val();
+    let columnPlacement = parseInt($("#columnNum").val());
 
-//    var item = {
-//        name: newPlace,
-//        description: newDescription,
-//        columnNum: columnPlacement,
-//    }
-//    placeList.push(item);
+    var item = {
+        name: newPlace,
+        description: newDescription,
+        columnNum: columnPlacement,
+    }
+    placeList.push(item);
 
-//});
+});
 
 ReactDOM.render(
     <VisionBoard />, document.getElementById('app'));

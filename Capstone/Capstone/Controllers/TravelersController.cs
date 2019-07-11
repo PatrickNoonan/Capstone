@@ -261,5 +261,26 @@ namespace Capstone.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetFuturePlacesDetails()
+        {
+            List<FuturePlaces> data = new List<FuturePlaces>();
+            Traveler currentTraveler = GetLoggedInMember();
+            data = _context.FuturePlaces
+                .Where(c => c.TravelerId == (currentTraveler.FirstName + " " + currentTraveler.LastName))
+                .ToList();
+
+            return Json(data);
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostFuturePlacesDetails([FromBody]FuturePlaces newPlace)
+        {
+            var loggedInMember = GetLoggedInMember();
+            newPlace.TravelerId = loggedInMember.FirstName + " " + loggedInMember.LastName;
+            _context.FuturePlaces.Add(newPlace);
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }
