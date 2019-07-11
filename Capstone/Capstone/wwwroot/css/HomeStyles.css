@@ -76,12 +76,12 @@ html, body {
 }
 
 .carousel .carousel-inner .bg1 {
-    background-image: url('../images/BeachResize.jpg');
+    background-image: url('../images/NewYorkResize.jpg');
     background-position: center top;
 }
 
 .carousel .carousel-inner .bg2 {
-    background-image: url('../images/NewYorkResize.jpg');
+    background-image: url('../images/BeachResize.jpg');
     background-position: center center;
 }
 
@@ -194,4 +194,8 @@ html, body {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
-    /*---------------------------------------------------------------------------------------------------------------*/
+.whiteText {
+    color:white;
+    font-family: 'Comic Sans MS';
+    font-size: 50px;
+}
