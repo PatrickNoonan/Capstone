@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿//https://c-sf.smule.com/s-ash-bck4/sing/performance/cover/76/6c/3671eed8-426c-4c54-8417-ec89a2a5f0ad.jpg
+$(document).ready(function () {
 
     var countryCounter = 0;
     var countryArray = [];
@@ -406,7 +407,7 @@
 
         let color = d3.scaleOrdinal()
             .domain(data)
-            .range(d3.schemePaired);
+            .range(d3.schemeCategory20);
 
         let pie = d3.pie()
             .value(function (d) { return d.value; })
