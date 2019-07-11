@@ -59,3 +59,8 @@
 .logoPlaceHolder {
     color: white;
 }
+
+.boardHeader {
+    float:right;
+    margin-right:100px;
+}

@@ -3,38 +3,32 @@
         {
             name: 'Hawaii',
             country: 'US',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            description: 'Paradise',
             columnNum: 1,
         },
         {
             name: 'New York',
             country: 'US',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            description: 'City that never sleeps',
             columnNum: 1,
         },
         {
             name: 'Sydney',
             country: 'Australia',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            description: 'Watch out for sharks',
             columnNum: 1,
         },
         {
             name: 'Paris',
             country: 'France',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            description: 'Oui, oui',
             columnNum: 2,
         },
         {
-            name: 'London',
-            country: 'England',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
+            name: 'Tokyo, Japan',
+            description: 'Can\'t wait to go here!',
             columnNum: 3,
         },
-        //{
-        //    name: 'Tokyo, Japan',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 3,
-        //},
         //{
         //    name: 'Buenos Aires, Argentina',
         //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
@@ -75,11 +69,6 @@
         //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
         //    columnNum: 2,
         //},
-        //{
-        //    name: 'Dubai, UAE',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 1,
-        //},
     ];
 
     $.ajax({
@@ -99,8 +88,7 @@
                     country: data[i].countryName,
                     description: data[i].notes,
                     columnNum: 1
-                }
-                
+                }                
                 placeList.push(item)
             }
         });
@@ -115,7 +103,6 @@
             return (
                 <div style={style}>
 
-                    <h1 className="whiteText">Destination Board</h1>
                     <VBoard />
                 </div>
             );
@@ -135,7 +122,7 @@
             this.columns = [
                 { name: 'Cool Places', stage: 1 },
                 { name: 'Bucket List', stage: 2 },
-                { name: 'Must see', stage: 3 },
+                { name: 'Making Plans', stage: 3 },
             ];
         }
 
@@ -199,10 +186,6 @@
             });
         }
 
-        addVBCards() {
-
-        }
-
         render() {
             const columnStyle = {
                 'display': 'inline-block',
@@ -256,7 +239,7 @@
                     <div><h4>{this.props.project.name}, {this.props.project.country}</h4></div>
                     {(this.state.collapsed)
                         ? null
-                        : (<div><strong>Description: </strong>{this.props.project.description}<br /></div>)
+                        : (<div><strong>Notes: </strong>{this.props.project.description}<br /></div>)
                     }
                     <div style={{ 'width': '100%' }}
                         onClick={(e) => { this.setState({ collapsed: !this.state.collapsed }); }}

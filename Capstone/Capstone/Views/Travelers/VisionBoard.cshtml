@@ -9,16 +9,21 @@
 }
 
     <body>
-        <div class="logo">
-            @*<img src="https://placekitten.com/50/50" class="header-logo">*@
-            <a asp-area="" asp-controller="Home" asp-action="Index"><h1 class="logoPlaceHolder">T</h1></a>
+        <div class="row">
+            <div class="logo col-xs-1">
+                    <a asp-area="" asp-controller="Home" asp-action="Index"><h1 class="logoPlaceHolder">T</h1></a>
+            </div>
+            <div class="col-xs-10">
+                <h1 class="boardHeader whiteText">Destination Board</h1>
+            </div>
+            <div class="col-xs-1"></div>
         </div>
+               
         <div class="row">
             <div id="addCardArea">
                 <input type="text" placeholder="Enter a place" name="city" id="placeName">
                 <input type="text" placeholder="Enter the country" name="country" id="placeCountry">
                 <input type="text" placeholder="Enter a note" name="note" id="placeNotes">
-                <input type="text" placeholder="submit picture url" name="photo" id="photoUrl">
                 <input hidden type="text" value="1" name="city" id="columnNum">
                 <input type="submit" class="btn btn-change btn-4" value="Add Card" id="addCardBtn">
             </div>
