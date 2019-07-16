@@ -1,4 +1,5 @@
-﻿//https://c-sf.smule.com/s-ash-bck4/sing/performance/cover/76/6c/3671eed8-426c-4c54-8417-ec89a2a5f0ad.jpg
+﻿/*https://c-sf.smule.com/s-ash-bck4/sing/performance/cover/76/6c/3671eed8-426c-4c54-8417-ec89a2a5f0ad.jpg
+ */
 $(document).ready(function () {
 
     var countryCounter = 0;

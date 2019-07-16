@@ -177,7 +177,7 @@ html, body {
 }
 
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     border: none;
     border-radius: 8px;
     color: white;
