@@ -206,7 +206,7 @@
         }, 3000);
     });
 
-    /* function to display survey information
+    /* ---future function to display survey information
     function getSurveys() {
         $.ajax({
             url: '/Travelers/CheckSurveyData',
@@ -289,8 +289,6 @@
                 "apikey": "4d63b443139302c3698bbbbeef2b4dbf"
             },
             success: function (data) {
-                console.log(data);
-                //get necessary data
                 let extractedData = {
                     "20-24": data.response.result.package.item[0].age20_24,
                     "25-29": data.response.result.package.item[0].age25_29,
@@ -310,13 +308,12 @@
 
     function displayPopulationGraph(attomData) {
         let chartData = [];
-        let chartDates = [];//chart Ages
-        console.log(attomData);
+        let chartAges = [];
 
         for (var key in attomData) {
             if (attomData.hasOwnProperty(key)) {
                 chartData.push(parseInt(attomData[key]))
-                chartDates.push(key)
+                chartAges.push(key)
             }
         }
 
@@ -422,12 +419,12 @@
                 })
 
             let horizontalGuideScale = d3.scaleLinear()
-                .domain([0, d3.max(chartDates)])
+                .domain([0, d3.max(chartAges)])
                 .range([width, 0])
 
             let hAxis = d3.axisBottom(xScale)                
                 .tickFormat(function (d, i) {
-                    return chartDates[i];
+                    return chartAges[i];
                 })
                 
 
@@ -449,6 +446,7 @@
     }
 });
 
+/* ----future smoother transition from profile section to api section
 var scrollingElement = (document.scrollingElement || document.body || body);
 
 function scrollSmoothToBottom(id) {
@@ -461,6 +459,6 @@ function scrollSmoothToTop(id) {
     $(scrollingElement).animate({
         scrollTop: 0
     }, 500);
-}
+}*/
 
 
