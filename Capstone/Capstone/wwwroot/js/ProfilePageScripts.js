@@ -206,6 +206,7 @@
         }, 3000);
     });
 
+    /* function to display survey information
     function getSurveys() {
         $.ajax({
             url: '/Travelers/CheckSurveyData',
@@ -218,6 +219,7 @@
 
             });
     }
+    */
 
     function wikiSearch(item) {
         url = "https://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
@@ -228,13 +230,15 @@
 
             resultArray = longResult.split(" ")
 
-            var arrCounter = 0; //searching for any ending parenthesis in the first 20 words of the extract, returns word index of last occuring one
+            //searching for any ending parenthesis in the first 20 words of the extract, returns word index of last occuring one
+            var arrCounter = 0; 
             for (let i = 0; i < 20; i++) {
                 if (resultArray[i].indexOf(")") != -1) {
                     arrCounter = i;
                 }
             }
 
+            //splicing up to word 70 of the extract
             resultString = resultArray.splice(arrCounter + 1, 70).join(" ")
 
             $('.cityInfo-container')
