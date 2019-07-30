@@ -7,13 +7,11 @@
     margin-right:0px;
 }
 
-
 nav ul, nav ol {
     list-style: outside none none;
 }
 
 #timeline {
-    /*background-color: rgba(122,201,67,0.6);*/
     color: rgba(255, 255, 255, 0.5);
     height: 90px;
     margin-top: 22px;
@@ -53,7 +51,6 @@ nav ul, nav ol {
         }
 
         #timeline li p.timeline-date {
-            /*background-color: #8e8f90;*/
             background-color: #454545;
             border: 1px solid #838383;
             bottom: 9em;
@@ -102,7 +99,6 @@ nav ul, nav ol {
             font-family: 'Roboto Condensed', sans-serif;
             font-size: 1.4em;
             padding: 0 0 0 .75em;
-            /*color: rgba(122,201,67,1)*/
         }
 
             #timeline li.date:hover {
@@ -129,7 +125,6 @@ nav ul, nav ol {
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
-    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
     box-shadow: 0 0 2.5px #eee;
     border-radius: 2.5px;
 }
@@ -249,7 +244,6 @@ p + p {
 
 
 .infobox {
-    /*color: white;*/
     visibility: hidden;
     opacity: 0;
     filter: alpha(opacity=0);

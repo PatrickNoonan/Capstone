@@ -1,5 +1,4 @@
-﻿/*https://c-sf.smule.com/s-ash-bck4/sing/performance/cover/76/6c/3671eed8-426c-4c54-8417-ec89a2a5f0ad.jpg
- */
+﻿//https://c-sf.smule.com/s-ash-bck4/sing/performance/cover/76/6c/3671eed8-426c-4c54-8417-ec89a2a5f0ad.jpg
 $(document).ready(function () {
 
     var countryCounter = 0;
@@ -154,13 +153,12 @@ $(document).ready(function () {
         $('#statesVisited').append('<span id="stateCounterSpan">' + stateCounter + '</span>');
 
 
-        // event to toggle "active" state
+        //Event to toggle "active" state
         polygonTemplate.events.on("hit", function (ev) {
             $('#countryCounterSpan').remove();
             getCountries();
             
             let targetObjectName = ev.target.dataItem.dataContext.name;
-
 
             if (ev.target.isActive) {
                 ev.target.isActive = !ev.target.isActive;
@@ -321,11 +319,9 @@ $(document).ready(function () {
         setTimeout(function () {
             $('.message').remove();
         }, 3000);
-
     })
 
     function addYearToTimeline(year) {
-
         $("#timeline-ul")
             .append(
                 `<li id="timeline-date-` + year + `" class="date">
@@ -372,9 +368,9 @@ $(document).ready(function () {
 
     getTravelDetails();  
 
-    //----------------------------------------------------------------- Pie Chart -----------------------------------
-    let pieData1 = { a: 0, b: 50 } //50
-    let pieData2 = { a: 0, b: 195 }//195
+    //------------------------------ Pie Chart -----------------------------------
+    let pieData1 = { a: 0, b: 50 }
+    let pieData2 = { a: 0, b: 195 }
     let type1 = "state";
     let type2 = "country";
 
