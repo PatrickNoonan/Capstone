@@ -25,50 +25,16 @@
             columnNum: 2,
         },
         {
+            name: 'Greet Barrier Reef',
+            country: 'Australia',
+            description: 'Pretty sweet',
+            columnNum: 1,
+        },
+        {
             name: 'Tokyo, Japan',
             description: 'Can\'t wait to go here!',
             columnNum: 3,
         },
-        //{
-        //    name: 'Buenos Aires, Argentina',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 3,
-        //},
-        //{
-        //    name: 'Bora Bora, French Polynesia',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 3,
-        //},
-        //{
-        //    name: 'Bali, Indonesia',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 2,
-        //},
-        //{
-        //    name: 'Amsterdam, Netherlands',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 2,
-        //},
-        //{
-        //    name: 'Venice, Italy',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 2,
-        //},
-        //{
-        //    name: 'Geneva, Switzerland',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 1,
-        //},
-        //{
-        //    name: 'Reykjavík, Iceland',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 1,
-        //},
-        //{
-        //    name: 'Lisbon, Portugal',
-        //    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere dui vel urna egestas rutrum. ',
-        //    columnNum: 2,
-        //},
     ];
 
     $.ajax({
@@ -130,12 +96,12 @@
             this.setState({ projects: placeList, isLoading: false });
         }
 
-        //called by column when card is dragged over
+        //Called by column when card is dragged over
         handleOnDragEnter(e, stageValue) {
             this.setState({ draggedOverCol: stageValue });
         }
 
-        //called by card when dropped over
+        //Called by card when dropped over
         handleOnDragEnd(e, project) {
             const updatedProjects = this.state.projects.slice(0);
             updatedProjects.find((projectObject) => { return projectObject.name === project.name; }).columnNum = this.state.draggedOverCol;
@@ -147,7 +113,6 @@
                 return (
                     <h3>Loading...</h3>);
             }
-
             return (
                 <div>
                     {this.columns.map((column) => {
@@ -230,7 +195,6 @@
                 'marginRight': '5px',
                 'marginBottom': '5px',
             };
-
             return (
                 <div style={cardStyle}
                     draggable={true}
