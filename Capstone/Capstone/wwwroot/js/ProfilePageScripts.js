@@ -286,7 +286,7 @@
             datatype: "JSON",
             headers: {
                 "accept": "application/json",
-                "apikey": "4d63b443139302c3698bbbbeef2b4dbf"
+                //"apikey": "you api key goes here"
             },
             success: function (data) {
                 let extractedData = {

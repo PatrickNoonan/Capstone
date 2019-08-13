@@ -46,8 +46,6 @@
         async: false
     })
         .done(function (data) {
-            console.log(data);
-
             for (let i = 0; i < data.length; i++) {
                 let item = {
                     name: data[i].placeName,
@@ -68,7 +66,6 @@
             };
             return (
                 <div style={style}>
-
                     <VBoard />
                 </div>
             );
@@ -209,9 +206,7 @@
                         onClick={(e) => { this.setState({ collapsed: !this.state.collapsed }); }}
                     >
                         {(this.state.collapsed) ? String.fromCharCode('9660') : String.fromCharCode('9650')}
-
                     </div>
-
                 </div>
             );
         }
